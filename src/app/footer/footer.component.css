@@ -1,0 +1,8 @@
+.app-footer-container{
+  justify-content: flex-end;
+}
+
+.app-footer-container span {
+  font-weight: bold;
+  font-size: 12px;
+}
