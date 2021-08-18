@@ -3,6 +3,49 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+
 .w-10p{
   width: 10%;
+}
+
+.ml-15{
+  margin-left: 15px;
+}
+
+.w-100{
+  width: 100%;
+}
+
+.m-20{
+  margin: 20px;
+}
+
+.mr-10{
+  margin-right: 10px !important;
+}
+
+.flx-rw-ctnr{
+  display: flex !important;
+  flex-direction: row;
+}
+
+.flx-evenly{
+  justify-content: space-evenly;
+}
+
+.w-300{
+  width: 300px;
+}
+
+.w-450{
+  width: 450px;
+}
+
+.flx-clmn{
+  display: flex;
+  flex-direction: column;
+}
+
+.mt-100p{
+  margin-top: 100px;
 }
