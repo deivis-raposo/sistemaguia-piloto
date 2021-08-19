@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SharedService } from './_services/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,24 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'checklist-app';
 
-  public events = [
-    { title: 'Se beber não case'},
-    { title: 'O poderoso chefão'}
-  ];
+  showTemplate: boolean = false;
+  public shared!: SharedService;
+
+  constructor(){
+    this.shared = SharedService.getInstance();
+  }
+
+  ngOnInit(){
+    this.shared.showTemplate.subscribe(
+      show => this.showTemplate = show
+    )
+  }
+
+  showContentWrapper(){
+    return {
+      'content-wrapper': this.shared.isLoggedIn()
+    }
+  }
 
 }

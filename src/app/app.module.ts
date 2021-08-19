@@ -11,6 +11,15 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { UsuarioService } from './_services/usuario.service';
+import { ClienteService } from './_services/cliente.service';
+import { VeiculoService } from './_services/veiculo.service';
+import { DialogService } from './_services/dialog.service';
+import { AuthGuard } from './security/auth.guard';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './security/auth.interceptor';
+import { LoginComponent } from './security/login/login.component';
+import { SharedService } from './_services/shared.service';
 
 @NgModule({
   declarations: [
@@ -19,16 +28,31 @@ import { UsuarioComponent } from './usuario/usuario.component';
     FooterComponent,
     HomeComponent,
     PageNotFoundComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    UsuarioService,
+    SharedService,
+    ClienteService,
+    VeiculoService,
+    DialogService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
