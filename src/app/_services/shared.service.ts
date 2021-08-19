@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { CurrentUser } from '../model/current-user.model';
-import { Usuario } from '../model/usuario.model';
+import { CurrentUser } from '../_models/current-user.model';
+import { Usuario } from '../_models/usuario.model';
+
 
 
 @Injectable({
@@ -26,14 +27,14 @@ export class SharedService {
     return this.instance;
   }
 
-  
+
   isLoggedIn(): boolean{
     if(this.usuario == null){
       return false;
     }
     return this.usuario.cpfUsuario != '';
   }
-  
+
 /*
   isLoggedIn(): boolean {
     let currentUser: CurrentUser = this.getSessionStoreCurrentUser();
@@ -45,8 +46,8 @@ export class SharedService {
     }
     return this.usuario.cpfUsuario != '';
   }
-*/ 
-   
+*/
+
   getSessionStoreCurrentUser(): CurrentUser {
     if (sessionStorage.getItem("currentUser") == null) {
       return new CurrentUser('', new Usuario(0,'','','','','','',''));
@@ -54,24 +55,24 @@ export class SharedService {
     }
 
   let currentUserSessionStore = sessionStorage.getItem("currentUser");
- 
+
   //let currentUser = new CurrentUser('',null);
   let currentUser = new CurrentUser('',new Usuario(0,'','','','','','', ''));
 
   if(currentUserSessionStore != null){
     var userToken = currentUserSessionStore.split("|");
-  
+
     currentUser.token = userToken[1];
-    
+
     let user = new Usuario(0,'', '','','','','','');
     user.id = parseInt(userToken[0].split(",")[0]);
     user.cpfUsuario = userToken[0].split(",")[1];
     user.profile = userToken[0].split(",")[2];
     currentUser.usuario = user;
   }
-  
+
   return currentUser;
 }
-  
+
 
 }
