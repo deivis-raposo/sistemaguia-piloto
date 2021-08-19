@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as EventEmitter from 'events';
 import { CurrentUser } from 'src/app/_models/current-user.model';
 import { Usuario } from 'src/app/_models/usuario.model';
 import { SharedService } from 'src/app/_services/shared.service';
@@ -12,6 +14,11 @@ import { UsuarioService } from 'src/app/_services/usuario.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+
+  @Input() error!: string | null;
+
+  //@Output() submitEM = new EventEmitter();
 
   usuario = new Usuario(0,'','','','','','','') ;
   shared!: SharedService;
@@ -29,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.message = '';
-    console.log('1');
+
     this.usuarioService.login(this.usuario).subscribe((userAuthentication: CurrentUser) => {
       this.shared.token = userAuthentication.token;
       this.shared.usuario = userAuthentication.usuario;

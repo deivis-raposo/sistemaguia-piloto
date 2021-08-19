@@ -1,3 +1,4 @@
+<!--
 <div class="col-md-4" style="margin-left:30%; margin-top:15%;">
 <div class="box box-info">
   <div class="box-header with-border">
@@ -11,11 +12,11 @@
         <div>
         <label for="inputCpf" class="col-sm-2 control-label">CPF</label>
           <div class="col-sm-10">
-            <input type="cpfUsuario" 
+            <input type="cpfUsuario"
                   [(ngModel)]="usuario.cpfUsuario"
                   name="cpfUsuario"
-                  class="form-control" 
-                  id="inputCpf" 
+                  class="form-control"
+                  id="inputCpf"
                   #cpfUsuario="ngModel"
                   placeholder="CPF"
                   mascara="999.999.999-99"
@@ -27,13 +28,13 @@
       <div>
         <label for="inputSenha" class="col-sm-2 control-label">Senha</label>
         <div class="col-sm-10">
-          <input type="password" 
+          <input type="password"
                  [(ngModel)]="usuario.senha"
-                 name="senha" 
-                 class="form-control" 
-                 id="inputSenha" 
+                 name="senha"
+                 class="form-control"
+                 id="inputSenha"
                  placeholder="Senha"
-                 #senha="ngModel" 
+                 #senha="ngModel"
                  required>
           <span class="help-block" *ngIf="senha.invalid  && senha.dirty">Senha é obrigatório.</span>
         </div>
@@ -46,3 +47,43 @@
   </form>
 </div>
 </div>
+-->
+
+
+
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+      <form #form="ngForm" (ngSubmit)="login()">
+        <p>
+          <mat-form-field>
+            <input type="text"
+                    matInput
+                    placeholder="Username"
+                    [(ngModel)]="usuario.cpfUsuario"
+                    #cpfUsuario="ngModel"
+                    name="cpfUsuario"
+                    id="inputCpf">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <input type="password"
+                 [(ngModel)]="usuario.senha"
+                 name="senha"
+                 id="inputSenha"
+                 placeholder="Senha"
+                 #senha="ngModel"
+                 >
+          </mat-form-field>
+        </p>
+        <p *ngIf="error" class="error">
+          {{ error }}
+        </p>
+
+        <div class="button">
+          <button type="submit" mat-button>Login</button>
+        </div>
+      </form>
+    </mat-card-content>
+</mat-card>
