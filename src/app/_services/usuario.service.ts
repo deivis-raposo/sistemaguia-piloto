@@ -43,4 +43,9 @@ export class UsuarioService {
     //return this.http.delete<ResponseApi>(`${SISTEMAAGUIA_API}/api/usuario/${id}`);
     return this.http.get<ResponseApi>(`http://18.230.61.76:8080/api_piloto/api/usuario/${id}`);
   }
+
+
+  public getAllUsers(page: number, count: number): Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(`http://localhost:8080/api/usuario`);
+  }
 }

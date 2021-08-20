@@ -10,6 +10,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTableModule,
     MatFormFieldModule,
     MatTreeModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
+    MatSnackBarModule
   ],
   exports: [
     MatToolbarModule,
@@ -37,7 +41,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTableModule,
     MatFormFieldModule,
     MatTreeModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }

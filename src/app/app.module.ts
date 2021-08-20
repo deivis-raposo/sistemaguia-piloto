@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -21,6 +20,8 @@ import { AuthInterceptor } from './security/auth.interceptor';
 import { LoginComponent } from './security/login/login.component';
 import { SharedService } from './_services/shared.service';
 import { DialogComponent } from './dialog/dialog.component';
+import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
+import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { DialogComponent } from './dialog/dialog.component';
     PageNotFoundComponent,
     UsuarioComponent,
     LoginComponent,
-    DialogComponent
+    DialogComponent,
+    UsuarioEditComponent,
+    UsuarioFormComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { DialogComponent } from './dialog/dialog.component';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
     UsuarioService,
