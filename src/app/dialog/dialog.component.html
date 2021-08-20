@@ -1,0 +1,18 @@
+<div>
+
+
+  <mat-card>
+
+    <mat-card-content>
+      <p>{{dialogMsg}}</p>
+    </mat-card-content>
+
+    <mat-card-actions class="flx-rw-ctnr flx-evenly">
+      <button mat-raised-button color="warn" (click)="cancelAction()">{{leftButtonLabel}}</button>
+      <button mat-raised-button color="primary" (click)="confirmAction()">{{rightButtonLabel}}</button>
+    </mat-card-actions>
+
+  </mat-card>
+
+
+</div>

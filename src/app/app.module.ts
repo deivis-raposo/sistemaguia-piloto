@@ -20,6 +20,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './security/auth.interceptor';
 import { LoginComponent } from './security/login/login.component';
 import { SharedService } from './_services/shared.service';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SharedService } from './_services/shared.service';
     HomeComponent,
     PageNotFoundComponent,
     UsuarioComponent,
-    LoginComponent
+    LoginComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
