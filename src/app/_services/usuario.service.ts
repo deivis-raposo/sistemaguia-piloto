@@ -15,8 +15,8 @@ export class UsuarioService {
   constructor(private http: HttpClient) {}
 
   login(usuario: Usuario): Observable<CurrentUser>{
-    return this.http.post<CurrentUser>(`http://localhost:8080/api/auth`, usuario);
-    //return this.http.post<CurrentUser>(`http://18.230.61.76:8080/api_piloto/api/auth`, usuario);
+    //return this.http.post<CurrentUser>(`http://localhost:8080/api/auth`, usuario);
+    return this.http.post<CurrentUser>(`http://18.230.61.76:8080/api_piloto/api/auth`, usuario);
   }
 
   create(usuario: Usuario): Observable<ResponseApi>{
