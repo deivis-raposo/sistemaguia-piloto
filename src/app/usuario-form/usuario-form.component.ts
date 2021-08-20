@@ -38,6 +38,6 @@ export class UsuarioFormComponent implements OnInit {
 
   public save(){
     console.log('TODO: Implementar a função save.')
-    this.closeModelEventEmitter.emit(true);
+    //this.closeModelEventEmitter.emit(true);
   }
 }
