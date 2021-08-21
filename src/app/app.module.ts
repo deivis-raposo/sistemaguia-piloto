@@ -22,6 +22,7 @@ import { SharedService } from './_services/shared.service';
 import { DialogComponent } from './dialog/dialog.component';
 import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
 import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
+import { PaginaManutencaoComponent } from './pagina-manutencao/pagina-manutencao.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
     LoginComponent,
     DialogComponent,
     UsuarioEditComponent,
-    UsuarioFormComponent
+    UsuarioFormComponent,
+    PaginaManutencaoComponent
   ],
   imports: [
     BrowserModule,
