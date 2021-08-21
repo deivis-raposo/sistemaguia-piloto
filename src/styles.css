@@ -16,6 +16,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 100%;
 }
 
+.w-50{
+  width: 50%;
+}
+
+.w-75{
+  width: 75%;
+}
+
 .m-20{
   margin: 20px;
 }
