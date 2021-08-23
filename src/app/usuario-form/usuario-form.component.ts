@@ -27,7 +27,8 @@ export class UsuarioFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioForm = this.formBuilder.group({
-      nmUsuario: [this.editableUser != null ? this.editableUser.nmUsuario : '', Validators.required]
+      nmUsuario: [this.editableUser != null ? this.editableUser.nmUsuario : '', Validators.required],
+      cpfUsuario: [this.editableUser != null ? this.editableUser.cpfUsuario : '', Validators.required]
     })
     this.isFormReady = true;
   }
