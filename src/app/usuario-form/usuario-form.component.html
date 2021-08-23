@@ -13,11 +13,34 @@
             <mat-error *ngIf="usuarioForm?.controls?.nmUsuario?.errors?.required">Nome é obrigatório</mat-error>
           </mat-form-field>
 
-          <mat-form-field class="w-300" appearance="outline">
+          <mat-form-field class="w-500" appearance="outline">
+            <mat-label>E-mail Usuário:</mat-label>
+            <input matInput type="text" formControlName="emailUsuario">
+            <mat-error *ngIf="usuarioForm?.controls?.nmUsuario?.errors?.required">E-mail é obrigatório</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-200" appearance="outline">
             <mat-label>CPF:</mat-label>
             <input matInput type="text" formControlName="cpfUsuario">
             <mat-error *ngIf="usuarioForm?.controls?.cpfUsuario?.errors?.required">CPF é obrigatório</mat-error>
           </mat-form-field>
+
+          <mat-form-field class="w-200" appearance="outline">
+            <mat-label>Telefone:</mat-label>
+            <input matInput type="text" formControlName="nuTelefone">
+            <mat-error *ngIf="usuarioForm?.controls?.cpfUsuario?.errors?.required">Telefone é obrigatório</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-200" appearance="outline">
+            <mat-label>Perfil</mat-label>
+            <mat-select [(ngModel)]="selectedValue" formControlName="profile">
+              <mat-option *ngFor="let profile of profiles" [value]="profile.value">
+                {{profile.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="usuarioForm?.controls?.profile?.errors?.required">Perfil é obrigatório</mat-error>
+          </mat-form-field>
+
         </div>
         </form>
       </mat-card-content>
