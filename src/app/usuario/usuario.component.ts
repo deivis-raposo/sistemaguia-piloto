@@ -67,7 +67,7 @@ export class UsuarioComponent implements OnInit {
       }).afterClosed().subscribe(resp => {
         if(resp) {
           this.loadAllUser();
-          this.snackBarService.showSnackBar('Usuário criada com successo!', 'OK');
+          this.snackBarService.showSnackBar('Usuário criado com successo!', 'OK');
         }
       });
   }
