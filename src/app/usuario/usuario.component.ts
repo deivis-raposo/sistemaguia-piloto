@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 import { UsuarioEditComponent } from '../usuario-edit/usuario-edit.component';
 import { Usuario } from '../_models/usuario.model';
 import { SnackBarService } from '../_services/snack-bar.service';
@@ -32,6 +33,8 @@ export class UsuarioComponent implements OnInit {
   }
 
   public editUsuario(inputUser: Usuario){
+    console.log('ID USUARIO SELECIONADO::: ' + inputUser.id);
+    console.log('SENHA USUARIO SELECIONADO::: ' + inputUser.senha);
     this.dialog.open(UsuarioEditComponent, { disableClose: true, data : { editableUser: inputUser}
     }).afterClosed().subscribe(resp => {
       if(resp) {
@@ -39,15 +42,33 @@ export class UsuarioComponent implements OnInit {
         this.snackBarService.showSnackBar('Usuário editado com sucesso!', 'OK');
       }
     })
-
   }
 
   public deleteUsuario(usuario: Usuario){
+    this.dialog.open(DialogComponent, { disableClose: true, data : {
+      msg: 'Você tem certeza que deseja excluir esse usuário?', leftButton: 'Cancelar', rightButton: 'OK'
+    }}).afterClosed().subscribe(resp => {
+        if(resp) {
+          this.usuarioService.delete(usuario.id).subscribe(
+            (resp: any) => {
+              this.loadAllUser();
+              this.snackBarService.showSnackBar('Usuário excluído com successo!', 'OK');
+            }, (err: any) => {
+              this.snackBarService.showSnackBar('Não é possível excluir o usuário!', 'OK');
+            }
+          )
+        }
+    });
 
   }
 
   public createNewUser(){
-
+    this.dialog.open(UsuarioEditComponent, { disableClose: true, data : { actionName: 'Criar' }
+      }).afterClosed().subscribe(resp => {
+        if(resp) {
+          this.loadAllUser();
+          this.snackBarService.showSnackBar('Usuário criada com successo!', 'OK');
+        }
+      });
   }
-
 }

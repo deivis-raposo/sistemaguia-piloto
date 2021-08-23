@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private usuarioService: UsuarioService,
               private snackbarService: SnackBarService,
+              private snackBarService: SnackBarService,
               private router: Router) {
 
               this.shared = SharedService.getInstance();
@@ -62,11 +63,12 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
     }, err => {
       console.log('6');
-      this.shared.token = '';
+      /*this.shared.token = '';
       this.usuario.cpfUsuario = '';
       this.shared.usuario.cpfUsuario = '';
       this.shared.showTemplate.emit(false);
-      this.message = 'Erro';
+      this.message = 'Erro';*/
+      this.snackBarService.showSnackBar('Não foi possível autenticar!', 'OK');
     });
 
   }
