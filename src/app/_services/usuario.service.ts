@@ -49,7 +49,7 @@ export class UsuarioService {
 
   delete(id: number) : Observable<ResponseApi>{
     //return this.http.delete<ResponseApi>(`${SISTEMAAGUIA_API}/api/usuario/${id}`);
-    return this.http.get<ResponseApi>(`http://18.230.61.76:8080/api_piloto/api/usuario/${id}`);
+    return this.http.delete<ResponseApi>(`${environment.baseUrl}api/usuario/${id}`);
   }
 
 
