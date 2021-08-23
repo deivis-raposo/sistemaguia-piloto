@@ -61,3 +61,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mt-100p{
   margin-top: 100px;
 }
+
+
+
+/*remover botoes do input number*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
