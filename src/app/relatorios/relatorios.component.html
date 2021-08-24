@@ -1,4 +1,4 @@
-<div style="width: 800px; height: 30px; margin-left:25%; margin-top:1%;">
+<div style="width: 80%; height: 30px; margin-left:10%; margin-top:1%;">
   <mat-card>
 
     <mat-card-header>
@@ -12,24 +12,11 @@
         <mat-list-item>
           <mat-icon>summarize</mat-icon>
           <span class="ml-15">
-            <a [routerLink]="['/']" >Relatório XPTO</a>
+            <a (click)="filtroReport()" >Relatório XPTO</a>
           </span>
         </mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item>
-          <mat-icon>summarize</mat-icon>
-          <span class="ml-15">
-            <a [routerLink]="['/']" >Relatório XYZ</a>
-          </span>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <mat-icon>summarize</mat-icon>
-          <span class="ml-15">
-            <a [routerLink]="['/']" >Relatório WQR</a>
-          </span>
-        </mat-list-item>
-        <mat-divider></mat-divider>
+
       </mat-list>
     </mat-card-content>
     <mat-card-actions>

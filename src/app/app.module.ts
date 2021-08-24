@@ -25,6 +25,8 @@ import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
 import { PaginaManutencaoComponent } from './pagina-manutencao/pagina-manutencao.component';
 import { CredorComponent } from './financeiro/contas/credor/credor.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
+import { RelatorioModeloEditComponent } from './relatorio-modelo-edit/relatorio-modelo-edit.component';
+import { RelatorioModeloFormComponent } from './relatorio-modelo-form/relatorio-modelo-form.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { RelatoriosComponent } from './relatorios/relatorios.component';
     UsuarioFormComponent,
     PaginaManutencaoComponent,
     CredorComponent,
-    RelatoriosComponent
+    RelatoriosComponent,
+    RelatorioModeloEditComponent,
+    RelatorioModeloFormComponent
   ],
   imports: [
     BrowserModule,

@@ -33,8 +33,6 @@ export class UsuarioComponent implements OnInit {
   }
 
   public editUsuario(inputUser: Usuario){
-    console.log('ID USUARIO SELECIONADO::: ' + inputUser.id);
-    console.log('SENHA USUARIO SELECIONADO::: ' + inputUser.senha);
     this.dialog.open(UsuarioEditComponent, { disableClose: true, data : { editableUser: inputUser}
     }).afterClosed().subscribe(resp => {
       if(resp) {
