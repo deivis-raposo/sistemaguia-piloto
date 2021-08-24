@@ -23,6 +23,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
 import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
 import { PaginaManutencaoComponent } from './pagina-manutencao/pagina-manutencao.component';
+import { CredorComponent } from './financeiro/contas/credor/credor.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PaginaManutencaoComponent } from './pagina-manutencao/pagina-manutencao
     DialogComponent,
     UsuarioEditComponent,
     UsuarioFormComponent,
-    PaginaManutencaoComponent
+    PaginaManutencaoComponent,
+    CredorComponent
   ],
   imports: [
     BrowserModule,
