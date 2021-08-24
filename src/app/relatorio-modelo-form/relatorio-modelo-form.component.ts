@@ -17,8 +17,8 @@ export class RelatorioModeloFormComponent implements OnInit {
   public isFormReady = false;
 
   constructor(private formBuilder: FormBuilder,
-              private usuarioService: UsuarioService,
-              private snackbarService: SnackBarService) {
+    private usuarioService: UsuarioService,
+    private snackbarService: SnackBarService) {
 
 
   }
@@ -29,11 +29,11 @@ export class RelatorioModeloFormComponent implements OnInit {
     this.isFormReady = true;
   }
 
-  public cancel(){
-    this.closeModelEventEmitter.emit(false);
+  public cancel() {
+    this.closeModelEventEmitter.emit(true);
   }
 
-  public gerarRelatorio(){
+  public gerarRelatorio() {
     this.closeModelEventEmitter.emit(true);
   }
 

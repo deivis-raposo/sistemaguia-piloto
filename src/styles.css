@@ -32,6 +32,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-right: 10px !important;
 }
 
+.mrr-5{
+  margin-right: 5%!important;
+}
+
+
+
+
 .flx-rw-ctnr{
   display: flex !important;
   flex-direction: row;

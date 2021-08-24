@@ -14,6 +14,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
+
+
+
 
 
 
@@ -33,7 +38,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatSnackBarModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    MatExpansionModule
 
   ],
   exports: [
@@ -51,7 +58,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatSnackBarModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    MatExpansionModule
   ]
 })
 export class MaterialModule { }

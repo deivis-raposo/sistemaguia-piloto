@@ -27,6 +27,10 @@ import { CredorComponent } from './financeiro/contas/credor/credor.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { RelatorioModeloEditComponent } from './relatorio-modelo-edit/relatorio-modelo-edit.component';
 import { RelatorioModeloFormComponent } from './relatorio-modelo-form/relatorio-modelo-form.component';
+import { MovicombustivelComponent } from './movicombustivel/movicombustivel.component';
+import { InputempresaComponent } from './inputs-pesquisa/inputempresa/inputempresa.component';
+import { VendacategoriaComponent } from './vendacategoria/vendacategoria.component';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +48,10 @@ import { RelatorioModeloFormComponent } from './relatorio-modelo-form/relatorio-
     CredorComponent,
     RelatoriosComponent,
     RelatorioModeloEditComponent,
-    RelatorioModeloFormComponent
+    RelatorioModeloFormComponent,
+    MovicombustivelComponent,
+    InputempresaComponent,
+    VendacategoriaComponent,
   ],
   imports: [
     BrowserModule,

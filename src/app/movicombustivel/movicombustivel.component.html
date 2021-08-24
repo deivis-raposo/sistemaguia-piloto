@@ -1,0 +1,37 @@
+<form>
+    <mat-card class="m-20">
+
+        <mat-card-header>
+            <mat-card-title>Extrato Movimento Combustível</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Empressa:</mat-label>
+                <input matInput (click)="InputEmpresa()">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Periode De:</mat-label>
+                <input matInput type="date">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Ate:</mat-label>
+                <input matInput type="date">
+            </mat-form-field>
+
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">Produto</mat-radio-button>
+                <mat-radio-button value="2">Tanque</mat-radio-button>
+            </mat-radio-group>
+
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Gerar Relatorio</button>
+        </mat-card-actions>
+
+    </mat-card>
+</form>

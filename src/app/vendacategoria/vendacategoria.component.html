@@ -1,0 +1,40 @@
+<form>
+    <mat-card>
+
+        <mat-card-header>
+            <mat-card-title>RELATORIO VENDA POR CATEGORIA</mat-card-title>
+            <mat-card-subtitle>Selecione os filtros necessários e clique em Gerar Relatório</mat-card-subtitle>
+
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <mat-form-field appearance="outline" class=" width mrr-5" (click)="InputEmpresa()">
+                <mat-label>Empressa:</mat-label>
+                <input type="text" matInput (click)="InputEmpresa()">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="mrr-5">
+                <mat-label>Periode De:</mat-label>
+                <input matInput type="date">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="mrr-5">
+                <mat-label>Ate:</mat-label>
+                <input matInput type="date">
+            </mat-form-field>
+
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="Produto" class="mrr-5">Produto</mat-radio-button>
+                <mat-radio-button value="Tanque">Tanque</mat-radio-button>
+            </mat-radio-group>
+
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+            <button mat-raised-button color="primary">Gerar Relatorio</button>
+        </mat-card-actions>
+
+    </mat-card>
+</form>
