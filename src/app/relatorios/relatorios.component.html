@@ -1,0 +1,39 @@
+<div style="width: 800px; height: 30px; margin-left:25%; margin-top:1%;">
+  <mat-card>
+
+    <mat-card-header>
+      <mat-card-title>Relatórios Gerenciais</mat-card-title>
+      <mat-card-subtitle>Escolha o relatório da área de interesse</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-list>
+
+        <mat-list-item>
+          <mat-icon>summarize</mat-icon>
+          <span class="ml-15">
+            <a [routerLink]="['/']" >Relatório XPTO</a>
+          </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <mat-icon>summarize</mat-icon>
+          <span class="ml-15">
+            <a [routerLink]="['/']" >Relatório XYZ</a>
+          </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <mat-icon>summarize</mat-icon>
+          <span class="ml-15">
+            <a [routerLink]="['/']" >Relatório WQR</a>
+          </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-raised-button color="basic" [routerLink]="['/']">Home</a>
+    </mat-card-actions>
+  </mat-card>
+</div>

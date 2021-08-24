@@ -24,6 +24,7 @@ import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
 import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
 import { PaginaManutencaoComponent } from './pagina-manutencao/pagina-manutencao.component';
 import { CredorComponent } from './financeiro/contas/credor/credor.component';
+import { RelatoriosComponent } from './relatorios/relatorios.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CredorComponent } from './financeiro/contas/credor/credor.component';
     UsuarioEditComponent,
     UsuarioFormComponent,
     PaginaManutencaoComponent,
-    CredorComponent
+    CredorComponent,
+    RelatoriosComponent
   ],
   imports: [
     BrowserModule,
