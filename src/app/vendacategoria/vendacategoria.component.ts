@@ -83,7 +83,7 @@ export class VendacategoriaComponent implements OnInit {
       let pdf = new jsPDF({
         orientation: "l",
         unit: "px",
-        format: [970, 1030],
+        format: [970, 1400],
         compress: true,
         precision: 1
       });

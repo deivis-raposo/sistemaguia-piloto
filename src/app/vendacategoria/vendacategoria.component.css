@@ -3,8 +3,7 @@
 }
 
 .mat-table {
-    width: 1000px;
-    border-bottom: 1px solid currentColor;
+    width: 65rem;    
     border-top: 1px solid currentColor;
     border-left:  1px solid currentColor; 
 
@@ -18,3 +17,31 @@
     text-align: center;
     
  }
+
+.legend-1{
+    margin-right: 66.9%;
+}
+
+
+fieldset{
+    border: 1px  solid currentColor;
+    padding: 0.3vw;    
+    margin: 0;
+    
+  }
+
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+     padding-right:0;   
+}
+
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+  padding-left: 0;  
+}
+
+.max-card{
+    max-width: 65rem;
+}
+
+.max-card{
+    padding-left: 7rem;
+}
