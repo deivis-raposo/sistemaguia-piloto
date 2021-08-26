@@ -40,7 +40,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatRadioModule,
     MatSelectModule,
     MatMenuModule,
-    MatExpansionModule
+    MatExpansionModule,
+
 
   ],
   exports: [
@@ -60,7 +61,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatRadioModule,
     MatSelectModule,
     MatMenuModule,
-    MatExpansionModule
+    MatExpansionModule,
+
   ]
 })
 export class MaterialModule { }

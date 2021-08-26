@@ -1,3 +1,20 @@
 .width{
     width: 70%;
 }
+
+.mat-table {
+    width: 1000px;
+    border-bottom: 1px solid currentColor;
+    border-top: 1px solid currentColor;
+    border-left:  1px solid currentColor; 
+
+}
+  
+.mat-column-descricao , .mat-column-codigo, .mat-column-quantidade, .mat-column-valorbruto, .mat-column-acres, .mat-column-desc, .mat-column-valorliquido, .mat-column-pmv, .mat-column-un {
+    
+    border-right: 1px solid currentColor;    
+    border-bottom: 1px solid currentColor;
+    padding-right: none !important;  
+    text-align: center;
+    
+ }

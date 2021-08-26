@@ -30,6 +30,11 @@ import { RelatorioModeloFormComponent } from './relatorio-modelo-form/relatorio-
 import { MovicombustivelComponent } from './movicombustivel/movicombustivel.component';
 import { InputempresaComponent } from './inputs-pesquisa/inputempresa/inputempresa.component';
 import { VendacategoriaComponent } from './vendacategoria/vendacategoria.component';
+import localePT from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+
+registerLocaleData(localePT);
 
 
 @NgModule({

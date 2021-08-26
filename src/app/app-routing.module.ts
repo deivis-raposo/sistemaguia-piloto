@@ -8,13 +8,15 @@ import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { AuthGuard } from './security/auth.guard';
 import { LoginComponent } from './security/login/login.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { VendacategoriaComponent } from './vendacategoria/vendacategoria.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard] },
   { path: 'relatorios', component: RelatoriosComponent, canActivate: [AuthGuard] },
   { path: 'pagina-manutencao', component: PaginaManutencaoComponent, canActivate: [AuthGuard] },
+  { path: 'venda-categoria', component: VendacategoriaComponent, canActivate: [AuthGuard] },
   { path: 'credor', component: CredorComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];

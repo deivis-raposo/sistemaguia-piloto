@@ -11,9 +11,9 @@
             <mat-label>FIltro</mat-label>
             <input matInput>
         </mat-form-field>
-
-        <button mat-flat-button color="primary">Pesquisar</button>
-
+        <div class="ml mb-3">
+            <button mat-flat-button color="primary">Pesquisar</button>
+        </div>
 
         <table mat-table [dataSource]="dataSourceEmpresa" class="mat-elevation-z8 w-500">
 
@@ -46,8 +46,8 @@
     </mat-card>
 
     <mat-card-actions>
-        <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
-        <button mat-raised-button color="primary">Selecionar</button>
+        <button mat-raised-button color="warn" mat-dialog-close class="end-1">Cancelar</button>
+        <button mat-raised-button color="primary" class="end">Selecionar</button>
     </mat-card-actions>
 
 
