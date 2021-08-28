@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RelatorioModeloEditComponent } from '../relatorio-modelo-edit/relatorio-modelo-edit.component';
 import { SnackBarService } from '../_services/snack-bar.service';
-import { MovicombustivelComponent } from '../movicombustivel/movicombustivel.component';
-import { VendacategoriaComponent } from '../vendacategoria/vendacategoria.component';
+import { RelatorioVendacategoriaExportComponent } from '../relatorio-vendacategoria-export/relatorio-vendacategoria-export.component';
 
 
 
@@ -33,7 +32,7 @@ export class RelatoriosComponent implements OnInit {
   }
 
   public Vendacategoria() {
-    this.dialog.open(VendacategoriaComponent, {
+    this.dialog.open(RelatorioVendacategoriaExportComponent, {
       disableClose: true
     })
   }

@@ -5,8 +5,6 @@ import { SnackBarService } from '../_services/snack-bar.service';
 import { InputempresaComponent } from '../inputs-pesquisa/inputempresa/inputempresa.component'
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-
-
 /*tabela relatorio venda por categoria*/
 export interface Transaction {
   codigo: string;
@@ -20,13 +18,14 @@ export interface Transaction {
   valorliquido: number;
 }
 
-
 @Component({
-  selector: 'app-vendacategoria',
-  templateUrl: './vendacategoria.component.html',
-  styleUrls: ['./vendacategoria.component.css']
+  selector: 'app-relatorio-vendacategoria-export',
+  templateUrl: './relatorio-vendacategoria-export.component.html',
+  styleUrls: ['./relatorio-vendacategoria-export.component.css']
 })
-export class VendacategoriaComponent implements OnInit {
+
+
+export class RelatorioVendacategoriaExportComponent implements OnInit {
 
   public vendacategoriaForm !: FormGroup;
   public isFormReady = false;

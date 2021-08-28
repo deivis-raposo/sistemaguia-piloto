@@ -29,9 +29,10 @@ import { RelatorioModeloEditComponent } from './relatorio-modelo-edit/relatorio-
 import { RelatorioModeloFormComponent } from './relatorio-modelo-form/relatorio-modelo-form.component';
 import { MovicombustivelComponent } from './movicombustivel/movicombustivel.component';
 import { InputempresaComponent } from './inputs-pesquisa/inputempresa/inputempresa.component';
-import { VendacategoriaComponent } from './vendacategoria/vendacategoria.component';
+//import { VendacategoriaComponent } from './vendacategoria/vendacategoria.component';
 import localePT from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { RelatorioVendacategoriaExportComponent } from './relatorio-vendacategoria-export/relatorio-vendacategoria-export.component';
 
 
 registerLocaleData(localePT);
@@ -56,7 +57,8 @@ registerLocaleData(localePT);
     RelatorioModeloFormComponent,
     MovicombustivelComponent,
     InputempresaComponent,
-    VendacategoriaComponent,
+    //VendacategoriaComponent,
+    RelatorioVendacategoriaExportComponent,
   ],
   imports: [
     BrowserModule,

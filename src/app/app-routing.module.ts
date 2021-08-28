@@ -4,11 +4,12 @@ import { CredorComponent } from './financeiro/contas/credor/credor.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PaginaManutencaoComponent } from './pagina-manutencao/pagina-manutencao.component';
+import { RelatorioVendacategoriaExportComponent } from './relatorio-vendacategoria-export/relatorio-vendacategoria-export.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { AuthGuard } from './security/auth.guard';
 import { LoginComponent } from './security/login/login.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { VendacategoriaComponent } from './vendacategoria/vendacategoria.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard] },
   { path: 'relatorios', component: RelatoriosComponent, canActivate: [AuthGuard] },
   { path: 'pagina-manutencao', component: PaginaManutencaoComponent, canActivate: [AuthGuard] },
-  { path: 'venda-categoria', component: VendacategoriaComponent, canActivate: [AuthGuard] },
+  { path: 'venda-categoria', component: RelatorioVendacategoriaExportComponent, canActivate: [AuthGuard] },
   { path: 'credor', component: CredorComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
