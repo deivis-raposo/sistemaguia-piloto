@@ -1,5 +1,5 @@
 <div style="width: 50%; margin-left:10%; margin-top:1%;">
-      <!--
+  <!--
       <mat-list>
         <div style="margin-left:5%; margin-top:2%;">
         <mat-list-item>
@@ -38,13 +38,21 @@
       </mat-list>
       -->
 
-      <mat-card (click)="filtroReport()">Relatório MODELO</mat-card>
-      <mat-divider></mat-divider>
-      <mat-card (click)="filtroReport()">Relatório XPTO</mat-card>
-      <mat-divider></mat-divider>
-      <mat-card (click)="filtroReport()">Relatório QWER</mat-card>
-      <mat-divider></mat-divider>
-      <mat-card (click)="filtroReport()">Relatório ZXCV</mat-card>
-      <mat-divider></mat-divider>
-      <mat-card (click)="filtroReport()">Relatório POIU</mat-card>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Estoque
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-card class="mb-3" (click)="filtroReport()">VENDA DE PRODUTOS POR CATEGORIA</mat-card>
+    <mat-divider></mat-divider>
+    <mat-card class="mb-3" [routerLink]="['/venda-categoria']">VENDA DE PRODUTOS POR CATEGORIA</mat-card>
+    <mat-divider></mat-divider>
+    <mat-card class="mb-3" [routerLink]="['/venda-categoria']">VENDA DE PRODUTOS POR CATEGORIA</mat-card>
+  </mat-expansion-panel>
+
+  <mat-divider></mat-divider>
+  <mat-card (click)="filtroReport()">Relatorio</mat-card>
+  <mat-divider></mat-divider>
+  <mat-card (click)="filtroReport()">Relatório POIU</mat-card>
 </div>
