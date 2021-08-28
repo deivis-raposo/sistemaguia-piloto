@@ -7,10 +7,19 @@
       <mat-card-content>
         <form [formGroup]="relatorioModeloForm" #usuarioFormDirective="ngForm" *ngIf="isFormReady">
           <div style="display: flex; flex-direction: column;">
-          <mat-form-field class="w-500" appearance="outline">
-            <mat-label>Nome Usuário:</mat-label>
-            <input matInput type="text" formControlName="nmUsuario">
-            <mat-error *ngIf="relatorioModeloForm?.controls?.nmUsuario?.errors?.required">Nome é obrigatório</mat-error>
+          <mat-form-field appearance="outline">
+            <mat-label>Informe o período:</mat-label>
+            <mat-date-range-input [rangePicker]="rangePicker">
+              <input matStartDate placeholder="Data Inicial" formControlName="dtInicio">
+              <input matEndDate placeholder="Data Final" formControlName="dtFim">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+            <mat-date-range-picker #rangePicker>
+              <mat-date-range-picker-actions>
+                <button mat-button matDateRangePickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+              </mat-date-range-picker-actions>
+            </mat-date-range-picker>
           </mat-form-field>
         </div>
         </form>
