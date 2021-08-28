@@ -32,14 +32,15 @@ export class VendacategoriaComponent implements OnInit {
   public isFormReady = false;
   Data = Date.now();
 
+  public dataSource: any[] = [];
+
   /*tabela relatorio venda por categoria*/
 
   displayedColumns = ['codigo', 'descricao', 'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
   transactions: Transaction[] = [
-    { descricao: 'gasolina', quantidade: 4, codigo: '1001', un: 'LT', pmv: 5, valorbruto: 4000, desc: 0, acres: 0, valorliquido: 3000 },
-    { descricao: 'Oleo', quantidade: 5, codigo: '1004', un: 'LT', pmv: 5, valorbruto: 4000, desc: 0, acres: 0, valorliquido: 3000 },
+    { descricao: 'Gasolina', quantidade: 4, codigo: '1001', un: 'LT', pmv: 5, valorbruto: 4000, desc: 0, acres: 0, valorliquido: 3000 },
+    { descricao: 'Óleo', quantidade: 5, codigo: '1004', un: 'LT', pmv: 5, valorbruto: 4000, desc: 0, acres: 0, valorliquido: 3000 },
     { descricao: 'Etanol', quantidade: 2, codigo: '1007', un: 'LT', pmv: 5, valorbruto: 4000, desc: 0, acres: 0, valorliquido: 3000 },
-
   ];
 
   ngOnInit(): void {
@@ -47,6 +48,7 @@ export class VendacategoriaComponent implements OnInit {
       dtInicio: ['']
     })
     this.isFormReady = true;
+    this.dataSource = this.transactions;
   }
 
   constructor(private dialog: MatDialog,
@@ -74,8 +76,6 @@ export class VendacategoriaComponent implements OnInit {
 
   mudarDisplay(valor: string) {
 
-    console.log('DT Inicio: ' + this.vendacategoriaForm.value['dtInicio']);
-
     if (valor == '1') {
       if (this.display == 'block') {
         this.display = 'none';
@@ -89,7 +89,7 @@ export class VendacategoriaComponent implements OnInit {
 
   /* transforma relatorio em pdf*/
   @ViewChild('content', { static: false }) el!: ElementRef;
-  @ViewChild('content1', { static: false }) el1!: ElementRef;
+  @ViewChild('content', { static: false }) el1!: ElementRef;
 
   printpdf(valorprint: string) {
     if (valorprint == '1') {

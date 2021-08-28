@@ -1,42 +1,4 @@
-<div style="width: 50%; margin-left:10%; margin-top:1%;">
-  <!--
-      <mat-list>
-        <div style="margin-left:5%; margin-top:2%;">
-        <mat-list-item>
-
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>Relatório Modelo</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-
-            </mat-card-content>
-            <mat-card-actions>
-              <a mat-raised-button color="basic" (click)="filtroReport()">Gerar</a>
-            </mat-card-actions>
-          </mat-card>
-
-        </mat-list-item>
-        </div>
-        <div style="margin-left:25%; margin-top:0%;">
-        <mat-list-item>
-
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>Relatório XPTO</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-
-            </mat-card-content>
-            <mat-card-actions>
-              <a mat-raised-button color="basic" (click)="filtroReport()">Gerar</a>
-            </mat-card-actions>
-          </mat-card>
-
-        </mat-list-item>
-      </div>
-      </mat-list>
-      -->
+<div style="width: 50%; margin-left:25%; margin-top:3%;">
 
   <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
@@ -45,14 +7,7 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     <mat-card class="mb-3" (click)="filtroReport()">VENDA DE PRODUTOS POR CATEGORIA</mat-card>
-    <mat-divider></mat-divider>
-    <mat-card class="mb-3" [routerLink]="['/venda-categoria']">VENDA DE PRODUTOS POR CATEGORIA</mat-card>
-    <mat-divider></mat-divider>
-    <mat-card class="mb-3" [routerLink]="['/venda-categoria']">VENDA DE PRODUTOS POR CATEGORIA</mat-card>
   </mat-expansion-panel>
+  <mat-divider></mat-divider>
 
-  <mat-divider></mat-divider>
-  <mat-card (click)="filtroReport()">Relatorio</mat-card>
-  <mat-divider></mat-divider>
-  <mat-card (click)="filtroReport()">Relatório POIU</mat-card>
 </div>
