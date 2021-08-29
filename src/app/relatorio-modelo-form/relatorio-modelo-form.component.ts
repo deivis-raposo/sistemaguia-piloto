@@ -38,8 +38,8 @@ export class RelatorioModeloFormComponent implements OnInit {
   ngOnInit(): void {
     this.relatorioModeloForm = this.formBuilder.group({
       nmUsuario: ['', Validators.required],
-      dtInicio: [''],
-      dtFim: [''],
+      dtInicio: [],
+      dtFim: [],
       tpRelatorio: [0]
     })
     this.isFormReady = true;
@@ -50,7 +50,7 @@ export class RelatorioModeloFormComponent implements OnInit {
   }
 
   public gerarRelatorio(){
-    console.log('DT Inicio: ' + this.relatorioModeloForm.value['dtInicio']);
+    console.log('DT Inicio: ' + this.relatorioModeloForm.get('dtInicio')?.value);//this.relatorioModeloForm.value['dtInicio']);
     console.log('DT Fim: ' + this.relatorioModeloForm.value['dtFim']);
     console.log('TP RELATÓRIO: ' + this.relatorioModeloForm.get('tpRelatorio')?.value);
 
