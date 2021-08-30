@@ -64,6 +64,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 500px;
 }
 
+.w-800{
+  width: 800px;
+}
+
+.w-1000{
+  width: 1000px;
+}
+
 .w-450{
   width: 450px;
 }
@@ -96,11 +104,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 /*remover botoes do input number*/
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    margin: 0; 
+    margin: 0;
 }
 

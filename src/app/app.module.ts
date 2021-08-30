@@ -33,6 +33,7 @@ import { InputempresaComponent } from './inputs-pesquisa/inputempresa/inputempre
 import localePT from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { RelatorioVendacategoriaExportComponent } from './relatorio-vendacategoria-export/relatorio-vendacategoria-export.component';
+import { VendaCategoriaService } from './_services/vendacategoria.service';
 
 
 registerLocaleData(localePT);
@@ -72,6 +73,7 @@ registerLocaleData(localePT);
   ],
   providers: [
     UsuarioService,
+    VendaCategoriaService,
     SharedService,
     ClienteService,
     VeiculoService,

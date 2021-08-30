@@ -1,9 +1,10 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, Output } from '@angular/core';
 import { jsPDF } from 'jspdf';
 import { MatDialog } from '@angular/material/dialog';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { InputempresaComponent } from '../inputs-pesquisa/inputempresa/inputempresa.component'
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { VendaCategoriaDTO } from '../_models/venda-categoria-dto';
 
 /*tabela relatorio venda por categoria*/
 export interface Transaction {
@@ -30,8 +31,9 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   public vendacategoriaForm !: FormGroup;
   public isFormReady = false;
   Data = Date.now();
-
   public dataSource: any[] = [];
+
+  @Input() vendaCategoriaDTO !: VendaCategoriaDTO;
 
   /*tabela relatorio venda por categoria*/
 
@@ -43,6 +45,8 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+
+    console.log("EXPORT PARAM IN:::: " + this.vendaCategoriaDTO)
     this.vendacategoriaForm = this.formBuilder.group({
       dtInicio: ['']
     })
