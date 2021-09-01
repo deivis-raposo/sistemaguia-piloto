@@ -1,4 +1,3 @@
-
 <!--
 <div class="col-md-4" style="margin-left:30%; margin-top:15%;">
 <div class="box box-info">
@@ -61,7 +60,7 @@
       <form [formGroup]="loginForm" #usuarioFormDirective="ngForm" *ngIf="isFormReady">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>CPF:</mat-label>
-          <input matInput type="text" formControlName="cpfUsuario">
+          <input matInput type="text" formControlName="cpfUsuario" mask="000.000.000-00">
           <mat-error *ngIf="loginForm?.controls?.cpfUsuario?.errors?.required">CPF é obrigatório!</mat-error>
         </mat-form-field>
 
@@ -79,4 +78,3 @@
 
   </mat-card>
 </div>
-

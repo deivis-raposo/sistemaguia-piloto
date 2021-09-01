@@ -23,7 +23,7 @@
 
 }
 
-.mat-column-descricao , .mat-column-codigo, .mat-column-quantidade, .mat-column-valorbruto, .mat-column-acres, .mat-column-desc, .mat-column-valorliquido, .mat-column-pmv, .mat-column-un {
+.mat-column-descricao , .mat-column-codigo, .mat-column-quantidade, .mat-column-valorbruto, .mat-column-acres, .mat-column-desc, .mat-column-valorliquido, .mat-column-pmv, .mat-column-un, .mat-column-produto {
 
   border-right: 1px solid currentColor;
   border-bottom: 1px solid currentColor;
