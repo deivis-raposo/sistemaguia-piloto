@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -26,17 +27,20 @@ import { VendaCategoriaService } from '../_services/vendacategoria.service';
 
 
 
+
+
 @Component({
   selector: 'app-relatorio-modelo-form',
   templateUrl: './relatorio-modelo-form.component.html',
   styleUrls: ['./relatorio-modelo-form.component.css'],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ]
 })
 export class RelatorioModeloFormComponent implements OnInit {
+
 
   @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -59,12 +63,12 @@ export class RelatorioModeloFormComponent implements OnInit {
   ];*/
 
   constructor(private formBuilder: FormBuilder,
-              private router: Router,
-              private usuarioService: UsuarioService,
-              private vendaCategoriaService: VendaCategoriaService,
-              private snackbarService: SnackBarService,
-              private adapter: DateAdapter<any>,
-              private dialog: MatDialog) {
+    private router: Router,
+    private usuarioService: UsuarioService,
+    private vendaCategoriaService: VendaCategoriaService,
+    private snackbarService: SnackBarService,
+    private adapter: DateAdapter<any>,
+    private dialog: MatDialog) {
   }
 
   french() {
@@ -88,7 +92,7 @@ export class RelatorioModeloFormComponent implements OnInit {
     this.closeModelEventEmitter.emit(false);
   }
 
-  public gerarRelatorio(){
+  public gerarRelatorio() {
 
     //Analítico
     if(this.relatorioModeloForm.value['tpRelatorio'] == 1) {
@@ -112,29 +116,45 @@ export class RelatorioModeloFormComponent implements OnInit {
     }
   }
 
-  public home(){
+  public cancelar() {
     this.closeModelEventEmitter.emit(false);
-    this.router.navigate(['/']);
+
+
   }
 
   getTotalquantidade() {
     //return this.transactions.map(t => t.quantidade).reduce((acc, value) => acc + value, 0);
-    return 0;
+
+
   }
 
   getTotalvalorbruto() {
+
     //return this.transactions.map(t => t.valorbruto).reduce((acc, value) => acc + value, 0);
     return 0;
   }
 
+
   getTotalvalorliquido() {
-    //return this.transactions.map(t => t.valorliquido).reduce((acc, value) => acc + value, 0);
-    return 0;
+
   }
-  /* script para fazer certos inputs aparecerem e sumirem ao clicar na pagina*/
+
+  /* mostra a data  pesquisa relatorio*/
+
+
+
+  datainicial: any;
+  datafinal: any;
+
+  dateRangeChange(dtInicial: HTMLInputElement, dtFIm: HTMLInputElement) {
+    this.datainicial = dtInicial.value;
+    this.datafinal = dtFIm.value;
+  }
+
+  /* script para fazer certos inputs aparecerem e sumirem ao clicar na pagina e selecionar o tipo de relatorio*/
   display = 'block';
   displaytable = 'none';
-
+  tiporelatorio = '';
   mudarDisplay(valor: string) {
 
     if (valor == '1') {
@@ -148,6 +168,10 @@ export class RelatorioModeloFormComponent implements OnInit {
     }
   }
 
+  mudarRelatorio(tipo: string) {
+    this.tiporelatorio = tipo;
+  }
+
   /* transforma relatorio em pdf*/
   @ViewChild('content', { static: false }) el!: ElementRef;
   @ViewChild('content', { static: false }) el1!: ElementRef;
@@ -157,7 +181,7 @@ export class RelatorioModeloFormComponent implements OnInit {
       let pdf = new jsPDF({
         orientation: "l",
         unit: "px",
-        format: [970, 1400],
+        format: [970, 1000],
         compress: true,
         precision: 1
       });

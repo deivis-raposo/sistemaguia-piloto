@@ -4,15 +4,17 @@
       <mat-card-title>Relatório: Venda de Produtos por Categoria</mat-card-title>
       <mat-card-subtitle>Selecione os filtros necessários e clique em Gerar Relatório</mat-card-subtitle>
     </mat-card-header>
-      <mat-card-content>
-        <form [formGroup]="relatorioModeloForm" #usuarioFormDirective="ngForm" *ngIf="isFormReady">
-          <div style="display: flex; flex-direction: column;">
+    <mat-card-content>
+      <form [formGroup]="relatorioModeloForm" #usuarioFormDirective="ngForm" *ngIf="isFormReady">
+        <div style="display: flex; flex-direction: column;">
 
           <mat-form-field appearance="outline" class="w-250">
             <mat-label>Informe o período:</mat-label>
             <mat-date-range-input [rangePicker]="rangePicker">
-              <input matStartDate placeholder="Dt Início" formControlName="dtInicio">
-              <input matEndDate placeholder="Dt Fim" formControlName="dtFim">
+              <input matStartDate placeholder="Dt Início" #dtInicial formControlName="dtInicio">
+              <input matEndDate placeholder="Dt Fim" #dtFim formControlName="dtFim"
+                (dateChange)="dateRangeChange(dtInicial, dtFim)">
+
             </mat-date-range-input>
             <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
             <mat-date-range-picker #rangePicker>
@@ -24,101 +26,109 @@
           </mat-form-field>
 
           <mat-radio-group aria-label="Tipo do Relatório" formControlName="tpRelatorio">
-            <mat-radio-button value="1">Analítico</mat-radio-button>
-            <mat-radio-button value="2">Sintético</mat-radio-button>
+            <mat-radio-button value="1" (click)="mudarRelatorio('1')">Analítico</mat-radio-button>
+            <mat-radio-button value="2" (click)="mudarRelatorio('2')">Sintético</mat-radio-button>
           </mat-radio-group>
 
         </div>
-        </form>
-      </mat-card-content>
+      </form>
+    </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
-      <button mat-raised-button color="primary" (click)="gerarRelatorio()">Gerar Relatório</button>
+      <button mat-raised-button color="primary" class="end" (click)="gerarRelatorio()"
+        [disabled]="tiporelatorio === ''">Gerar
+        Relatório</button>
     </mat-card-actions>
   </mat-card>
 </div>
 
-<div [ngStyle]="{'display': display}" class="w-1000" id="content" #content *ngIf="isAnalitico">
-  <form>
-      <mat-card>
-          <mat-card-header>
-              <mat-card-title>Relatório: Venda de Produtos por Categoria</mat-card-title>
-              <mat-card-subtitle>Tipo Relatório: Analítico - De: 12/02/2021 até 14/02/2021</mat-card-subtitle>
-          </mat-card-header>
+<div [ngStyle]="{'display': display}" class="w-1000" *ngIf="isAnalitico">
+  <form id="content" #content>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="mr-left">Relatório: Venda de Produtos por Categoria</mat-card-title>
+        <mat-card-subtitle> <span> Tipo Relatório: Analítico</span> <span class="end-1"> De: {{datainicial}} Até:
+            {{datafinal}} </span></mat-card-subtitle>
+      </mat-card-header>
 
+      <mat-card-content>
+        <mat-card *ngIf="dataSource?.length == 0">
           <mat-card-content>
-            <mat-card *ngIf="dataSource?.length == 0">
-              <mat-card-content>
-                Não há registros para o filtro selecionado.
-              </mat-card-content>
-            </mat-card>
-
-            <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" class="w-100">
-
-              <ng-container matColumnDef="codigo" class="table">
-                <th mat-header-cell *matHeaderCellDef> Codigo </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.cdProduto}} </td>
-                <td mat-footer-cell *matFooterCellDef> Total Combustiveis</td>
-              </ng-container>
-
-              <ng-container matColumnDef="descricao">
-                <th mat-header-cell *matHeaderCellDef> Grupo de Produto/Serviços </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.descGrupoProduto}} - {{transaction.descProduto}}</td>
-                <td mat-footer-cell *matFooterCellDef></td>
-              </ng-container>
-
-              <ng-container matColumnDef="un">
-                <th mat-header-cell *matHeaderCellDef> Unidade </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.unMedidaProduto}}</td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
-
-              <ng-container matColumnDef="quantidade">
-                  <th mat-header-cell *matHeaderCellDef> Quantidade </th>
-                  <td mat-cell *matCellDef="let transaction"> {{transaction.qtdProduto}} </td>
-                  <td mat-footer-cell *matFooterCellDef> {{getTotalquantidade()}} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="pmv">
-                  <th mat-header-cell *matHeaderCellDef> P.M.V</th>
-                  <td mat-cell *matCellDef="let transaction"> {{transaction.vlrVenda}} </td>
-                  <td mat-footer-cell *matFooterCellDef></td>
-              </ng-container>
-
-              <ng-container matColumnDef="valorbruto">
-                  <th mat-header-cell *matHeaderCellDef> R$ Bruto </th>
-                  <td mat-cell *matCellDef="let transaction"> {{transaction.vlrBruto | currency}} </td>
-                  <td mat-footer-cell *matFooterCellDef> {{getTotalvalorbruto() | currency}}</td>
-              </ng-container>
-
-              <ng-container matColumnDef="desc">
-                  <th mat-header-cell *matHeaderCellDef> R$ Desc</th>
-                  <td mat-cell *matCellDef="let transaction"> {{transaction.vlrDesconto}} </td>
-                  <td mat-footer-cell *matFooterCellDef></td>
-              </ng-container>
-
-              <ng-container matColumnDef="acres">
-                  <th mat-header-cell *matHeaderCellDef> R$ Acrécimo </th>
-                  <td mat-cell *matCellDef="let transaction"> {{transaction.vlrAcrescimo}} </td>
-                  <td mat-footer-cell *matFooterCellDef></td>
-              </ng-container>
-
-              <ng-container matColumnDef="valorliquido">
-                  <th mat-header-cell *matHeaderCellDef> Vlr Líquido </th>
-                  <td mat-cell *matCellDef="let transaction"> {{transaction.vlrLiquido | currency}} </td>
-                  <td mat-footer-cell *matFooterCellDef> {{getTotalvalorliquido() | currency}}</td>
-              </ng-container>
-
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
-
-            </table>
+            Não há registros para o filtro selecionado.
           </mat-card-content>
-      </mat-card>
+        </mat-card>
+
+        <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" class="w-100">
+
+          <ng-container matColumnDef="codigo" class="table">
+            <th mat-header-cell *matHeaderCellDef> Codigo </th>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.cdProduto}} </td>
+            <td mat-footer-cell *matFooterCellDef> Total Combustiveis</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantidade">
+            <th mat-header-cell *matHeaderCellDef> Quantidade</th>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.qtdProduto | currency:'':''}} </td>
+            <td mat-footer-cell *matFooterCellDef> {{getTotalquantidade()}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="descricao">
+            <th mat-header-cell *matHeaderCellDef> Descrição do Grupo de Produto/Serviços </th>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.descGrupoProduto}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <ng-container matColumnDef="un">
+            <th mat-header-cell *matHeaderCellDef> UN </th>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.unMedidaProduto}}</td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <ng-container matColumnDef="pmv">
+            <th mat-header-cell *matHeaderCellDef> P.M.V</th>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrVenda}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <ng-container matColumnDef="valorbruto">
+            <th mat-header-cell *matHeaderCellDef> Valor Bruto </th>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrBruto | currency:'R$ '}} </td>
+            <td mat-footer-cell *matFooterCellDef> {{getTotalvalorbruto()}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="desc">
+            <th mat-header-cell *matHeaderCellDef> Desc.</th>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.descProduto}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <ng-container matColumnDef="acres">
+            <th mat-header-cell *matHeaderCellDef> Acres. </th>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrAcrescimo}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <ng-container matColumnDef="valorliquido">
+            <th mat-header-cell *matHeaderCellDef> Valor Liquido </th>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrLiquido | currency:'R$ '}}
+            </td>
+            <td mat-footer-cell *matFooterCellDef>{{getTotalvalorliquido()}}</td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef=" displayedColumns">
+          </tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+
+        </table>
+      </mat-card-content>
+    </mat-card>
   </form>
+
+
   <mat-card-actions>
-    <button mat-raised-button color="basic" (click)="home()">Home</button>
+    <button mat-raised-button color="basic" (click)="cancelar()">Cancelar</button>
     <button mat-raised-button color="primary" (click)="printpdf('1')">Baixar PDF</button>
   </mat-card-actions>
 </div>
@@ -138,7 +148,7 @@
       </mat-card>
   </form>
   <mat-card-actions>
-    <button mat-raised-button color="basic" (click)="home()">Home</button>
+    <button mat-raised-button color="basic" (click)="cancel()">Home</button>
     <button mat-raised-button color="primary" (click)="printpdf('1')">Baixar PDF</button>
   </mat-card-actions>
 </div>
