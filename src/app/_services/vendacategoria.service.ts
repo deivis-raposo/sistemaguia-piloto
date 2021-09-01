@@ -11,17 +11,17 @@ export class VendaCategoriaService {
 
   public dtInicio!: Date;
   public dtFim!: Date;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  public getVendasCategoria(paramIn: VendaCategoriaDTO): Observable<VendaCategoriaDTO[]>{
+  public getVendasCategoria(paramIn: VendaCategoriaDTO): Observable<VendaCategoriaDTO[]> {
     //return this.http.get<VendaCategoriaDTO[]>(`${environment.baseUrl}api/relatorio-vendasporproduto/${paramIn}`);
     this.dtInicio = paramIn.dtInicioFiltro;
-    this.dtFim    = paramIn.dtFimFiltro;
+    this.dtFim = paramIn.dtFimFiltro;
     return this.http.get<VendaCategoriaDTO[]>(`api_piloto/api/relatorio-vendasporproduto/${this.dtInicio}/${this.dtFim}`);
 
   }
 
-  public getAll(): Observable<VendaCategoriaDTO[]>{
+  public getAll(): Observable<VendaCategoriaDTO[]> {
     return this.http.get<VendaCategoriaDTO[]>(`${environment.baseUrl}api/relatorio-vendasporproduto`);
   }
 

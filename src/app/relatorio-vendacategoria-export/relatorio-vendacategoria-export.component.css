@@ -9,6 +9,11 @@
 
 }
 
+
+
+h1{
+  color: red;
+}
 .mat-column-descricao , .mat-column-codigo, .mat-column-quantidade, .mat-column-valorbruto, .mat-column-acres, .mat-column-desc, .mat-column-valorliquido, .mat-column-pmv, .mat-column-un {
 
   border-right: 1px solid currentColor;
