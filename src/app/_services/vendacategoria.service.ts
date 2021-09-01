@@ -13,8 +13,8 @@ export class VendaCategoriaService {
   public dtFim!: Date;
   constructor(private http: HttpClient) { }
 
-  public getVendasCategoria(paramIn: VendaCategoriaDTO): Observable<VendaCategoriaDTO[]>{
-    return this.http.get<VendaCategoriaDTO[]>(`${environment.baseUrl}api/relatorio-vendasporproduto/${paramIn.dtInicioFiltro}/${paramIn.dtFimFiltro}`);
+  public getVendasCategoria(paramIn: VendaCategoriaDTO, tpRelatorio: number): Observable<VendaCategoriaDTO[]>{
+    return this.http.get<VendaCategoriaDTO[]>(`${environment.baseUrl}api/relatorio-vendasporproduto/${paramIn.dtInicioFiltro}/${paramIn.dtFimFiltro}/${tpRelatorio}`);
   }
 
   public getAll(): Observable<VendaCategoriaDTO[]> {
