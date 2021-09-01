@@ -46,7 +46,9 @@ export class RelatorioModeloFormComponent implements OnInit {
   public dataSource: any[] = [];
   public vendaCategoriaDTO!: VendaCategoriaDTO;
 
-  public mostrarConteudo: boolean = false;
+  public isFiltro: boolean = true;
+  public isAnalitico: boolean = false;
+  public isSintetico: boolean = false;
 
   /*tabela relatorio venda por categoria*/
   displayedColumns = ['codigo', 'descricao', 'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
@@ -72,42 +74,42 @@ export class RelatorioModeloFormComponent implements OnInit {
   ngOnInit(): void {
     this.relatorioModeloForm = this.formBuilder.group({
       nmUsuario: ['', Validators.required],
-      dtInicio: new Date(),
-      dtFim: new Date(),
+      dtInicio: [],
+      dtFim: [],
       tpRelatorio: [0]
     })
     this.isFormReady = true;
-    //this.dataSource = this.transactions;
-    this.mostrarConteudo = false;
+    this.isFiltro = true;
+    this.isAnalitico = false;
+    this.isSintetico = false;
   }
 
   public cancel() {
-    this.closeModelEventEmitter.emit(true);
+    this.closeModelEventEmitter.emit(false);
   }
 
   public gerarRelatorio(){
 
-    //console.log('DT Inicio: ' + this.relatorioModeloForm.value['dtInicio']);//this.relatorioModeloForm.value['dtInicio']);
-    //console.log('DT Fim: ' + this.relatorioModeloForm.value['dtFim']);
-    //console.log('TP RELATÓRIO: ' + this.relatorioModeloForm.get('tpRelatorio')?.value);
+    //Analítico
+    if(this.relatorioModeloForm.value['tpRelatorio'] == 1) {
+      this.vendaCategoriaDTO = new VendaCategoriaDTO(11,0,new Date,new Date,0,0,'','',0,'','',0,0,0,0,0,0);
+      this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
+      this.vendaCategoriaDTO.dtFimFiltro    = this.relatorioModeloForm.value['dtFim'];
+      this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO).subscribe((resp: VendaCategoriaDTO[]) => {
+        this.dataSource = resp;
+      }, (error: any) => {
+        console.log(`Ocorreru um erro ao chamar a API ${error}`)
+      })
 
-    //this.closeModelEventEmitter.emit(true);
-
-    //this.vendaCategoriaDTO.cdEmpresa      = 11;
-    //this.vendaCategoriaDTO.param2         = 0;
-    this.vendaCategoriaDTO = new VendaCategoriaDTO(11,0,new Date,new Date,0,0,'','',0,'','',0,0,0,0,0,0);
-    this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
-    this.vendaCategoriaDTO.dtFimFiltro    = this.relatorioModeloForm.value['dtFim'];
-    //this.vendaCategoriaDTO.param5         = 0;
-
-
-    this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO).subscribe((resp: VendaCategoriaDTO[]) => {
-      this.dataSource = resp;
-    }, (error: any) => {
-      console.log(`Ocorreru um erro ao chamar a API ${error}`)
-    })
-
-    this.mostrarConteudo = true;
+      this.isFiltro = false;
+      this.isAnalitico = true;
+      this.isSintetico = false;
+    } else if(this.relatorioModeloForm.value['tpRelatorio'] == 2) {
+      //sintético
+      this.isFiltro = false;
+      this.isAnalitico = false;
+      this.isSintetico = true;
+    }
   }
 
   public home(){
