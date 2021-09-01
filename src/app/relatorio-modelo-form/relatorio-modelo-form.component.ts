@@ -55,7 +55,7 @@ export class RelatorioModeloFormComponent implements OnInit {
   public isSintetico: boolean = false;
 
   /*tabela relatorio venda por categoria*/
-  displayedColumns = ['codigo', 'descricao', 'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
+  displayedColumns = ['codigo', 'descricao', 'produto',  'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
   /*transactions: Transaction[] = [
     { descricao: 'Gasolina', quantidade: 4, codigo: '1001', un: 'LT', pmv: 5, valorbruto: 4000, desc: 0, acres: 0, valorliquido: 3000 },
     { descricao: 'Óleo', quantidade: 5, codigo: '1004', un: 'LT', pmv: 5, valorbruto: 4000, desc: 0, acres: 0, valorliquido: 3000 },
@@ -123,21 +123,31 @@ export class RelatorioModeloFormComponent implements OnInit {
   }
 
   getTotalquantidade() {
-    //return this.transactions.map(t => t.quantidade).reduce((acc, value) => acc + value, 0);
-
-
+    return this.dataSource.map(t => t.qtdProduto).reduce((acc, value) => acc + value, 0);
   }
 
   getTotalvalorbruto() {
-
-    //return this.transactions.map(t => t.valorbruto).reduce((acc, value) => acc + value, 0);
-    return 0;
+    return this.dataSource.map(t => t.vlrBruto).reduce((acc, value) => acc + value, 0);
   }
 
+  getTotalPMV() {
+    return this.dataSource.map(t => t.vlrVenda).reduce((acc, value) => acc + value, 0);
+  }
 
   getTotalvalorliquido() {
-
+    return this.dataSource.map(t => t.vlrLiquido).reduce((acc, value) => acc + value, 0);
   }
+
+
+  getTotalvalorAcrescimo() {
+    return this.dataSource.map(t => t.vlrAcrescimo).reduce((acc, value) => acc + value, 0);
+  }
+
+  getTotalvalorDesconto() {
+    return this.dataSource.map(t => t.vlrDesconto).reduce((acc, value) => acc + value, 0);
+  }
+
+
 
   /* mostra a data  pesquisa relatorio*/
 
