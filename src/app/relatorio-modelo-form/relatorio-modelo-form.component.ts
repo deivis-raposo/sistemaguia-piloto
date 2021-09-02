@@ -55,7 +55,7 @@ export class RelatorioModeloFormComponent implements OnInit {
   public isSintetico: boolean = false;
 
   /*tabela relatorio venda por categoria*/
-  displayedColumns = ['codigo', 'descricao', 'produto',  'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
+  displayedColumns = ['codigo', 'descricao', 'produto', 'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
   displayedColumnsSintetico = ['codigo', 'descricao', 'quantidade', 'valorbruto', 'desc', 'acres', 'valorliquido'];
   /*transactions: Transaction[] = [
     { descricao: 'Gasolina', quantidade: 4, codigo: '1001', un: 'LT', pmv: 5, valorbruto: 4000, desc: 0, acres: 0, valorliquido: 3000 },
@@ -96,16 +96,16 @@ export class RelatorioModeloFormComponent implements OnInit {
   public gerarRelatorio() {
 
 
-      this.vendaCategoriaDTO = new VendaCategoriaDTO(11,0,new Date,new Date,0,0,'','',0,'','',0,0,0,0,0,0);
-      this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
-      this.vendaCategoriaDTO.dtFimFiltro    = this.relatorioModeloForm.value['dtFim'];
-      this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO, this.relatorioModeloForm.value['tpRelatorio']).subscribe((resp: VendaCategoriaDTO[]) => {
-        this.dataSource = resp;
-      }, (error: any) => {
-        console.log(`Ocorreru um erro ao chamar a API ${error}`)
-      })
+    this.vendaCategoriaDTO = new VendaCategoriaDTO(11, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
+    this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
+    this.vendaCategoriaDTO.dtFimFiltro = this.relatorioModeloForm.value['dtFim'];
+    this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO, this.relatorioModeloForm.value['tpRelatorio']).subscribe((resp: VendaCategoriaDTO[]) => {
+      this.dataSource = resp;
+    }, (error: any) => {
+      console.log(`Ocorreru um erro ao chamar a API ${error}`)
+    })
 
-    if(this.relatorioModeloForm.value['tpRelatorio'] == 1) {
+    if (this.relatorioModeloForm.value['tpRelatorio'] == 1) {
       this.isFiltro = false;
       this.isAnalitico = true;
       this.isSintetico = false;
@@ -184,7 +184,7 @@ export class RelatorioModeloFormComponent implements OnInit {
 
   /* transforma relatorio em pdf*/
   @ViewChild('content', { static: false }) el!: ElementRef;
-  @ViewChild('content', { static: false }) el1!: ElementRef;
+  @ViewChild('content1', { static: false }) el1!: ElementRef;
 
   printpdf(valorprint: string) {
     if (valorprint == '1') {
@@ -204,7 +204,7 @@ export class RelatorioModeloFormComponent implements OnInit {
       let pdf = new jsPDF({
         orientation: "l",
         unit: "pt",
-        format: [1030, 1105],
+        format: [999, 700],
         compress: true,
         precision: 2
       });

@@ -34,6 +34,9 @@ import localePT from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { RelatorioVendacategoriaExportComponent } from './relatorio-vendacategoria-export/relatorio-vendacategoria-export.component';
 import { VendaCategoriaService } from './_services/vendacategoria.service';
+import { CpfPipe } from '../app/pipes/cpf.pipe';
+import { NgxMaskModule } from 'ngx-mask'
+
 
 
 registerLocaleData(localePT);
@@ -60,6 +63,9 @@ registerLocaleData(localePT);
     InputempresaComponent,
     //VendacategoriaComponent,
     RelatorioVendacategoriaExportComponent,
+    CpfPipe,
+
+
   ],
   imports: [
     BrowserModule,
@@ -69,7 +75,11 @@ registerLocaleData(localePT);
     MaterialModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: true
+    })
+
   ],
   providers: [
     UsuarioService,

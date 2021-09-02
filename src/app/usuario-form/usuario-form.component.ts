@@ -29,9 +29,9 @@ export class UsuarioFormComponent implements OnInit {
   selectedValue!: string;
 
   profiles: Profile[] = [
-    {value: 'ADMIN', viewValue: 'ADMIN'},
-    {value: 'GERENTE', viewValue: 'GERENTE'},
-    {value: 'FRENTISTA', viewValue: 'FRENTISTA'}
+    { value: 'ADMIN', viewValue: 'ADMIN' },
+    { value: 'GERENTE', viewValue: 'GERENTE' },
+    { value: 'FRENTISTA', viewValue: 'FRENTISTA' }
   ];
 
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService,
@@ -56,32 +56,32 @@ export class UsuarioFormComponent implements OnInit {
     this.isFormReady = true;
   }
 
-  public cancel(){
+  public cancel() {
     this.closeModelEventEmitter.emit(false);
   }
 
-  public save(){
+  public save() {
 
-    if(this.usuarioForm.valid){
+    if (this.usuarioForm.valid) {
 
-      if(this.actionName == 'Editar') {
+      if (this.actionName == 'Editar') {
         var updatedUsuario = {
           //guid: this.editableUser.guid,
           name: this.usuarioForm.value['name']
         };
         this.usuarioService.updateUsuario(this.usuarioForm.value)
           .subscribe((resp: any) => {
-              this.closeModelEventEmitter.emit(true);
+            this.closeModelEventEmitter.emit(true);
           }, (err: any) => {
             this.snackbarService.showSnackBar('Não foi possível atualizar o usuário. Tente novamente!', 'OK');
           });
       } else {
         this.usuarioService.saveUsuario(this.usuarioForm.value)
-        .subscribe((resp: any) => {
+          .subscribe((resp: any) => {
             this.closeModelEventEmitter.emit(true);
-        }, (err: any) => {
-          this.snackbarService.showSnackBar('Não foi possível criar um novo usuário. Tente novamente!', 'OK');
-        });
+          }, (err: any) => {
+            this.snackbarService.showSnackBar('Não foi possível criar um novo usuário. Tente novamente!', 'OK');
+          });
       }
     }
   }
