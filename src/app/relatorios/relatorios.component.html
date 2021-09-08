@@ -1,13 +1,25 @@
-<div style="width: 50%; margin-left:25%; margin-top:3%;">
+<mat-card class="m-20">
+  <mat-card-header>
+    <mat-card-title>Relatórios</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
 
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Estoque
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <mat-card class="mb-3" (click)="filtroReport()">VENDA DE PRODUTOS POR CATEGORIA</mat-card>
-  </mat-expansion-panel>
-  <mat-divider></mat-divider>
+    <div style="width: 70%">
 
-</div>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Estoque
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card class=" mb-3" (click)="filtroReport()">VENDA DE PRODUTOS POR CATEGORIA
+        </mat-card>
+      </mat-expansion-panel>
+
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a mat-raised-button color="basic" class="ml-1" [routerLink]="['/']">Home</a>
+  </mat-card-actions>
+</mat-card>

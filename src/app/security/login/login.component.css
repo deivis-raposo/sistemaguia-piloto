@@ -4,3 +4,7 @@
   flex-direction: column;
   align-items: flex-start;
 }
+
+button{
+  margin-left: 21.3rem !important;
+}
