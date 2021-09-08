@@ -1,10 +1,9 @@
-import { Usuario } from "./usuario.model";
+import { User } from "./user.model";
 
 export class CurrentUser{
 
     constructor(
         public token: string,
-        public usuario: Usuario
+        public user: User
     ){}
-
 }

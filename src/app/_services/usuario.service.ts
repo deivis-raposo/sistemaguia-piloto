@@ -5,14 +5,15 @@ import { environment } from '../../environments/environment';
 import { Usuario } from '../_models/usuario.model';
 import { CurrentUser } from '../_models/current-user.model';
 import { ResponseApi } from '../_models/response-api';
+import { User } from '../_models/user.model';
 
 @Injectable()
 export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
-  login(usuario: Usuario): Observable<CurrentUser>{
-    return this.http.post<CurrentUser>(`${environment.baseUrl}api/auth`, usuario);
+  login(user: User): Observable<CurrentUser>{
+    return this.http.post<CurrentUser>(`${environment.baseUrl}api/auth`, user);
   }
 
   create(usuario: Usuario): Observable<ResponseApi>{
