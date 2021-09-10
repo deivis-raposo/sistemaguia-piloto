@@ -15,6 +15,7 @@ export class User{
     public email: string,
     public conexao: number,
     public idPerfil: number,
-    public profile: string
+    public profile: string,
+    public idUsuarioEmpresa: string
   ){}
 }
