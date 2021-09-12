@@ -4,6 +4,7 @@ export class CurrentUser{
 
     constructor(
         public token: string,
-        public user: User
+        public user: User,
+        public idUsuarioEmpresa: string
     ){}
 }

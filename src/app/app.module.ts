@@ -36,6 +36,7 @@ import { RelatorioVendacategoriaExportComponent } from './relatorio-vendacategor
 import { VendaCategoriaService } from './_services/vendacategoria.service';
 import { CpfPipe } from '../app/pipes/cpf.pipe';
 import { NgxMaskModule } from 'ngx-mask'
+import { UsuarioEmpresaService } from './_services/usuario-empresa.service';
 
 
 
@@ -83,6 +84,7 @@ registerLocaleData(localePT);
   ],
   providers: [
     UsuarioService,
+    UsuarioEmpresaService,
     VendaCategoriaService,
     SharedService,
     ClienteService,
