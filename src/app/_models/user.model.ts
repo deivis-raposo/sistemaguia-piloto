@@ -16,6 +16,6 @@ export class User{
     public conexao: number,
     public idPerfil: number,
     public profile: string,
-    public idUsuarioEmpresa: string
+    public cdEmpresa: number
   ){}
 }

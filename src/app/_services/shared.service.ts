@@ -35,18 +35,16 @@ export class SharedService {
 
   getSessionStoreCurrentUser(): CurrentUser {
     if (sessionStorage.getItem("currentUser") == null) {
-      return new CurrentUser('', new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'',''), '' );
+      return new CurrentUser('', new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'',0), '' );
     }
 
   let currentUserSessionStore = sessionStorage.getItem("currentUser");
-  let currentUser = new CurrentUser('',new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'',''), '' );
+  let currentUser = new CurrentUser('',new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'',0), '' );
 
   if(currentUserSessionStore != null){
     var userToken = currentUserSessionStore.split("|");
-
     currentUser.token = userToken[1];
-
-    let user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'','') ;
+    let user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'',0) ;
     user.idUsuario = userToken[0].split(",")[0];
     user.loginUsuario = userToken[0].split(",")[1];
     user.profile = userToken[0].split(",")[2];

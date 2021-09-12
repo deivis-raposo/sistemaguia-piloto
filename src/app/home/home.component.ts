@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router){
     this.shared = SharedService.getInstance();
-    this.shared.user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'','') ;
+    //this.shared.user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'','') ;
   }
 
   ngOnInit(): void {

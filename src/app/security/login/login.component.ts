@@ -17,7 +17,7 @@ import { UsuarioService } from 'src/app/_services/usuario.service';
 })
 export class LoginComponent implements OnInit {
 
-  user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'','') ;
+  user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'',0) ;
   shared!: SharedService;
   message!: string;
   idUsuarioEmpresa!: string;
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       loginUsuario: [this.editableUser != null ? this.editableUser.loginUsuario : '', Validators.required],
       senha: [this.editableUser != null ? this.editableUser.senha : '', Validators.required],
-      idUsuarioEmpresa: [this.editableUser != null ? this.editableUser.idUsuarioEmpresa : '', Validators.required]
+      idUsuarioEmpresa: [this.editableUser != null ? this.editableUser.cdEmpresa : '', Validators.required]
     })
     this.isFormReady = true;
   }
@@ -83,11 +83,10 @@ export class LoginComponent implements OnInit {
   }
 
   buscarEmpresas(){
-
-    console.log('buscarEmpresas() : loginUsuario ::: ' + this.shared.user.loginUsuario);
     if(this.user.loginUsuario != ""){
       this.usuarioEmpresaService.getEmpresasByUser(this.shared.user.loginUsuario).subscribe((resp: UsuarioEmpresa[]) => {
         this.dataSource = resp;
+        console.log(" NOME NOME::  " + this.dataSource[0].nomeEmpresa);
       }, (error: any) => {
         console.log(`Ocorreru um erro ao chamar a API ${error}`)
       })
@@ -96,6 +95,7 @@ export class LoginComponent implements OnInit {
 
   public selectedEmpresa(input: UsuarioEmpresa){
 
+    this.userAuthenticated.user.cdEmpresa = input.codEmpresa;
     if(this.userAuthenticated != null && this.userAuthenticated.user != null){
       let infoSessionUser =
       this.userAuthenticated.user.idUsuario + "," +
@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit {
 
   cancelLogin(){
     this.message = '';
-    this.user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'', '') ;
+    this.user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'', 0) ;
     window.location.href = '/login';
     window.location.reload();
   }
