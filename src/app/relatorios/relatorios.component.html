@@ -1,25 +1,39 @@
-<mat-card class="m-20">
-  <mat-card-header>
-    <mat-card-title>Relatórios</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
+<div class="margin-left">
+  <mat-card class="m-20 card-style">
+    <mat-card-header class="center">
+      <mat-card-title>Venda Por Categoria Categoria </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" (click)="Vendacategoria()"> Relatório </button>
+    </mat-card-actions>
+  </mat-card>
 
-    <div style="width: 70%">
+  <mat-card class="m-20 card-style">
+    <mat-card-header class="center">
+      <mat-card-title>Extrato Movimento Combustível </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" (click)="Extratomovimentocombustivel()">Relatório </button>
 
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Estoque
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-card class=" mb-3" (click)="filtroReport()">VENDA DE PRODUTOS POR CATEGORIA
-        </mat-card>
-      </mat-expansion-panel>
+    </mat-card-actions>
+  </mat-card>
 
-    </div>
-  </mat-card-content>
+  <mat-card class="m-20 card-style">
+    <mat-card-header class="center">
+      <mat-card-title>Venda Por Tanque </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" (click)="Vendacategoria()"> Relatório </button>
+    </mat-card-actions>
+  </mat-card>
 
-  <mat-card-actions>
-    <a mat-raised-button color="basic" class="ml-1" [routerLink]="['/']">Home</a>
-  </mat-card-actions>
-</mat-card>
+  <mat-card class="m-20 card-style">
+    <mat-card-header class="center">
+      <mat-card-title>Extrato Movimento Produtos </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" (click)="Extratomovimentocombustivel()">Relatório </button>
+
+    </mat-card-actions>
+  </mat-card>
+</div>

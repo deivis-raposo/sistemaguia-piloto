@@ -27,7 +27,6 @@ import { CredorComponent } from './financeiro/contas/credor/credor.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { RelatorioModeloEditComponent } from './relatorio-modelo-edit/relatorio-modelo-edit.component';
 import { RelatorioModeloFormComponent } from './relatorio-modelo-form/relatorio-modelo-form.component';
-import { MovicombustivelComponent } from './movicombustivel/movicombustivel.component';
 import { InputempresaComponent } from './inputs-pesquisa/inputempresa/inputempresa.component';
 //import { VendacategoriaComponent } from './vendacategoria/vendacategoria.component';
 import localePT from '@angular/common/locales/pt';
@@ -35,7 +34,9 @@ import { registerLocaleData } from '@angular/common';
 import { RelatorioVendacategoriaExportComponent } from './relatorio-vendacategoria-export/relatorio-vendacategoria-export.component';
 import { VendaCategoriaService } from './_services/vendacategoria.service';
 import { CpfPipe } from '../app/pipes/cpf.pipe';
-import { NgxMaskModule } from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask';
+import { ExtratoMovicombustivelExportComponent } from './extrato-movicombustivel-export/extrato-movicombustivel-export.component'
+import { UsuarioEmpresaService } from './_services/usuario-empresa.service';
 
 
 
@@ -59,11 +60,11 @@ registerLocaleData(localePT);
     RelatoriosComponent,
     RelatorioModeloEditComponent,
     RelatorioModeloFormComponent,
-    MovicombustivelComponent,
     InputempresaComponent,
     //VendacategoriaComponent,
     RelatorioVendacategoriaExportComponent,
     CpfPipe,
+    ExtratoMovicombustivelExportComponent,
 
 
   ],
@@ -83,6 +84,7 @@ registerLocaleData(localePT);
   ],
   providers: [
     UsuarioService,
+    UsuarioEmpresaService,
     VendaCategoriaService,
     SharedService,
     ClienteService,

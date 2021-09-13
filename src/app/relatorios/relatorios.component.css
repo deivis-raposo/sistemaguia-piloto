@@ -1,0 +1,17 @@
+
+.margin-left{
+    margin-left: 6%;
+}
+
+.card-style{
+    width:25%;
+    background-color: rgb(248, 248, 248);
+    float: left;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.center{    
+    justify-content: center;
+}

@@ -21,25 +21,21 @@ export interface Transaction {
   valorbruto: number;
   desc: number;
   acres: number;
-  valorliquido: number;
-}
 
+}
 @Component({
-  selector: 'app-relatorio-vendacategoria-export',
-  templateUrl: './relatorio-vendacategoria-export.component.html',
-  styleUrls: ['./relatorio-vendacategoria-export.component.css'],
+  selector: 'app-extrato-movicombustivel-export',
+  templateUrl: './extrato-movicombustivel-export.component.html',
+  styleUrls: ['./extrato-movicombustivel-export.component.css'],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ]
+
 })
+export class ExtratoMovicombustivelExportComponent implements OnInit {
 
-
-
-export class RelatorioVendacategoriaExportComponent implements OnInit {
-
-  public nomeEmpre: any = '';
 
 
   @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -55,8 +51,8 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   public isSintetico: boolean = false;
 
 
-  displayedColumns = ['codigo', 'descricao', 'produto', 'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
-  displayedColumnsSintetico = ['codigo', 'descricao', 'quantidade', 'valorbruto', 'desc', 'acres', 'valorliquido'];
+  displayedColumns = ['codigo', 'descricao', 'produto', 'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres'];
+  displayedColumnsSintetico = ['codigo', 'descricao', 'quantidade', 'valorbruto', 'desc', 'acres'];
 
 
   constructor(private formBuilder: FormBuilder,
@@ -91,7 +87,6 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
 
   public gerarRelatorio() {
 
-    this.nomeEmpre = localStorage.getItem('nomeempresa');
 
     this.vendaCategoriaDTO = new VendaCategoriaDTO(11, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
     this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
@@ -112,8 +107,6 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
       this.isSintetico = true;
     }
   }
-
-
 
   public cancelar() {
     this.closeModelEventEmitter.emit(false);
@@ -161,13 +154,11 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   }
 
 
-
   /* transforma relatorio em pdf*/
   @ViewChild('content', { static: false }) el!: ElementRef;
   @ViewChild('content1', { static: false }) el1!: ElementRef;
 
   printpdf(valorprint: string) {
-    localStorage.clear
     if (valorprint == '1') {
       let pdf = new jsPDF({
         orientation: "l",
@@ -204,11 +195,10 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
     })
   }
 
+
   tiporelatorio: string = '';
 
   mudarRelatorio(tipo: string) {
     this.tiporelatorio = tipo;
   }
 }
-
-
