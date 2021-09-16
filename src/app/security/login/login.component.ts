@@ -1,4 +1,4 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CurrentUser } from 'src/app/_models/current-user.model';
@@ -17,7 +17,7 @@ import { UsuarioService } from 'src/app/_services/usuario.service';
 })
 export class LoginComponent implements OnInit {
 
-  user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'',0) ;
+  user = new User('', '', 0, '', '', 0, '', 0, new Date, 0, '', '', 0, 0, '', 0);
   shared!: SharedService;
   message!: string;
   idUsuarioEmpresa!: string;
@@ -33,16 +33,17 @@ export class LoginComponent implements OnInit {
   exibeEmpresas: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
-              private usuarioService: UsuarioService,
-              private usuarioEmpresaService: UsuarioEmpresaService,
-              private snackbarService: SnackBarService,
-              private snackBarService: SnackBarService,
-              private router: Router) {
+    private usuarioService: UsuarioService,
+    private usuarioEmpresaService: UsuarioEmpresaService,
+    private snackbarService: SnackBarService,
+    private snackBarService: SnackBarService,
+    private router: Router) {
 
-              this.shared = SharedService.getInstance();
+    this.shared = SharedService.getInstance();
   }
 
   ngOnInit(): void {
+    localStorage.clear();
     this.loginForm = this.formBuilder.group({
       loginUsuario: [this.editableUser != null ? this.editableUser.loginUsuario : '', Validators.required],
       senha: [this.editableUser != null ? this.editableUser.senha : '', Validators.required],
@@ -51,7 +52,7 @@ export class LoginComponent implements OnInit {
     this.isFormReady = true;
   }
 
-  public login(){
+  public login() {
 
     this.user.loginUsuario = this.loginForm.value.loginUsuario;
     this.user.senha = this.loginForm.value.senha;
@@ -59,7 +60,7 @@ export class LoginComponent implements OnInit {
     this.usuarioService.login(this.user).subscribe((userAuthentication: CurrentUser) => {
       this.shared.token = userAuthentication.token;
       this.shared.user = userAuthentication.user;
-      if(this.shared.user != null){
+      if (this.shared.user != null) {
         this.shared.user.profile = this.shared.user.profile;//.substring(5);
       }
       //this.shared.showTemplate.emit(true);
@@ -82,27 +83,30 @@ export class LoginComponent implements OnInit {
 
   }
 
-  buscarEmpresas(){
-    if(this.user.loginUsuario != ""){
+  buscarEmpresas() {
+    if (this.user.loginUsuario != "") {
       this.usuarioEmpresaService.getEmpresasByUser(this.shared.user.loginUsuario).subscribe((resp: UsuarioEmpresa[]) => {
         this.dataSource = resp;
-        console.log(" NOME NOME::  " + this.dataSource[0].nomeEmpresa);
+        console.log(" NOME NOME::  " + this.dataSource[1].nomeEmpresa);
       }, (error: any) => {
         console.log(`Ocorreru um erro ao chamar a API ${error}`)
       })
     }
   }
 
-  public selectedEmpresa(input: UsuarioEmpresa){
+  public selectedEmpresa(input: UsuarioEmpresa) {
+
+
+    localStorage.setItem('nomeempresa', input.nomeEmpresa)
 
     this.userAuthenticated.user.cdEmpresa = input.codEmpresa;
-    if(this.userAuthenticated != null && this.userAuthenticated.user != null){
+    if (this.userAuthenticated != null && this.userAuthenticated.user != null) {
       let infoSessionUser =
-      this.userAuthenticated.user.idUsuario + "," +
-      this.userAuthenticated.user.loginUsuario + "," +
-      this.userAuthenticated.user.profile;
+        this.userAuthenticated.user.idUsuario + "," +
+        this.userAuthenticated.user.loginUsuario + "," +
+        this.userAuthenticated.user.profile;
       let infoSessionCurrentUser = this.userAuthenticated.token;
-      sessionStorage.setItem("currentUser", infoSessionUser+"|"+infoSessionCurrentUser+"|"+input.idUsuarioEmpresa);
+      sessionStorage.setItem("currentUser", infoSessionUser + "|" + infoSessionCurrentUser + "|" + input.idUsuarioEmpresa);
     }
     this.shared.showTemplate.emit(true);
     this.router.navigate(['/']);
@@ -110,18 +114,18 @@ export class LoginComponent implements OnInit {
 
   //this.shared.usuario.profile = this.shared.usuario.profile;//.substring(5);
 
-  cancelLogin(){
+  cancelLogin() {
     this.message = '';
-    this.user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'', 0) ;
+    this.user = new User('', '', 0, '', '', 0, '', 0, new Date, 0, '', '', 0, 0, '', 0);
     window.location.href = '/login';
     window.location.reload();
   }
 
-  getFormGroupClass(isInvalid: boolean, isDirty:boolean): {} {
+  getFormGroupClass(isInvalid: boolean, isDirty: boolean): {} {
     return {
       'form-group': true,
-      'has-error' : isInvalid  && isDirty,
-      'has-success' : !isInvalid  && isDirty
+      'has-error': isInvalid && isDirty,
+      'has-success': !isInvalid && isDirty
     };
   }
 }

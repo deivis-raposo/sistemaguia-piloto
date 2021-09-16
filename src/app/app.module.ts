@@ -34,12 +34,8 @@ import { registerLocaleData } from '@angular/common';
 import { RelatorioVendacategoriaExportComponent } from './relatorio-vendacategoria-export/relatorio-vendacategoria-export.component';
 import { VendaCategoriaService } from './_services/vendacategoria.service';
 import { CpfPipe } from '../app/pipes/cpf.pipe';
-<<<<<<< HEAD
 import { NgxMaskModule } from 'ngx-mask';
 import { ExtratoMovicombustivelExportComponent } from './extrato-movicombustivel-export/extrato-movicombustivel-export.component'
-=======
-import { NgxMaskModule } from 'ngx-mask'
->>>>>>> 87a3aff55644d2c490cb298d302b3393308900c1
 import { UsuarioEmpresaService } from './_services/usuario-empresa.service';
 
 

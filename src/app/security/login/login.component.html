@@ -81,34 +81,35 @@
 <div style="margin-left:15%; margin-top:12%;" *ngIf="exibeEmpresas">
   <mat-card>
 
-      <mat-card-header>
-        <mat-card-title>Empresas vinculadas ao usuário : {{ shared.user.loginUsuario }} </mat-card-title>
-      </mat-card-header>
+    <mat-card-header>
+      <mat-card-title>Empresas vinculadas ao usuário : {{ shared.user.loginUsuario | cpf }} </mat-card-title>
+    </mat-card-header>
 
-      <mat-card-content>
-        <mat-card *ngIf="dataSource?.length == 0">
-          <mat-card-content>
-            Não há registros de empresas vinculadas ao usuário.
-            Entre em contato com o administrador do Sistema!
-          </mat-card-content>
-        </mat-card>
+    <mat-card-content>
+      <mat-card *ngIf="dataSource?.length == 0">
+        <mat-card-content>
+          Não há registros de empresas vinculadas ao usuário.
+          Entre em contato com o administrador do Sistema!
+        </mat-card-content>
+      </mat-card>
 
-        <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" class="w-100">
+      <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" class="w-100">
 
-          <ng-container matColumnDef="empresa">
-            <th mat-header-cell *matHeaderCellDef>Selecione a Empresa:</th>
-            <td mat-cell *matCellDef="let element">{{element.codEmpresa}} - {{element.nomeEmpresa}}</td>
-          </ng-container>
-          <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
-              <button (click)="selectedEmpresa(element)" mat-raised-button color="primary" class="mr-10">Selecionar Empresa</button>
-            </td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <ng-container matColumnDef="empresa">
+          <th mat-header-cell *matHeaderCellDef>Selecione a Empresa:</th>
+          <td mat-cell *matCellDef="let element">{{element.codEmpresa}} - {{element.nomeEmpresa}}</td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button (click)="selectedEmpresa(element)" mat-raised-button color="primary" class="mr-10">Selecionar
+              Empresa</button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-        </table>
-      </mat-card-content>
+      </table>
+    </mat-card-content>
   </mat-card>
 </div>

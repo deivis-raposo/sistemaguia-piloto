@@ -91,7 +91,9 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
 
   public gerarRelatorio() {
 
+
     this.nomeEmpre = localStorage.getItem('nomeempresa');
+
 
     this.vendaCategoriaDTO = new VendaCategoriaDTO(11, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
     this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
@@ -209,6 +211,8 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   mudarRelatorio(tipo: string) {
     this.tiporelatorio = tipo;
   }
+
+
 }
 
 

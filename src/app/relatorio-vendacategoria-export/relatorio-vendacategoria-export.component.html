@@ -36,7 +36,7 @@
     <mat-card-actions>
       <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
       <button mat-raised-button color="primary" class="end" (click)="gerarRelatorio()"
-        [disabled]="tiporelatorio === ''">Gerar
+        [disabled]="tiporelatorio === ''  ">Gerar
         Relatório</button>
     </mat-card-actions>
   </mat-card>
@@ -45,13 +45,14 @@
 <div class="w-1000" *ngIf="isAnalitico">
   <form id="content" #content>
     <mat-card>
-      <mat-card-header>
-        <mat-card-title class="mr-left">Relatório: Venda de Produtos por Categoria</mat-card-title>
-        <mat-card-subtitle> <span> Tipo Relatório: Analítico</span> <span class="end-1"> De: {{datainicial}} Até:
-            {{datafinal}} </span>
-          <h1> {{nomeEmpre}}</h1>
-        </mat-card-subtitle>
-      </mat-card-header>
+      <div class="border">
+        <mat-card-header>
+          <mat-card-title class="mr-left">Relatório: Venda de Produtos por Categoria</mat-card-title>
+          <mat-card-subtitle> <span> Tipo Relatório: Analítico</span> <span class="end-1"> De: {{datainicial}} Até:
+              {{datafinal}} </span><span>Empresa: {{nomeEmpre | lowercase }}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+      </div>
 
       <mat-card-content>
         <mat-card *ngIf="dataSource?.length == 0">
@@ -137,7 +138,8 @@
 
   <mat-card-actions>
     <button mat-raised-button color="warn" class="ml-1" mat-dialog-close>Cancelar</button>
-    <button mat-raised-button color="primary" class="ml-40" (click)="printpdf('1')">Baixar PDF</button>
+    <button mat-raised-button color="primary" class="ml-40" (click)="printpdf('1')"
+      [disabled]="dataSource?.length == 0">Baixar PDF</button>
   </mat-card-actions>
 </div>
 
@@ -149,11 +151,14 @@
 <div class="w-1000" *ngIf="isSintetico">
   <form id="content1" #content1>
     <mat-card>
-      <mat-card-header>
-        <mat-card-title class="mr-left">Relatório: Venda de Produtos por Categoria</mat-card-title>
-        <mat-card-subtitle> <span> Tipo Relatório: Sintético</span> <span class="end-1"> De: {{datainicial}} Até:
-            {{datafinal}} </span></mat-card-subtitle>
-      </mat-card-header>
+      <div class="border">
+        <mat-card-header>
+          <mat-card-title class="mr-left">Relatório: Venda de Produtos por Categoria</mat-card-title>
+          <mat-card-subtitle> <span> Tipo Relatório: Sintético</span> <span class="end-1"> De: {{datainicial}} Até:
+              {{datafinal}} </span><span>Empresa: {{nomeEmpre | lowercase }}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+      </div>
 
       <mat-card-content>
         <mat-card *ngIf="dataSource?.length == 0">
@@ -209,7 +214,8 @@
   </form>
   <mat-card-actions>
     <button mat-raised-button color="warn" class="ml-1" mat-dialog-close>Cancelar</button>
-    <button mat-raised-button color="primary" class="ml-40" (click)="printpdf('2')">Baixar PDF</button>
+    <button mat-raised-button color="primary" class="ml-40" (click)="printpdf('2')"
+      [disabled]="dataSource?.length == 0">Baixar PDF</button>
   </mat-card-actions>
 </div>
 

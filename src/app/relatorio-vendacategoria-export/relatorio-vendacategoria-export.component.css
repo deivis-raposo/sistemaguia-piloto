@@ -33,6 +33,7 @@
   border-bottom: 1px solid currentColor;
   padding-right: none !important;
   text-align: center;
+  color: black;
 
 }
 
@@ -51,3 +52,20 @@ padding-left: 0;
 .mr-left{
   margin-left: 17rem;
 }
+
+
+.border{
+  
+  border: 1px solid currentColor;
+  padding-top: 1%;
+  margin-bottom: 1%; 
+  text-transform: capitalize;
+  
+  
+
+}
+
+span{
+  color: black;
+}
+
