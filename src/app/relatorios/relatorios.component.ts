@@ -3,8 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RelatorioModeloEditComponent } from '../relatorio-modelo-edit/relatorio-modelo-edit.component';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { RelatorioVendacategoriaExportComponent } from '../relatorio-vendacategoria-export/relatorio-vendacategoria-export.component';
-
-
+import { ExtratoMovicombustivelExportComponent } from '../extrato-movicombustivel-export/extrato-movicombustivel-export.component';
 
 @Component({
   selector: 'app-relatorios',
@@ -34,7 +33,26 @@ export class RelatoriosComponent implements OnInit {
   public Vendacategoria() {
     this.dialog.open(RelatorioVendacategoriaExportComponent, {
       disableClose: true
+    }).afterClosed().subscribe(resp => {
+      if (resp) {
+        //this.loadAllUser();
+        this.snackBarService.showSnackBar('Relatório gerado com sucesso!', 'OK');
+      }
     })
+
+
   }
 
+  public Extratomovimentocombustivel() {
+    this.dialog.open(ExtratoMovicombustivelExportComponent, {
+      disableClose: true
+    }).afterClosed().subscribe(resp => {
+      if (resp) {
+        //this.loadAllUser();
+        this.snackBarService.showSnackBar('Relatório gerado com sucesso!', 'OK');
+      }
+    })
+
+
+  }
 }

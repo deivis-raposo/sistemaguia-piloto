@@ -9,6 +9,7 @@ import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { AuthGuard } from './security/auth.guard';
 import { LoginComponent } from './security/login/login.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { ExtratoMovicombustivelExportComponent } from './extrato-movicombustivel-export/extrato-movicombustivel-export.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard] },
   { path: 'relatorios', component: RelatoriosComponent, canActivate: [AuthGuard] },
   { path: 'pagina-manutencao', component: PaginaManutencaoComponent, canActivate: [AuthGuard] },
+  { path: 'extrato', component: ExtratoMovicombustivelExportComponent, canActivate: [AuthGuard] },
   { path: 'venda-categoria', component: RelatorioVendacategoriaExportComponent, canActivate: [AuthGuard] },
   { path: 'credor', component: CredorComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }

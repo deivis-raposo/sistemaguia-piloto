@@ -1,52 +1,71 @@
-.width{
-  width: 70%;
+.example-form-field {
+  margin-right: 20px;
 }
 
-.mat-table {
-  width: 65rem;
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.end{
+  margin-left: 20rem;
+  margin-right: 0;
+}
+
+.end-1{
+  margin-left: 37.1rem;
+}
+
+.ml-40{
+  margin-left: 50.7rem;
+}
+
+
+
+.mat-table { 
   border-top: 1px solid currentColor;
   border-left:  1px solid currentColor;
 
 }
 
-
-
-h1{
-  color: red;
-}
-.mat-column-descricao , .mat-column-codigo, .mat-column-quantidade, .mat-column-valorbruto, .mat-column-acres, .mat-column-desc, .mat-column-valorliquido, .mat-column-pmv, .mat-column-un {
+.mat-column-descricao , .mat-column-codigo, .mat-column-quantidade, .mat-column-valorbruto, .mat-column-acres, .mat-column-desc, .mat-column-valorliquido, .mat-column-pmv, .mat-column-un, .mat-column-produto {
 
   border-right: 1px solid currentColor;
   border-bottom: 1px solid currentColor;
   padding-right: none !important;
   text-align: center;
+  color: black;
 
 }
 
-.legend-1{
-  margin-right: 66.9%;
-}
-
-
-fieldset{
-  border: 1px  solid currentColor;
-  padding: 0.3vw;
-  margin: 0;
-
+.mat-column-pmv, .mat-column-un,  .mat-column-acres{
+  padding: 0.5rem !important;
 }
 
 th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
-   padding-right:0;
+  padding-right:0;
 }
 
 th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
 padding-left: 0;
 }
 
-.max-card{
-  max-width: 65rem;
+.mr-left{
+  margin-left: 17rem;
 }
 
-.max-card{
-  padding-left: 7rem;
+
+.border{
+  
+  border: 1px solid currentColor;
+  padding-top: 1%;
+  margin-bottom: 1%; 
+  text-transform: capitalize;
+  
+  
+
 }
+
+span{
+  color: black;
+}
+
