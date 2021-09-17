@@ -51,7 +51,6 @@ export class SharedService {
     currentUser.user = user;
     currentUser.idUsuarioEmpresa = userToken[2];
   }
-
   return currentUser;
 }
 }

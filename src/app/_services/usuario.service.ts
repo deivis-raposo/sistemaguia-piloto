@@ -16,24 +16,12 @@ export class UsuarioService {
     return this.http.post<CurrentUser>(`${environment.baseUrl}api/auth`, user);
   }
 
-  create(usuario: Usuario): Observable<ResponseApi>{
-    return this.http.put<ResponseApi>(`${environment.baseUrl}api/usuario`, usuario);
-  }
-
   public saveUsuario(user: User): Observable<ResponseApi>{
     return this.http.post<ResponseApi>(`${environment.baseUrl}api/usuario`, user);
   }
 
   public updateUsuario(usuario: Usuario): Observable<void>{
     return this.http.put<void>(`${environment.baseUrl}api/usuario`, usuario);
-  }
-
-  findAll(page: number, count: number) : Observable<ResponseApi>{
-    return this.http.get<ResponseApi>(`${environment.baseUrl}api/usuario/${page}/${count}`);
-  }
-
-  findById(id: number) : Observable<ResponseApi>{
-    return this.http.get<ResponseApi>(`${environment.baseUrl}api/usuario/${id}`);
   }
 
   delete(id: string) : Observable<ResponseApi>{

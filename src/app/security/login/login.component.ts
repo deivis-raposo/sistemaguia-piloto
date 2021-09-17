@@ -63,17 +63,7 @@ export class LoginComponent implements OnInit {
       if (this.shared.user != null) {
         this.shared.user.profile = this.shared.user.profile;//.substring(5);
       }
-      //this.shared.showTemplate.emit(true);
       this.userAuthenticated = userAuthentication;
-      /*if(userAuthentication.user != null){
-        let infoSessionUser =
-          userAuthentication.user.idUsuario + "," +
-          userAuthentication.user.loginUsuario + "," +
-          userAuthentication.user.profile;
-        let infoSessionCurrentUser = userAuthentication.token;
-        sessionStorage.setItem("currentUser", infoSessionUser+"|"+infoSessionCurrentUser+"|"+this.idUsuarioEmpresa);
-      }*/
-      //this.router.navigate(['/']);
       this.buscarEmpresas();
       this.exibeEmpresas = true;
     }, err => {
@@ -95,10 +85,7 @@ export class LoginComponent implements OnInit {
   }
 
   public selectedEmpresa(input: UsuarioEmpresa) {
-
-
     localStorage.setItem('nomeempresa', input.nomeEmpresa)
-
     this.userAuthenticated.user.cdEmpresa = input.codEmpresa;
     if (this.userAuthenticated != null && this.userAuthenticated.user != null) {
       let infoSessionUser =
