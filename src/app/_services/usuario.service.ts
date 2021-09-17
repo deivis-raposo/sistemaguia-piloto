@@ -20,8 +20,8 @@ export class UsuarioService {
     return this.http.put<ResponseApi>(`${environment.baseUrl}api/usuario`, usuario);
   }
 
-  public saveUsuario(usuario: Usuario): Observable<string>{
-    return this.http.post<string>(`${environment.baseUrl}api/usuario`, usuario);
+  public saveUsuario(user: User): Observable<ResponseApi>{
+    return this.http.post<ResponseApi>(`${environment.baseUrl}api/usuario`, user);
   }
 
   public updateUsuario(usuario: Usuario): Observable<void>{
@@ -36,11 +36,11 @@ export class UsuarioService {
     return this.http.get<ResponseApi>(`${environment.baseUrl}api/usuario/${id}`);
   }
 
-  delete(id: number) : Observable<ResponseApi>{
+  delete(id: string) : Observable<ResponseApi>{
     return this.http.delete<ResponseApi>(`${environment.baseUrl}api/usuario/${id}`);
   }
 
-  public getAllUsers(page: number, count: number): Observable<Usuario[]>{
-    return this.http.get<Usuario[]>(`${environment.baseUrl}api/usuario`);
+  public getAllUsers(page: number, count: number): Observable<User[]>{
+    return this.http.get<User[]>(`${environment.baseUrl}api/usuario`);
   }
 }

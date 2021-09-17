@@ -9,37 +9,39 @@
         <div style="display: flex; flex-direction: column;">
           <mat-form-field class="w-500" appearance="outline">
             <mat-label>Nome Usuário:</mat-label>
-            <input matInput type="text" formControlName="nmUsuario">
-            <mat-error *ngIf="usuarioForm?.controls?.nmUsuario?.errors?.required">Nome é obrigatório</mat-error>
+            <input matInput type="text" formControlName="nomeUsuario">
+            <mat-error *ngIf="usuarioForm?.controls?.nomeUsuario?.errors?.required">Nome é obrigatório</mat-error>
           </mat-form-field>
 
           <mat-form-field class="w-500" appearance="outline">
             <mat-label>E-mail Usuário:</mat-label>
-            <input matInput type="text" formControlName="emailUsuario">
-            <mat-error *ngIf="usuarioForm?.controls?.nmUsuario?.errors?.required">E-mail é obrigatório</mat-error>
+            <input matInput type="text" formControlName="email">
+            <mat-error *ngIf="usuarioForm?.controls?.email?.errors?.required">E-mail é obrigatório</mat-error>
           </mat-form-field>
 
           <mat-form-field class="w-200" appearance="outline">
             <mat-label>CPF:</mat-label>
-            <input matInput type="text" formControlName="cpfUsuario" mask="000.000.000-00">
-            <mat-error *ngIf="usuarioForm?.controls?.cpfUsuario?.errors?.required">CPF é obrigatório</mat-error>
+            <input matInput type="text" formControlName="loginUsuario" mask="000.000.000-00">
+            <mat-error *ngIf="usuarioForm?.controls?.loginUsuario?.errors?.required">CPF é obrigatório</mat-error>
           </mat-form-field>
 
           <mat-form-field class="w-200" appearance="outline">
             <mat-label>Telefone:</mat-label>
             <input matInput type="text" formControlName="nuTelefone" mask=" (00) 00000-0000" prefix="+55">
-            <mat-error *ngIf="usuarioForm?.controls?.cpfUsuario?.errors?.required">Telefone é obrigatório</mat-error>
+            <mat-error *ngIf="usuarioForm?.controls?.nuTelefone?.errors?.required">Telefone é obrigatório</mat-error>
           </mat-form-field>
 
           <mat-form-field class="w-200" appearance="outline">
             <mat-label>Perfil</mat-label>
-            <mat-select [(ngModel)]="selectedValue" formControlName="profile">
+            <mat-select [(ngModel)]="selectedValue" formControlName="profile" multiple>
               <mat-option *ngFor="let profile of profiles" [value]="profile.value">
                 {{profile.viewValue}}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="usuarioForm?.controls?.profile?.errors?.required">Perfil é obrigatório</mat-error>
           </mat-form-field>
+
+          <h3>Your Team is: {{selectedValue}}</h3>
 
         </div>
       </form>

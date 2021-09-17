@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { User } from '../_models/user.model';
 import { Usuario } from '../_models/usuario.model';
 
 @Component({
@@ -9,10 +10,13 @@ import { Usuario } from '../_models/usuario.model';
 })
 export class UsuarioEditComponent implements OnInit {
 
-  public editableUser !: Usuario;
+  public editableUser !: User;
   public actionName : string = 'Editar';
 
-  constructor(private dialogRef: MatDialogRef<UsuarioEditComponent>, @Inject(MAT_DIALOG_DATA) dialogData: any) {
+  constructor(
+              private dialogRef: MatDialogRef<UsuarioEditComponent>,
+              @Inject(MAT_DIALOG_DATA) dialogData: any) {
+
     if(dialogData.editableUser != null) {
       this.editableUser = dialogData.editableUser;
     }

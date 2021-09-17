@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { UsuarioEditComponent } from '../usuario-edit/usuario-edit.component';
+import { User } from '../_models/user.model';
 import { Usuario } from '../_models/usuario.model';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
@@ -17,18 +18,23 @@ export class UsuarioComponent implements OnInit {
 
 
   public displayedColumns: string[] = ['cpf', 'name', 'email', 'profile', 'actions'];
-  public dataSource: Usuario[] = [];
+  public dataSource: User[] = [];
   private page: number = 5;
   private count: number = 10;
 
-  constructor(private dialog: MatDialog, private usuarioService: UsuarioService, private snackBarService: SnackBarService) { }
+  constructor(
+              private dialog: MatDialog,
+              private usuarioService: UsuarioService,
+              private snackBarService: SnackBarService) {
+
+  }
 
   ngOnInit(): void {
     this.loadAllUser();
   }
 
   private loadAllUser() {
-    this.usuarioService.getAllUsers(this.page, this.count).subscribe((resp: Usuario[]) => {
+    this.usuarioService.getAllUsers(this.page, this.count).subscribe((resp: User[]) => {
       this.dataSource = resp;
     }, (error: any) => {
       console.log(`Ocorreru um erro ao chamar a API ${error}`)
@@ -46,14 +52,14 @@ export class UsuarioComponent implements OnInit {
     })
   }
 
-  public deleteUsuario(usuario: Usuario) {
+  public deleteUsuario(user: User) {
     this.dialog.open(DialogComponent, {
       disableClose: true, data: {
         msg: 'Você tem certeza que deseja excluir esse usuário?', leftButton: 'Cancelar', rightButton: 'OK'
       }
     }).afterClosed().subscribe(resp => {
       if (resp) {
-        this.usuarioService.delete(usuario.id).subscribe(
+        this.usuarioService.delete(user.idUsuario).subscribe(
           (resp: any) => {
             this.loadAllUser();
             this.snackBarService.showSnackBar('Usuário excluído com successo!', 'OK');

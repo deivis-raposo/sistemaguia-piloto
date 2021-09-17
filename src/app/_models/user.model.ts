@@ -16,6 +16,8 @@ export class User{
     public conexao: number,
     public idPerfil: number,
     public profile: string,
-    public cdEmpresa: number
+    public cdEmpresa: number,
+    public nuTelefone: string,
+    public listaEmpresas: string
   ){}
 }

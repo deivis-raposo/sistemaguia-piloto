@@ -17,7 +17,7 @@ import { UsuarioService } from 'src/app/_services/usuario.service';
 })
 export class LoginComponent implements OnInit {
 
-  user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'',0) ;
+  user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'',0,'','') ;
   shared!: SharedService;
   message!: string;
   idUsuarioEmpresa!: string;
@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit {
 
   cancelLogin(){
     this.message = '';
-    this.user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'', 0) ;
+    this.user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'', 0, '','') ;
     window.location.href = '/login';
     window.location.reload();
   }
