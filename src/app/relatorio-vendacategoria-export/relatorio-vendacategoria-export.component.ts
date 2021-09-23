@@ -59,7 +59,7 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   displayedColumns = ['codigo', 'descricao', 'produto', 'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
   displayedColumnsSintetico = ['codigo', 'descricao', 'quantidade', 'valorbruto', 'desc', 'acres', 'valorliquido'];
 
-  shared : SharedService;
+  shared: SharedService;
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private usuarioService: UsuarioService,
@@ -68,7 +68,7 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
     private adapter: DateAdapter<any>,
     private dialog: MatDialog) {
 
-      this.shared = SharedService.getInstance();
+    this.shared = SharedService.getInstance();
   }
 
   french() {
@@ -157,12 +157,22 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
 
 
 
-  datainicial: any;
-  datafinal: any;
+
+  datainicial: any = '';
+  datafinal: any = '';
 
   dateRangeChange(dtInicial: HTMLInputElement, dtFIm: HTMLInputElement) {
     this.datainicial = dtInicial.value;
     this.datafinal = dtFIm.value;
+  }
+
+  getErrorMessage(): any {
+    if (this.tiporelatorio === '' && this.datainicial !== '') {
+      return 'Selecione o tipo de Relatório';
+    } else if (this.datainicial === '' && this.tiporelatorio !== '') {
+      return 'Selecione uma Data';
+    } else { return '' }
+
   }
 
 

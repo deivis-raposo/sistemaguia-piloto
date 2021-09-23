@@ -19,6 +19,12 @@
   margin-left: 50.7rem;
 }
 
+.span-tyle{
+  color: red; 
+  margin-left: 2%;
+  margin-top: 1%;
+}
+
 
 
 .mat-table { 
@@ -36,6 +42,10 @@
   color: black;
 
 }
+
+
+
+
 
 .mat-column-pmv, .mat-column-un,  .mat-column-acres{
   padding: 0.5rem !important;
