@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import { InputempresaComponent } from '../inputs-pesquisa/inputempresa/inputempresa.component';
 import { VendaCategoriaDTO } from '../_models/venda-categoria-dto';
+import { SharedService } from '../_services/shared.service';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
 import { VendaCategoriaService } from '../_services/vendacategoria.service';
@@ -58,7 +59,7 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   displayedColumns = ['codigo', 'descricao', 'produto', 'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
   displayedColumnsSintetico = ['codigo', 'descricao', 'quantidade', 'valorbruto', 'desc', 'acres', 'valorliquido'];
 
-
+  shared : SharedService;
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private usuarioService: UsuarioService,
@@ -66,6 +67,8 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
     private snackbarService: SnackBarService,
     private adapter: DateAdapter<any>,
     private dialog: MatDialog) {
+
+      this.shared = SharedService.getInstance();
   }
 
   french() {
@@ -98,7 +101,7 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
     this.vendaCategoriaDTO = new VendaCategoriaDTO(11, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
     this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
     this.vendaCategoriaDTO.dtFimFiltro = this.relatorioModeloForm.value['dtFim'];
-    this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO, this.relatorioModeloForm.value['tpRelatorio']).subscribe((resp: VendaCategoriaDTO[]) => {
+    this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO, this.relatorioModeloForm.value['tpRelatorio'], this.shared.user.cdEmpresa).subscribe((resp: VendaCategoriaDTO[]) => {
       this.dataSource = resp;
     }, (error: any) => {
       console.log(`Ocorreru um erro ao chamar a API ${error}`)

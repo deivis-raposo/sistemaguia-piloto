@@ -91,7 +91,7 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
     this.vendaCategoriaDTO = new VendaCategoriaDTO(11, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
     this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
     this.vendaCategoriaDTO.dtFimFiltro = this.relatorioModeloForm.value['dtFim'];
-    this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO, this.relatorioModeloForm.value['tpRelatorio']).subscribe((resp: VendaCategoriaDTO[]) => {
+    this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO, this.relatorioModeloForm.value['tpRelatorio'], 0).subscribe((resp: VendaCategoriaDTO[]) => {
       this.dataSource = resp;
     }, (error: any) => {
       console.log(`Ocorreru um erro ao chamar a API ${error}`)

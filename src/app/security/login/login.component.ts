@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
     private usuarioEmpresaService: UsuarioEmpresaService,
-    private snackbarService: SnackBarService,
     private snackBarService: SnackBarService,
     private router: Router) {
 
@@ -77,7 +76,6 @@ export class LoginComponent implements OnInit {
     if (this.user.loginUsuario != "") {
       this.usuarioEmpresaService.getEmpresasByUser(this.shared.user.loginUsuario).subscribe((resp: UsuarioEmpresa[]) => {
         this.dataSource = resp;
-        console.log(" NOME NOME::  " + this.dataSource[1].nomeEmpresa);
       }, (error: any) => {
         console.log(`Ocorreru um erro ao chamar a API ${error}`)
       })

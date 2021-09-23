@@ -28,7 +28,7 @@ export class UsuarioService {
     return this.http.delete<ResponseApi>(`${environment.baseUrl}api/usuario/${id}`);
   }
 
-  public getAllUsers(page: number, count: number): Observable<User[]>{
-    return this.http.get<User[]>(`${environment.baseUrl}api/usuario`);
+  public getAllUsers(cdEmpresa: number): Observable<User[]>{
+    return this.http.get<User[]>(`${environment.baseUrl}api/usuario/${cdEmpresa}`);
   }
 }

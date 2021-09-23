@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { UsuarioEditComponent } from '../usuario-edit/usuario-edit.component';
 import { User } from '../_models/user.model';
-import { Usuario } from '../_models/usuario.model';
+import { SharedService } from '../_services/shared.service';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
 
@@ -17,15 +17,17 @@ export class UsuarioComponent implements OnInit {
 
 
 
-  public displayedColumns: string[] = ['cpf', 'name', 'email', 'profile', 'actions'];
+  public displayedColumns: string[] = ['cpf', 'name', 'email', 'actions'];
   public dataSource: User[] = [];
   private page: number = 5;
   private count: number = 10;
-
+  shared : SharedService;
   constructor(
               private dialog: MatDialog,
               private usuarioService: UsuarioService,
               private snackBarService: SnackBarService) {
+
+                this.shared = SharedService.getInstance();
 
   }
 
@@ -34,14 +36,16 @@ export class UsuarioComponent implements OnInit {
   }
 
   private loadAllUser() {
-    this.usuarioService.getAllUsers(this.page, this.count).subscribe((resp: User[]) => {
+    this.shared.user.cdEmpresa
+    this.usuarioService.getAllUsers(this.shared.user.cdEmpresa).subscribe((resp: User[]) => {
       this.dataSource = resp;
     }, (error: any) => {
       console.log(`Ocorreru um erro ao chamar a API ${error}`)
     })
   }
 
-  public editUsuario(inputUser: Usuario) {
+  public editUsuario(inputUser: User) {
+    inputUser.profile === inputUser.idPerfil + "";
     this.dialog.open(UsuarioEditComponent, {
       disableClose: true, data: { editableUser: inputUser }
     }).afterClosed().subscribe(resp => {

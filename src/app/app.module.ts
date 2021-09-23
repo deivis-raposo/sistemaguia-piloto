@@ -37,6 +37,7 @@ import { CpfPipe } from '../app/pipes/cpf.pipe';
 import { NgxMaskModule } from 'ngx-mask';
 import { ExtratoMovicombustivelExportComponent } from './extrato-movicombustivel-export/extrato-movicombustivel-export.component'
 import { UsuarioEmpresaService } from './_services/usuario-empresa.service';
+import { PerfilService } from './_services/perfil.service';
 
 
 
@@ -84,6 +85,7 @@ registerLocaleData(localePT);
   ],
   providers: [
     UsuarioService,
+    PerfilService,
     UsuarioEmpresaService,
     VendaCategoriaService,
     SharedService,

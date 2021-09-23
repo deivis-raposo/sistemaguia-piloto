@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { Perfil } from '../_models/perfil.model';
 import { User } from '../_models/user.model';
+import { PerfilService } from '../_services/perfil.service';
 import { SharedService } from '../_services/shared.service';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
@@ -19,6 +21,8 @@ interface Profile {
 
 export class UsuarioFormComponent implements OnInit {
 
+  public perfis: Perfil[] = [];
+
   @Input() public actionName = 'Editar';
   @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() public editableUser !: User;
@@ -29,18 +33,13 @@ export class UsuarioFormComponent implements OnInit {
   public usuarioForm !: FormGroup;
   shared : SharedService;
 
-  selectedValue!: string;
-
-  profiles: Profile[] = [
-    { value: '1', viewValue: 'ADMIN' },
-    { value: '2', viewValue: 'GERENTE' },
-    { value: '3', viewValue: 'FRENTISTA' }
-  ];
+  selectedValuePerfil!: number;
 
   constructor(
               private formBuilder: FormBuilder,
               private usuarioService: UsuarioService,
               private snackbarService: SnackBarService,
+              private perfilService: PerfilService
               ) {
                 this.shared = SharedService.getInstance();
   }
@@ -57,11 +56,23 @@ export class UsuarioFormComponent implements OnInit {
       nuTelefone: [this.editableUser != null ? this.editableUser.nuTelefone : '', Validators.required],
       profile: [this.editableUser != null ? this.editableUser.profile : '', Validators.required]
     })
+    if(this.actionName === 'Editar'){
+      this.selectedValuePerfil = this.editableUser.idPerfil;
+    }
     this.isFormReady = true;
+    this.findAllPerfil();
   }
 
   public cancel() {
     this.closeModelEventEmitter.emit(false);
+  }
+
+  public findAllPerfil(){
+    this.perfilService.getAll().subscribe((resp: Perfil[]) => {
+      this.perfis = resp;
+    }, (error: any) => {
+      console.log(`Ocorreru um erro ao chamar a API ${error}`)
+    })
   }
 
   public save() {
@@ -73,8 +84,7 @@ export class UsuarioFormComponent implements OnInit {
       this.user.email         = this.usuarioForm.value.email;
       this.user.nuTelefone    = this.usuarioForm.value.nuTelefone;
       this.user.idFuncionario = this.shared.user.idUsuario;
-      this.user.listaEmpresas = this.selectedValue;
-      //this.user.profile       = this.usuarioForm.value.profile;
+      this.user.profile       = this.usuarioForm.value.profile;
 
       if (this.actionName == 'Editar') {
         var updatedUsuario = {
@@ -83,7 +93,7 @@ export class UsuarioFormComponent implements OnInit {
         };
         this.user.idUsuario = this.usuarioForm.value.idUsuario;
         this.user.senha     = this.editableUser.senha;
-        console.log('UPDATE' + this.editableUser.senha);
+
         this.usuarioService.saveUsuario(this.user)
           .subscribe((resp: any) => {
             this.closeModelEventEmitter.emit(true);
