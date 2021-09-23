@@ -12,7 +12,7 @@ import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
 import { VendaCategoriaService } from '../_services/vendacategoria.service';
 
-/*tabela relatorio venda por categoria*/
+/*tabela relatorio venda por categoria
 export interface Transaction {
   codigo: string;
   quantidade: number;
@@ -23,7 +23,7 @@ export interface Transaction {
   desc: number;
   acres: number;
   valorliquido: number;
-}
+}*/
 
 @Component({
   selector: 'app-relatorio-vendacategoria-export',
@@ -157,9 +157,9 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
 
 
 
-
   datainicial: any = '';
   datafinal: any = '';
+
 
   dateRangeChange(dtInicial: HTMLInputElement, dtFIm: HTMLInputElement) {
     this.datainicial = dtInicial.value;

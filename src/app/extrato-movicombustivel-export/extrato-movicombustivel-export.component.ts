@@ -13,14 +13,14 @@ import { VendaCategoriaService } from '../_services/vendacategoria.service';
 
 /*tabela relatorio venda por categoria*/
 export interface Transaction {
-  codigo: string;
-  quantidade: number;
-  descricao: string;
-  un: string;
-  pmv: number;
-  valorbruto: number;
-  desc: number;
-  acres: number;
+  data: Date;
+  estoqueinicial: number;
+  entrada: number;
+  venda: number;
+  afreicao: number;
+  estoquecontabel: number;
+  estoquefisico: number;
+  diferenca: number;
 
 }
 @Component({
@@ -51,8 +51,8 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
   public isSintetico: boolean = false;
 
 
-  displayedColumns = ['codigo', 'descricao', 'produto', 'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres'];
-  displayedColumnsSintetico = ['codigo', 'descricao', 'quantidade', 'valorbruto', 'desc', 'acres'];
+  displayedColumns = ['data', 'estoqueinicial', 'entrada', 'venda', 'afreicao', 'estoquecontabel', 'estoquefisico', 'diferenca'];
+
 
 
   constructor(private formBuilder: FormBuilder,
