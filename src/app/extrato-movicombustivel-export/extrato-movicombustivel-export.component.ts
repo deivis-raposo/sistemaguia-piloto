@@ -5,24 +5,11 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import jsPDF from 'jspdf';
-import { InputempresaComponent } from '../inputs-pesquisa/inputempresa/inputempresa.component';
-import { VendaCategoriaDTO } from '../_models/venda-categoria-dto';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
-import { VendaCategoriaService } from '../_services/vendacategoria.service';
+import { ExtratoMoviCombustivelDTO } from '../_models/extrato-movicombustivel-dto';
 
-/*tabela relatorio venda por categoria*/
-export interface Transaction {
-  data: Date;
-  estoqueinicial: number;
-  entrada: number;
-  venda: number;
-  afreicao: number;
-  estoquecontabel: number;
-  estoquefisico: number;
-  diferenca: number;
 
-}
 @Component({
   selector: 'app-extrato-movicombustivel-export',
   templateUrl: './extrato-movicombustivel-export.component.html',
@@ -44,7 +31,7 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
   public isFormReady = false;
   Data = Date.now();
   public dataSource: any[] = [];
-  public vendaCategoriaDTO!: VendaCategoriaDTO;
+  public extratoMovimentoCombustivelDTO!: ExtratoMoviCombustivelDTO;
 
   public isFiltro: boolean = true;
   public isAnalitico: boolean = false;
@@ -58,7 +45,6 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private usuarioService: UsuarioService,
-    private vendaCategoriaService: VendaCategoriaService,
     private snackbarService: SnackBarService,
     private adapter: DateAdapter<any>,
     private dialog: MatDialog) {
@@ -88,14 +74,6 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
   public gerarRelatorio() {
 
 
-    this.vendaCategoriaDTO = new VendaCategoriaDTO(11, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
-    this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
-    this.vendaCategoriaDTO.dtFimFiltro = this.relatorioModeloForm.value['dtFim'];
-    this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO, this.relatorioModeloForm.value['tpRelatorio'], 0).subscribe((resp: VendaCategoriaDTO[]) => {
-      this.dataSource = resp;
-    }, (error: any) => {
-      console.log(`Ocorreru um erro ao chamar a API ${error}`)
-    })
 
     if (this.relatorioModeloForm.value['tpRelatorio'] == 1) {
       this.isFiltro = false;
@@ -189,11 +167,7 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
     }
   }
 
-  public InputEmpresa() {
-    this.dialog.open(InputempresaComponent, {
-      disableClose: true
-    })
-  }
+
 
 
   tiporelatorio: string = '';
