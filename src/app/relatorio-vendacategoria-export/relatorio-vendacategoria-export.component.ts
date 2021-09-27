@@ -42,6 +42,8 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
 
   public nomeEmpre: any = '';
 
+  produtos = [{ produto: 'Gasolina comum' }, { produto: 'Etanol Hidratado Comum' }]
+
 
   @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 

@@ -58,73 +58,71 @@
                         Não há registros para o filtro selecionado.
                     </mat-card-content>
                 </mat-card>
+                <div *ngFor="let tipoproduto of produtos; let i = index">
+                    <h1>{{tipoproduto.produto}}</h1>
+                    <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" class="w-100">
 
-                <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" class="w-100">
 
-                    <ng-container matColumnDef="codigo" class="table">
-                        <th mat-header-cell *matHeaderCellDef> Produtos </th>
-                        <td mat-cell *matCellDef="let transaction"> {{transaction.cdProduto}} </td>
-                        <td mat-footer-cell *matFooterCellDef> Total Combustiveis</td>
-                    </ng-container>
+                        <ng-container matColumnDef="data">
+                            <th mat-header-cell *matHeaderCellDef> Data</th>
+                            <td mat-cell *matCellDef="let transaction"> {{transaction}} </td>
+                            <td mat-footer-cell *matFooterCellDef> Total {{tipoproduto.produto}}</td>
+                        </ng-container>
 
-                    <ng-container matColumnDef="quantidade">
-                        <th mat-header-cell *matHeaderCellDef> Data</th>
-                        <td mat-cell *matCellDef="let transaction"> {{transaction.qtdProduto | currency:'':''}} </td>
-                        <td mat-footer-cell *matFooterCellDef></td>
-                    </ng-container>
+                        <ng-container matColumnDef="estoqueinicial">
+                            <th mat-header-cell *matHeaderCellDef> Estoque Inicial </th>
+                            <td mat-cell *matCellDef="let transaction"> {{transaction}} </td>
+                            <td mat-footer-cell *matFooterCellDef></td>
+                        </ng-container>
 
-                    <ng-container matColumnDef="descricao">
-                        <th mat-header-cell *matHeaderCellDef> Estoque Inicial </th>
-                        <td mat-cell *matCellDef="let transaction"> {{transaction.descGrupoProduto}} </td>
-                        <td mat-footer-cell *matFooterCellDef></td>
-                    </ng-container>
+                        <ng-container matColumnDef="entrada">
+                            <th mat-header-cell *matHeaderCellDef> Entrada </th>
+                            <td mat-cell *matCellDef="let transaction"> {{transaction}} </td>
+                            <td mat-footer-cell *matFooterCellDef>{{getTotalvalorentrada()}}</td>
 
-                    <ng-container matColumnDef="produto">
-                        <th mat-header-cell *matHeaderCellDef> Entrada </th>
-                        <td mat-cell *matCellDef="let transaction"> {{transaction.descProduto}} </td>
-                        <td mat-footer-cell *matFooterCellDef></td>
-                    </ng-container>
+                        </ng-container>
 
-                    <ng-container matColumnDef="un">
-                        <th mat-header-cell *matHeaderCellDef> Venda </th>
-                        <td mat-cell *matCellDef="let transaction"> {{transaction.unMedidaProduto}}</td>
-                        <td mat-footer-cell *matFooterCellDef></td>
-                    </ng-container>
+                        <ng-container matColumnDef="venda">
+                            <th mat-header-cell *matHeaderCellDef> Venda </th>
+                            <td mat-cell *matCellDef="let transaction"> {{transaction}}</td>
+                            <td mat-footer-cell *matFooterCellDef>{{getTotalvalorvenda() }}</td>
+                        </ng-container>
 
-                    <ng-container matColumnDef="pmv">
-                        <th mat-header-cell *matHeaderCellDef> Aferição </th>
-                        <td mat-cell *matCellDef="let transaction"> {{transaction.vlrVenda | currency:'R$ '}} </td>
-                        <td mat-footer-cell *matFooterCellDef></td>
-                        <td mat-footer-cell *matFooterCellDef></td>
-                    </ng-container>
+                        <ng-container matColumnDef="afericao">
+                            <th mat-header-cell *matHeaderCellDef> Aferição </th>
+                            <td mat-cell *matCellDef="let transaction"> {{transaction }} </td>
+                            <td mat-footer-cell *matFooterCellDef>{{getTotalvalorafericao()}}</td>
 
-                    <ng-container matColumnDef="valorbruto">
-                        <th mat-header-cell *matHeaderCellDef> Estoque Contabil</th>
-                        <td mat-cell *matCellDef="let transaction"> {{transaction.vlrBruto | currency:'R$ '}} </td>
-                        <td mat-footer-cell *matFooterCellDef> {{getTotalvalorbruto() | currency:'R$ '}}</td>
-                    </ng-container>
+                        </ng-container>
 
-                    <ng-container matColumnDef="desc">
-                        <th mat-header-cell *matHeaderCellDef> Estoque Fisico</th>
-                        <td mat-cell *matCellDef="let transaction"> {{transaction.vlrDesconto | currency:'R$ '}} </td>
-                        <td mat-footer-cell *matFooterCellDef>{{getTotalvalorDesconto() | currency:'R$ '}}</td>
-                    </ng-container>
+                        <ng-container matColumnDef="estoquecontabil">
+                            <th mat-header-cell *matHeaderCellDef> Estoque Contabil</th>
+                            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrBruto}} </td>
+                            <td mat-footer-cell *matFooterCellDef></td>
+                        </ng-container>
 
-                    <ng-container matColumnDef="acres">
-                        <th mat-header-cell *matHeaderCellDef> Diferença</th>
-                        <td mat-cell *matCellDef="let transaction"> {{transaction.vlrAcrescimo | currency:'R$ '}} </td>
-                        <td mat-footer-cell *matFooterCellDef>{{getTotalvalorAcrescimo() | currency:'R$ '}}</td>
-                    </ng-container>
+                        <ng-container matColumnDef="etoquefisico">
+                            <th mat-header-cell *matHeaderCellDef> Estoque Fisico</th>
+                            <td mat-cell *matCellDef="let transaction"></td>
+                            <td mat-footer-cell *matFooterCellDef></td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="diferenca">
+                            <th mat-header-cell *matHeaderCellDef> Diferença</th>
+                            <td mat-cell *matCellDef="let transaction"> {{transaction }} </td>
+                            <td mat-footer-cell *matFooterCellDef>{{getTotalvalordiferenca() }}</td>
+                        </ng-container>
 
 
 
 
-                    <tr mat-header-row *matHeaderRowDef=" displayedColumns">
-                    </tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+                        <tr mat-header-row *matHeaderRowDef=" displayedColumns">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
 
-                </table>
+                    </table>
+                </div>
             </mat-card-content>
         </mat-card>
     </form>

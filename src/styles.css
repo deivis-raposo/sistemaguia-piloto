@@ -126,3 +126,11 @@ color:rgba(0,0,0,.87);
 .mb-3{
   cursor: pointer;
 }
+
+.cdk-global-overlay-wrapper {
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+  overflow: auto;
+  pointer-events: auto;  
+}

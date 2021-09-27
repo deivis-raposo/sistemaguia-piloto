@@ -23,7 +23,7 @@ import { ExtratoMoviCombustivelDTO } from '../_models/extrato-movicombustivel-dt
 })
 export class ExtratoMovicombustivelExportComponent implements OnInit {
 
-
+  produtos = [{ produto: 'Gasolina comum' }, { produto: 'Etanol Hidratado Comum' }]
 
   @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -92,29 +92,23 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
 
   }
 
-  getTotalquantidade() {
-    return this.dataSource.map(t => t.qtdProduto).reduce((acc, value) => acc + value, 0);
+
+
+  getTotalvalorentrada() {
+    return;
   }
 
-  getTotalvalorbruto() {
-    return this.dataSource.map(t => t.vlrBruto).reduce((acc, value) => acc + value, 0);
-  }
-
-  getTotalPMV() {
-    return this.dataSource.map(t => t.vlrVenda).reduce((acc, value) => acc + value, 0);
-  }
-
-  getTotalvalorliquido() {
-    return this.dataSource.map(t => t.vlrLiquido).reduce((acc, value) => acc + value, 0);
+  getTotalvalorvenda() {
+    return;
   }
 
 
-  getTotalvalorAcrescimo() {
-    return this.dataSource.map(t => t.vlrAcrescimo).reduce((acc, value) => acc + value, 0);
+  getTotalvalorafericao() {
+    return;
   }
 
-  getTotalvalorDesconto() {
-    return this.dataSource.map(t => t.vlrDesconto).reduce((acc, value) => acc + value, 0);
+  getTotalvalordiferenca() {
+    return;
   }
 
 
