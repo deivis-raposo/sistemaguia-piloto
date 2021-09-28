@@ -56,8 +56,8 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   public isSintetico: boolean = false;
 
 
-  displayedColumns = ['codigo', 'descricao', 'produto', 'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
-  displayedColumnsSintetico = ['codigo', 'descricao', 'quantidade', 'valorbruto', 'desc', 'acres', 'valorliquido'];
+  displayedColumns = ['codigo'];
+  displayedColumnsSintetico = ['codigo'];
 
   shared : SharedService;
   constructor(private formBuilder: FormBuilder,
@@ -94,14 +94,15 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
 
   public gerarRelatorio() {
 
-
     this.nomeEmpre = localStorage.getItem('nomeempresa');
 
-
-    this.vendaCategoriaDTO = new VendaCategoriaDTO(11, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
+    this.vendaCategoriaDTO = new VendaCategoriaDTO(0, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
     this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
     this.vendaCategoriaDTO.dtFimFiltro = this.relatorioModeloForm.value['dtFim'];
-    this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO, this.relatorioModeloForm.value['tpRelatorio'], this.shared.user.cdEmpresa).subscribe((resp: VendaCategoriaDTO[]) => {
+
+    this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO,
+                                                  this.relatorioModeloForm.value['tpRelatorio'],
+                                                  this.shared.user.cdEmpresa).subscribe((resp: VendaCategoriaDTO[]) => {
       this.dataSource = resp;
     }, (error: any) => {
       console.log(`Ocorreru um erro ao chamar a API ${error}`)

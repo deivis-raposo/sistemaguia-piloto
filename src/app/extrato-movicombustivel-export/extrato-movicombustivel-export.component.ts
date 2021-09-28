@@ -6,10 +6,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import { InputempresaComponent } from '../inputs-pesquisa/inputempresa/inputempresa.component';
-import { VendaCategoriaDTO } from '../_models/venda-categoria-dto';
+import { ExtratoMovimentoCombustivelDTO } from '../_models/extrato-movimento-combustivel-dto';
+import { Produto } from '../_models/produto.model';
+import { ExtratoMovimentoCombustivelService } from '../_services/extrato-movimento-combustivel.service';
+import { ProdutoService } from '../_services/produto.service';
+import { SharedService } from '../_services/shared.service';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
-import { VendaCategoriaService } from '../_services/vendacategoria.service';
 
 /*tabela relatorio venda por categoria*/
 export interface Transaction {
@@ -40,28 +43,34 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
 
   @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  public relatorioModeloForm !: FormGroup;
+  public relatorioForm !: FormGroup;
   public isFormReady = false;
   Data = Date.now();
   public dataSource: any[] = [];
-  public vendaCategoriaDTO!: VendaCategoriaDTO;
+  public produtos: Produto[] = [];
+  public extratoMovimentoCombustivelDTO!: ExtratoMovimentoCombustivelDTO;
+  selectedValueProduto!: number;
+  public descProdutoSelecionado: string = '';
 
   public isFiltro: boolean = true;
-  public isAnalitico: boolean = false;
-  public isSintetico: boolean = false;
+  public isProduto: boolean = false;
+  public isTanque: boolean = false;
 
 
-  displayedColumns = ['codigo', 'descricao', 'produto', 'un', 'quantidade', 'pmv', 'valorbruto', 'desc', 'acres'];
-  displayedColumnsSintetico = ['codigo', 'descricao', 'quantidade', 'valorbruto', 'desc', 'acres'];
+  displayedColumns = ['data', 'estoqueInicial', 'entrada', 'venda', 'afericao', 'estoqueContabil', 'estoqueFisico', 'diferenca'];
+  displayedColumnsTanque = ['data', 'nuTanque', 'estoqueInicial', 'entrada', 'venda', 'afericao', 'estoqueContabil', 'estoqueFisico', 'ajusteSobra', 'ajustePerda', 'diferenca'];
 
-
+  shared : SharedService;
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private usuarioService: UsuarioService,
-    private vendaCategoriaService: VendaCategoriaService,
+    private produtoService: ProdutoService,
+    private extratoCombustivelService: ExtratoMovimentoCombustivelService,
     private snackbarService: SnackBarService,
     private adapter: DateAdapter<any>,
     private dialog: MatDialog) {
+
+      this.shared = SharedService.getInstance();
   }
 
   french() {
@@ -69,16 +78,27 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.relatorioModeloForm = this.formBuilder.group({
+    this.relatorioForm = this.formBuilder.group({
       nmUsuario: ['', Validators.required],
       dtInicio: [],
       dtFim: [],
-      tpRelatorio: [0]
+      tpRelatorio: [0],
+      produto: ['', Validators.required]
     })
     this.isFormReady = true;
     this.isFiltro = true;
-    this.isAnalitico = false;
-    this.isSintetico = false;
+    this.isProduto = false;
+    this.isTanque = false;
+
+    this.buscarProduto();
+  }
+
+  public buscarProduto() {
+      this.produtoService.getAll().subscribe((resp: Produto[]) => {
+        this.produtos = resp;
+      }, (error: any) => {
+        console.log(`Ocorreru um erro ao chamar a API ${error}`)
+      })
   }
 
   public cancel() {
@@ -87,24 +107,27 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
 
   public gerarRelatorio() {
 
-
-    this.vendaCategoriaDTO = new VendaCategoriaDTO(11, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
-    this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
-    this.vendaCategoriaDTO.dtFimFiltro = this.relatorioModeloForm.value['dtFim'];
-    this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO, this.relatorioModeloForm.value['tpRelatorio'], 0).subscribe((resp: VendaCategoriaDTO[]) => {
+    this.descProdutoSelecionado = (this.relatorioForm.value['produto'].codProduto) + ' - ' + (this.relatorioForm.value['produto'].descProduto);
+    this.extratoMovimentoCombustivelDTO = new ExtratoMovimentoCombustivelDTO(new Date, new Date, '', new Date, 0, 0, 0, 0, 0, 0, 0,'',0,0,'') ;
+    this.extratoMovimentoCombustivelDTO.dtInicioFiltro = this.relatorioForm.value['dtInicio'];
+    this.extratoMovimentoCombustivelDTO.dtFimFiltro = this.relatorioForm.value['dtFim'];
+    this.extratoCombustivelService.getExtratoMovimentoCombustivel(this.extratoMovimentoCombustivelDTO,
+                                                  this.relatorioForm.value['tpRelatorio'],
+                                                  this.shared.user.cdEmpresa,
+                                                  this.relatorioForm.value['produto'].codProduto).subscribe((resp: ExtratoMovimentoCombustivelDTO[]) => {
       this.dataSource = resp;
     }, (error: any) => {
       console.log(`Ocorreru um erro ao chamar a API ${error}`)
     })
 
-    if (this.relatorioModeloForm.value['tpRelatorio'] == 1) {
+    if (this.relatorioForm.value['tpRelatorio'] == 1) {
       this.isFiltro = false;
-      this.isAnalitico = true;
-      this.isSintetico = false;
+      this.isProduto = true;
+      this.isTanque = false;
     } else {
       this.isFiltro = false;
-      this.isAnalitico = false;
-      this.isSintetico = true;
+      this.isProduto = false;
+      this.isTanque = true;
     }
   }
 

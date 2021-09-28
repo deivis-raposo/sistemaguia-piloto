@@ -19,6 +19,29 @@ export class RelatoriosComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public relatorioVendaCategoria() {
+    this.dialog.open(RelatorioVendacategoriaExportComponent, {
+      disableClose: true
+    }).afterClosed().subscribe(resp => {
+      if (resp) {
+        this.snackBarService.showSnackBar('Relatório gerado com sucesso!', 'OK');
+      }
+    })
+  }
+
+  public extratomovimentocombustivel() {
+    this.dialog.open(ExtratoMovicombustivelExportComponent, {
+      disableClose: true, width: '1050px', height: '400px'
+    }).afterClosed().subscribe(resp => {
+      if (resp) {
+        this.snackBarService.showSnackBar('Relatório gerado com sucesso!', 'OK');
+      }
+    })
+  }
+
+
+
+  /*
   public filtroReport() {
     this.dialog.open(RelatorioModeloEditComponent, {
       disableClose: true
@@ -30,29 +53,6 @@ export class RelatoriosComponent implements OnInit {
     })
   }
 
-  public Vendacategoria() {
-    this.dialog.open(RelatorioVendacategoriaExportComponent, {
-      disableClose: true
-    }).afterClosed().subscribe(resp => {
-      if (resp) {
-        //this.loadAllUser();
-        this.snackBarService.showSnackBar('Relatório gerado com sucesso!', 'OK');
-      }
-    })
 
-
-  }
-
-  public Extratomovimentocombustivel() {
-    this.dialog.open(ExtratoMovicombustivelExportComponent, {
-      disableClose: true
-    }).afterClosed().subscribe(resp => {
-      if (resp) {
-        //this.loadAllUser();
-        this.snackBarService.showSnackBar('Relatório gerado com sucesso!', 'OK');
-      }
-    })
-
-
-  }
+  */
 }
