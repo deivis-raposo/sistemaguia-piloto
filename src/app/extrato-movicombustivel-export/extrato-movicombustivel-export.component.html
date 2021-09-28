@@ -44,9 +44,7 @@
         </mat-card-content>
         <mat-card-actions>
             <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
-            <button mat-raised-button color="primary" class="end" (click)="gerarRelatorio()"
-                [disabled]="tiporelatorio === ''">Gerar
-                Relatório</button>
+            <button mat-raised-button color="primary" class="end" (click)="gerarRelatorio()" [disabled]="tiporelatorio === ''">Gerar Relatório</button>
         </mat-card-actions>
     </mat-card>
 </div>
@@ -71,6 +69,7 @@
                         Não há registros para o filtro selecionado.
                     </mat-card-content>
                 </mat-card>
+
 
                 <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" class="w-100">
 
@@ -117,98 +116,99 @@
             </mat-card-content>
         </mat-card>
     </form>
-
-
     <mat-card-actions>
-        <button mat-raised-button color="warn" class="ml-1" mat-dialog-close>Cancelar</button>
-        <button mat-raised-button color="primary" class="ml-40" (click)="printpdf('1')">Baixar PDF</button>
-    </mat-card-actions>
-</div>
-
-<div class="ml-15 mt-30p m-20">
-    <div id="content1111" #content>
-    </div>
+      <button mat-raised-button color="warn" class="ml-1" mat-dialog-close>Cancelar</button>
+      <button mat-raised-button color="primary" class="ml-40" (click)="printpdf('1')">Baixar PDF</button>
+  </mat-card-actions>
 </div>
 
 <div class="w-1000" *ngIf="isTanque">
-    <form id="content1" #content1>
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title class="mr-left">Relatório: Venda de Produtos por Categoria</mat-card-title>
-                <mat-card-subtitle> <span> Tipo Relatório: Sintético</span> <span class="end-1"> De: {{datainicial}}
-                        Até:
-                        {{datafinal}} </span></mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-subtitle> <span> Produto Selecionado: {{descProdutoSelecionado}}</span>
-            </mat-card-subtitle>
-            <mat-card-content>
-                <mat-card *ngIf="dataSource?.length == 0">
-                    <mat-card-content>
-                        Não há registros para o filtro selecionado.
-                    </mat-card-content>
-                </mat-card>
-            <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" class="w-100">
-                <ng-container matColumnDef="data" class="table">
-                  <th mat-header-cell *matHeaderCellDef> Data </th>
-                  <td mat-cell *matCellDef="let transaction"> {{transaction.data}} </td>
-              </ng-container>
-              <ng-container matColumnDef="nuTanque" class="table">
-                <th mat-header-cell *matHeaderCellDef> Tanque </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.nuTanque}} </td>
-            </ng-container>
-              <ng-container matColumnDef="estoqueInicial" class="table">
-                <th mat-header-cell *matHeaderCellDef> Estoque Inicial </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.estoqueInicial}} </td>
-              </ng-container>
-              <ng-container matColumnDef="entrada" class="table">
-                <th mat-header-cell *matHeaderCellDef> Entrada </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.entrada}} </td>
-              </ng-container>
-              <ng-container matColumnDef="venda" class="table">
-                <th mat-header-cell *matHeaderCellDef> Venda </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.venda}} </td>
-              </ng-container>
-              <ng-container matColumnDef="afericao" class="table">
-                <th mat-header-cell *matHeaderCellDef> Aferição </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.afericao}} </td>
-              </ng-container>
-              <ng-container matColumnDef="estoqueContabil" class="table">
-                <th mat-header-cell *matHeaderCellDef> Estoque Contábil </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.estoqueContabil}} </td>
-              </ng-container>
-              <ng-container matColumnDef="estoqueFisico" class="table">
-                <th mat-header-cell *matHeaderCellDef> Estoque Físico </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.estoqueFisico}} </td>
-              </ng-container>
-              <ng-container matColumnDef="ajusteSobra" class="table">
-                <th mat-header-cell *matHeaderCellDef> Ajuste Sobra </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.ajusteSobra}} </td>
-              </ng-container>
-              <ng-container matColumnDef="ajustePerda" class="table">
-                <th mat-header-cell *matHeaderCellDef> Ajuste Perda </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.ajustePerda}} </td>
-              </ng-container>
-              <ng-container matColumnDef="diferenca" class="table">
-                <th mat-header-cell *matHeaderCellDef> Diferença </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.diferenca}} </td>
-              </ng-container>
+  <form id="content" #content1>
+      <mat-card>
+          <mat-card-header>
+              <mat-card-title class="mr-left">Relatório: Extrato Movimento Combustível</mat-card-title>
+              <mat-card-subtitle> <span> Tipo Relatório: Tanque</span>
+                <span class="end-1">
+                    De: {{datainicial}} Até:{{datafinal}}
+                  </span>
+              </mat-card-subtitle>
+              <mat-card-subtitle> <span> Produto Selecionado: {{descProdutoSelecionado}}</span>
+              </mat-card-subtitle>
+          </mat-card-header>
 
-              <tr mat-header-row *matHeaderRowDef=" displayedColumnsTanque">
-              </tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumnsTanque;"></tr>
+          <mat-card-content>
+              <mat-card *ngIf="dataSource?.length == 0">
+                  <mat-card-content>
+                      Não há registros para o filtro selecionado.
+                  </mat-card-content>
+              </mat-card>
 
 
-                </table>
-            </mat-card-content>
-        </mat-card>
-    </form>
-    <mat-card-actions>
-        <button mat-raised-button color="warn" class="ml-1" mat-dialog-close>Cancelar</button>
-        <button mat-raised-button color="primary" class="ml-40" (click)="printpdf('2')">Baixar PDF</button>
-    </mat-card-actions>
+              <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" class="w-100">
+
+
+                  <ng-container matColumnDef="data" class="table">
+                      <th mat-header-cell *matHeaderCellDef> Data </th>
+                      <td mat-cell *matCellDef="let transaction"> {{transaction.data}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="nuTanque" class="table">
+                    <th mat-header-cell *matHeaderCellDef> Data </th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.nuTanque}} </td>
+                </ng-container>
+                  <ng-container matColumnDef="estoqueInicial" class="table">
+                    <th mat-header-cell *matHeaderCellDef> Estoque Inicial </th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.estoqueInicial}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="entrada" class="table">
+                    <th mat-header-cell *matHeaderCellDef> Entrada </th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.entrada}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="venda" class="table">
+                    <th mat-header-cell *matHeaderCellDef> Venda </th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.venda}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="afericao" class="table">
+                    <th mat-header-cell *matHeaderCellDef> Aferição </th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.afericao}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="estoqueContabil" class="table">
+                    <th mat-header-cell *matHeaderCellDef> Estoque Contábil </th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.estoqueContabil}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="estoqueFisico" class="table">
+                    <th mat-header-cell *matHeaderCellDef> Estoque Físico </th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.estoqueFisico}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="ajusteSobra" class="table">
+                    <th mat-header-cell *matHeaderCellDef> Ajuste Sobra </th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.ajusteSobra}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="ajustePerda" class="table">
+                    <th mat-header-cell *matHeaderCellDef> Ajuste Perda </th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.ajustePerda}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="diferenca" class="table">
+                    <th mat-header-cell *matHeaderCellDef> Diferença </th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.diferenca}} </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef=" displayedColumnsTanque">
+                  </tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumnsTanque;"></tr>
+
+
+              </table>
+          </mat-card-content>
+      </mat-card>
+  </form>
+  <mat-card-actions>
+    <button mat-raised-button color="warn" class="ml-1" mat-dialog-close>Cancelar</button>
+    <button mat-raised-button color="primary" class="ml-40" (click)="printpdf('1')">Baixar PDF</button>
+</mat-card-actions>
 </div>
 
-<div class="ml-15 mt-30p m-20">
-    <div id="content1111" #content>
-    </div>
-</div>
+
+
+
+
+

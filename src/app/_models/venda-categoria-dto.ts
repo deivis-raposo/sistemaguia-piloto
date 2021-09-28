@@ -20,5 +20,5 @@ export class VendaCategoriaDTO {
         public vlrDesconto: number,
         public vlrLiquido: number
 
-    ){}
+    ) { }
 }

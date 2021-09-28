@@ -14,18 +14,6 @@ import { SharedService } from '../_services/shared.service';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
 
-/*tabela relatorio venda por categoria*/
-export interface Transaction {
-  codigo: string;
-  quantidade: number;
-  descricao: string;
-  un: string;
-  pmv: number;
-  valorbruto: number;
-  desc: number;
-  acres: number;
-
-}
 @Component({
   selector: 'app-extrato-movicombustivel-export',
   templateUrl: './extrato-movicombustivel-export.component.html',
@@ -38,8 +26,6 @@ export interface Transaction {
 
 })
 export class ExtratoMovicombustivelExportComponent implements OnInit {
-
-
 
   @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -133,33 +119,23 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
 
   public cancelar() {
     this.closeModelEventEmitter.emit(false);
-
-
   }
 
-  getTotalquantidade() {
-    return this.dataSource.map(t => t.qtdProduto).reduce((acc, value) => acc + value, 0);
+  getTotalvalorentrada() {
+    return;
   }
 
-  getTotalvalorbruto() {
-    return this.dataSource.map(t => t.vlrBruto).reduce((acc, value) => acc + value, 0);
-  }
-
-  getTotalPMV() {
-    return this.dataSource.map(t => t.vlrVenda).reduce((acc, value) => acc + value, 0);
-  }
-
-  getTotalvalorliquido() {
-    return this.dataSource.map(t => t.vlrLiquido).reduce((acc, value) => acc + value, 0);
+  getTotalvalorvenda() {
+    return;
   }
 
 
-  getTotalvalorAcrescimo() {
-    return this.dataSource.map(t => t.vlrAcrescimo).reduce((acc, value) => acc + value, 0);
+  getTotalvalorafericao() {
+    return;
   }
 
-  getTotalvalorDesconto() {
-    return this.dataSource.map(t => t.vlrDesconto).reduce((acc, value) => acc + value, 0);
+  getTotalvalordiferenca() {
+    return;
   }
 
 
@@ -212,11 +188,7 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
     }
   }
 
-  public InputEmpresa() {
-    this.dialog.open(InputempresaComponent, {
-      disableClose: true
-    })
-  }
+
 
 
   tiporelatorio: string = '';

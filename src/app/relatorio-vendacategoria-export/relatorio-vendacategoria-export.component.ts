@@ -12,7 +12,7 @@ import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
 import { VendaCategoriaService } from '../_services/vendacategoria.service';
 
-/*tabela relatorio venda por categoria*/
+/*tabela relatorio venda por categoria
 export interface Transaction {
   codigo: string;
   quantidade: number;
@@ -23,7 +23,7 @@ export interface Transaction {
   desc: number;
   acres: number;
   valorliquido: number;
-}
+}*/
 
 @Component({
   selector: 'app-relatorio-vendacategoria-export',
@@ -42,6 +42,8 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
 
   public nomeEmpre: any = '';
 
+  produtos = [{ produto: 'Gasolina comum' }, { produto: 'Etanol Hidratado Comum' }]
+
 
   @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -59,7 +61,7 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   displayedColumns = ['codigo'];
   displayedColumnsSintetico = ['codigo'];
 
-  shared : SharedService;
+  shared: SharedService;
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private usuarioService: UsuarioService,
@@ -68,7 +70,7 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
     private adapter: DateAdapter<any>,
     private dialog: MatDialog) {
 
-      this.shared = SharedService.getInstance();
+    this.shared = SharedService.getInstance();
   }
 
   french() {
@@ -158,12 +160,22 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
 
 
 
-  datainicial: any;
-  datafinal: any;
+  datainicial: any = '';
+  datafinal: any = '';
+
 
   dateRangeChange(dtInicial: HTMLInputElement, dtFIm: HTMLInputElement) {
     this.datainicial = dtInicial.value;
     this.datafinal = dtFIm.value;
+  }
+
+  getErrorMessage(): any {
+    if (this.tiporelatorio === '' && this.datainicial !== '') {
+      return 'Selecione o tipo de Relatório';
+    } else if (this.datainicial === '' && this.tiporelatorio !== '') {
+      return 'Selecione uma Data';
+    } else { return '' }
+
   }
 
 
