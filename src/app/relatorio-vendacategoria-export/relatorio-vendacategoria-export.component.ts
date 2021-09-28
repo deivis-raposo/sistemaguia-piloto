@@ -58,8 +58,8 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   public isSintetico: boolean = false;
 
 
-  displayedColumns = ['codigo'];
-  displayedColumnsSintetico = ['codigo'];
+  displayedColumns = ['codigo', 'quantidade' , 'descricao', 'produto', 'un', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
+  displayedColumnsSintetico = ['codigo', 'descricao', 'quantidade', 'valorbruto', 'desc', 'acres', 'valorliquido'];
 
   shared: SharedService;
   constructor(private formBuilder: FormBuilder,
