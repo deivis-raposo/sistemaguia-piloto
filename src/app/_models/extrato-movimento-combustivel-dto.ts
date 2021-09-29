@@ -4,7 +4,7 @@ export class ExtratoMovimentoCombustivelDTO {
         public dtFimFiltro: Date,
 
         public descProduto: string,
-        public data: Date,
+        public data: string,
         public estoqueInicial: number,
         public entrada: number,
         public venda: number,

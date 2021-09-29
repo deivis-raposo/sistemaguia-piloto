@@ -94,7 +94,7 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
   public gerarRelatorio() {
 
     this.descProdutoSelecionado = (this.relatorioForm.value['produto'].codProduto) + ' - ' + (this.relatorioForm.value['produto'].descProduto);
-    this.extratoMovimentoCombustivelDTO = new ExtratoMovimentoCombustivelDTO(new Date, new Date, '', new Date, 0, 0, 0, 0, 0, 0, 0,'',0,0,'') ;
+    this.extratoMovimentoCombustivelDTO = new ExtratoMovimentoCombustivelDTO(new Date, new Date, '', '', 0, 0, 0, 0, 0, 0, 0,'',0,0,'') ;
     this.extratoMovimentoCombustivelDTO.dtInicioFiltro = this.relatorioForm.value['dtInicio'];
     this.extratoMovimentoCombustivelDTO.dtFimFiltro = this.relatorioForm.value['dtFim'];
     this.extratoCombustivelService.getExtratoMovimentoCombustivel(this.extratoMovimentoCombustivelDTO,
