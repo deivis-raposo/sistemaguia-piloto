@@ -31,7 +31,7 @@ export class RelatoriosComponent implements OnInit {
 
   public extratomovimentocombustivel() {
     this.dialog.open(ExtratoMovicombustivelExportComponent, {
-      disableClose: true, width: '1050px', height: '400px'
+      disableClose: true,
     }).afterClosed().subscribe(resp => {
       if (resp) {
         this.snackBarService.showSnackBar('Relatório gerado com sucesso!', 'OK');

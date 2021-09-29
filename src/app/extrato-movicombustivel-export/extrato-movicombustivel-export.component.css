@@ -18,27 +18,29 @@
   .ml-40{
     margin-left: 50.7rem;
   }
+  .w-1000{
+    max-height: 30rem;
+  }
   
   
   
   .mat-table { 
-    border-top: 1px solid currentColor;
+    border-top: 1px solid currentColor; 
     border-left:  1px solid currentColor;
   
   }
   
-  .mat-column-descricao , .mat-column-codigo, .mat-column-quantidade, .mat-column-valorbruto, .mat-column-acres, .mat-column-desc, .mat-column-valorliquido, .mat-column-pmv, .mat-column-un, .mat-column-produto {
+  .mat-column-data , .mat-column-estoqueInicial, .mat-column-entrada, .mat-column-venda, .mat-column-afericao, .mat-column-estoqueContabil, .mat-column-estoqueFisico, .mat-column-diferenca,  .mat-column-nuTanque{
   
     border-right: 1px solid currentColor;
     border-bottom: 1px solid currentColor;
     padding-right: none !important;
+    color: black;
     text-align: center;
   
   }
   
-  .mat-column-pmv, .mat-column-un,  .mat-column-acres{
-    padding: 0.5rem !important;
-  }
+  
   
   th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
     padding-right:0;
@@ -51,4 +53,35 @@
   .mr-left{
     margin-left: 17rem;
   }
+
+  .border{
+  
+    border: 1px solid currentColor;
+    padding-top: 1%;
+    margin-bottom: 1%; 
+    text-transform: capitalize;
+    
+    
+  
+  }
+
+  .card{
+    background-color: rgb(207, 207, 207);
+    border-radius: 0% !important;
+    border: 1px solid currentColor;
+    border-bottom: none;
+    font-size: 20px;
+  }
+
+  
+.span-tyle{
+  color: red; 
+  margin-left: 2%;
+  margin-top: 1%;
+}
+
+span{
+  color: black;
+}
+
   

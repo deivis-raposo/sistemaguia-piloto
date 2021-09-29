@@ -26,6 +26,8 @@ import { UsuarioService } from '../_services/usuario.service';
 
 })
 export class ExtratoMovicombustivelExportComponent implements OnInit {
+  public nomeEmpre: any = '';
+  public nomeProduto: any;
 
   @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -35,7 +37,7 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
   public dataSource: any[] = [];
   public produtos: Produto[] = [];
   public extratoMovimentoCombustivelDTO!: ExtratoMovimentoCombustivelDTO;
-  selectedValueProduto!: number;
+  selectedValueProduto: number = 1;
   public descProdutoSelecionado: string = '';
 
   public isFiltro: boolean = true;
@@ -44,9 +46,9 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
 
 
   displayedColumns = ['data', 'estoqueInicial', 'entrada', 'venda', 'afericao', 'estoqueContabil', 'estoqueFisico', 'diferenca'];
-  displayedColumnsTanque = ['data', 'nuTanque', 'estoqueInicial', 'entrada', 'venda', 'afericao', 'estoqueContabil', 'estoqueFisico', 'ajusteSobra', 'ajustePerda', 'diferenca'];
+  displayedColumnsTanque = ['data', 'nuTanque', 'estoqueInicial', 'entrada', 'venda', 'afericao', 'estoqueContabil', 'estoqueFisico', 'diferenca'];
 
-  shared : SharedService;
+  shared: SharedService;
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private usuarioService: UsuarioService,
@@ -56,7 +58,7 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
     private adapter: DateAdapter<any>,
     private dialog: MatDialog) {
 
-      this.shared = SharedService.getInstance();
+    this.shared = SharedService.getInstance();
   }
 
   french() {
@@ -80,11 +82,11 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
   }
 
   public buscarProduto() {
-      this.produtoService.getAll().subscribe((resp: Produto[]) => {
-        this.produtos = resp;
-      }, (error: any) => {
-        console.log(`Ocorreru um erro ao chamar a API ${error}`)
-      })
+    this.produtoService.getAll().subscribe((resp: Produto[]) => {
+      this.produtos = resp;
+    }, (error: any) => {
+      console.log(`Ocorreru um erro ao chamar a API ${error}`)
+    })
   }
 
   public cancel() {
@@ -93,18 +95,21 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
 
   public gerarRelatorio() {
 
+    this.nomeEmpre = localStorage.getItem('nomeempresa');
+    localStorage.setItem('nomeproduto', this.relatorioForm.value['produto'].descProduto);
+
     this.descProdutoSelecionado = (this.relatorioForm.value['produto'].codProduto) + ' - ' + (this.relatorioForm.value['produto'].descProduto);
-    this.extratoMovimentoCombustivelDTO = new ExtratoMovimentoCombustivelDTO(new Date, new Date, '', '', 0, 0, 0, 0, 0, 0, 0,'',0,0,'') ;
+    this.extratoMovimentoCombustivelDTO = new ExtratoMovimentoCombustivelDTO(new Date, new Date, '', '', 0, 0, 0, 0, 0, 0, 0, '', 0, 0, '');
     this.extratoMovimentoCombustivelDTO.dtInicioFiltro = this.relatorioForm.value['dtInicio'];
     this.extratoMovimentoCombustivelDTO.dtFimFiltro = this.relatorioForm.value['dtFim'];
     this.extratoCombustivelService.getExtratoMovimentoCombustivel(this.extratoMovimentoCombustivelDTO,
-                                                  this.relatorioForm.value['tpRelatorio'],
-                                                  this.shared.user.cdEmpresa,
-                                                  this.relatorioForm.value['produto'].codProduto).subscribe((resp: ExtratoMovimentoCombustivelDTO[]) => {
-      this.dataSource = resp;
-    }, (error: any) => {
-      console.log(`Ocorreru um erro ao chamar a API ${error}`)
-    })
+      this.relatorioForm.value['tpRelatorio'],
+      this.shared.user.cdEmpresa,
+      this.relatorioForm.value['produto'].codProduto).subscribe((resp: ExtratoMovimentoCombustivelDTO[]) => {
+        this.dataSource = resp;
+      }, (error: any) => {
+        console.log(`Ocorreru um erro ao chamar a API ${error}`)
+      })
 
     if (this.relatorioForm.value['tpRelatorio'] == 1) {
       this.isFiltro = false;
@@ -115,6 +120,8 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
       this.isProduto = false;
       this.isTanque = true;
     }
+
+    this.nomeProduto = localStorage.getItem('nomeproduto');
   }
 
   public cancelar() {
@@ -122,30 +129,52 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
   }
 
   getTotalvalorentrada() {
-    return;
+    return this.dataSource.map(t => t.entrada).reduce((acc, value) => acc + value, 0);
+
   }
 
   getTotalvalorvenda() {
-    return;
+    return this.dataSource.map(t => t.venda).reduce((acc, value) => acc + value, 0);
+
   }
 
 
   getTotalvalorafericao() {
-    return;
+    return this.dataSource.map(t => t.afericao).reduce((acc, value) => acc + value, 0);
+
   }
 
   getTotalvalordiferenca() {
-    return;
+    return this.dataSource.map(t => t.diferenca).reduce((acc, value) => acc + value, 0);
+
   }
 
 
+
+
+
+
+  getErrorMessage(): any {
+
+
+    if (this.tiporelatorio === '' && this.datainicial !== '') {
+      return 'Selecione o tipo de Relatório';
+    } else if (this.datainicial === '' && this.tiporelatorio !== '') {
+      return 'Selecione uma Data';
+    } else if (this.datainicial !== '' && this.tiporelatorio !== '') {
+      if (this.selectedValueProduto == 1) {
+        return 'Selecione o tipo Produto';
+      } else { return '' }
+    }
+    else { return '' }
+
+  }
 
   /* mostra a data  pesquisa relatorio*/
 
 
-
-  datainicial: any;
-  datafinal: any;
+  datainicial: any = '';
+  datafinal: any = '';
 
   dateRangeChange(dtInicial: HTMLInputElement, dtFIm: HTMLInputElement) {
     this.datainicial = dtInicial.value;
@@ -168,7 +197,7 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
       });
       pdf.html(this.el.nativeElement, {
         callback: (pdf) => {
-          pdf.save("Venda_Produtos_Analitico.pdf");
+          pdf.save("Extrato_Produto_" + this.relatorioForm.value['produto'].descProduto);
         }
       })
     } else if (valorprint == '2') {
@@ -181,7 +210,7 @@ export class ExtratoMovicombustivelExportComponent implements OnInit {
       });
       pdf.html(this.el1.nativeElement, {
         callback: (pdf) => {
-          pdf.save("Venda_Produtos_Sintético.pdf");
+          pdf.save("Extrato_Tanque_" + this.relatorioForm.value['produto'].descProduto);
         }
       })
 
