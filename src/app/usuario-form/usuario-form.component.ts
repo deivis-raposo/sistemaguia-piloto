@@ -30,6 +30,7 @@ export class UsuarioFormComponent implements OnInit {
 
   user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'',0,'','') ;
   public isFormReady = false;
+  public displayProgressBar: boolean = false;
   public usuarioForm !: FormGroup;
   shared : SharedService;
 
@@ -61,6 +62,7 @@ export class UsuarioFormComponent implements OnInit {
     }
     this.isFormReady = true;
     this.findAllPerfil();
+    this.displayProgressBar = false;
   }
 
   public cancel() {
@@ -93,20 +95,29 @@ export class UsuarioFormComponent implements OnInit {
         };
         this.user.idUsuario = this.usuarioForm.value.idUsuario;
         this.user.senha     = this.editableUser.senha;
-
+        this.displayProgressBar = true;
+        console.log('CRIAR USUARIO - CD EMPRESA: ' + this.shared.user.cdEmpresa);
+        this.user.cdEmpresa = this.shared.user.cdEmpresa;
         this.usuarioService.saveUsuario(this.user)
           .subscribe((resp: any) => {
             this.closeModelEventEmitter.emit(true);
+            this.displayProgressBar = false;
           }, (err: any) => {
+            this.displayProgressBar = false;
             this.snackbarService.showSnackBar('Não foi possível atualizar o usuário. Tente novamente!', 'OK');
           });
       } else {
+        console.log('CRIAR USUARIO - CD EMPRESA: ' + this.shared.user.cdEmpresa);
         this.user.idUsuario = "";
         this.user.senha     = "";
+        this.displayProgressBar = true;
+        this.user.cdEmpresa = this.shared.user.cdEmpresa;
         this.usuarioService.saveUsuario(this.user)
           .subscribe((resp: any) => {
             this.closeModelEventEmitter.emit(true);
+            this.displayProgressBar = false;
           }, (err: any) => {
+            this.displayProgressBar = false;
             this.snackbarService.showSnackBar('Não foi possível criar um novo usuário. Tente novamente!', 'OK');
           });
       }

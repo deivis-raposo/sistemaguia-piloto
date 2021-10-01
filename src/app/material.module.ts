@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDatepickerModule,
     MatMenuModule,
     MatExpansionModule,
+    MatProgressBarModule
   ],
   exports: [
     MatToolbarModule,
@@ -57,7 +59,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatSelectModule,
     MatDatepickerModule,
     MatMenuModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressBarModule
   ]
 })
 export class MaterialModule { }

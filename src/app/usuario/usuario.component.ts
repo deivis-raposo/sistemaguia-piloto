@@ -63,7 +63,7 @@ export class UsuarioComponent implements OnInit {
       }
     }).afterClosed().subscribe(resp => {
       if (resp) {
-        this.usuarioService.delete(user.idUsuario).subscribe(
+        this.usuarioService.delete(user.idUsuario, this.shared.user.cdEmpresa).subscribe(
           (resp: any) => {
             this.loadAllUser();
             this.snackBarService.showSnackBar('Usuário excluído com successo!', 'OK');

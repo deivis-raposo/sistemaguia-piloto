@@ -24,8 +24,8 @@ export class UsuarioService {
     return this.http.put<void>(`${environment.baseUrl}api/usuario`, usuario);
   }
 
-  delete(id: string) : Observable<ResponseApi>{
-    return this.http.delete<ResponseApi>(`${environment.baseUrl}api/usuario/${id}`);
+  delete(id: string, cdEmpresa: number) : Observable<ResponseApi>{
+    return this.http.delete<ResponseApi>(`${environment.baseUrl}api/usuario/${id}/${cdEmpresa}`);
   }
 
   public getAllUsers(cdEmpresa: number): Observable<User[]>{
