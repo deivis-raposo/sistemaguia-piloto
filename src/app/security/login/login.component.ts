@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { CurrentUser } from 'src/app/_models/current-user.model';
 import { User } from 'src/app/_models/user.model';
 import { UsuarioEmpresa } from 'src/app/_models/usuario-empresa.model';
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
     private usuarioService: UsuarioService,
     private usuarioEmpresaService: UsuarioEmpresaService,
     private snackBarService: SnackBarService,
-    private router: Router) {
+    private router: Router,
+    public app: AppComponent) {
 
     this.shared = SharedService.getInstance();
   }
@@ -49,6 +51,8 @@ export class LoginComponent implements OnInit {
       idUsuarioEmpresa: [this.editableUser != null ? this.editableUser.cdEmpresa : '', Validators.required]
     })
     this.isFormReady = true;
+
+    this.app.shared = this.shared;
   }
 
   public login() {
@@ -83,6 +87,7 @@ export class LoginComponent implements OnInit {
   }
 
   public selectedEmpresa(input: UsuarioEmpresa) {
+
     localStorage.setItem('nomeempresa', input.nomeEmpresa)
     this.userAuthenticated.user.cdEmpresa = input.codEmpresa;
     if (this.userAuthenticated != null && this.userAuthenticated.user != null) {
@@ -93,6 +98,7 @@ export class LoginComponent implements OnInit {
       let infoSessionCurrentUser = this.userAuthenticated.token;
       sessionStorage.setItem("currentUser", infoSessionUser + "|" + infoSessionCurrentUser + "|" + input.idUsuarioEmpresa);
     }
+    this.app.carregarMenu();
     this.shared.showTemplate.emit(true);
     this.router.navigate(['/']);
   }

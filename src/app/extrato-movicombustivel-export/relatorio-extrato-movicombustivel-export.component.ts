@@ -12,7 +12,7 @@ import { ProdutoService } from '../_services/produto.service';
 import { SharedService } from '../_services/shared.service';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
-import 'jspdf-autotable';
+//import 'jspdf-autotable';
 
 
 

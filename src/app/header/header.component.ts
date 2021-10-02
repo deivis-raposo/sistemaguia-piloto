@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { SharedService } from '../_services/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +11,14 @@ export class HeaderComponent implements OnInit {
 
   @Input()
   public sideNavBar!: MatSidenav;
+  public shared!: SharedService;
 
-  constructor() { }
+  constructor() {
+    this.shared = SharedService.getInstance();
+  }
 
   ngOnInit(): void {
+
   }
 
   public openSideNav(){

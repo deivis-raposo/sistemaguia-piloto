@@ -23,12 +23,6 @@ export class AppComponent {
     this.shared.showTemplate.subscribe(
       show => this.showTemplate = show
     )
-
-    this.model = [
-      {label: 'Home', icon: 'home', uri: '/'},
-      {label: 'Usuários', icon: 'group', uri: '/usuario'},
-      {label: 'Relatório', icon: 'summarize', uri: '/relatorios'}
-    ];
   }
 
   showContentWrapper(){
@@ -39,6 +33,18 @@ export class AppComponent {
 
   router(item: any){
     this.rota.navigate([item.uri]);
+  }
+
+  carregarMenu(){
+    console.log('CARREGAR MENU - idUsuario:::: ' + this.shared.user.idUsuario);
+    console.log('CARREGAR MENU - profile:::: ' + this.shared.user.idPerfil);
+    console.log('CARREGAR MENU - codEmpresa:::: ' + this.shared.user.cdEmpresa);
+
+    this.model = [
+      {label: 'Home', icon: 'home', uri: '/'},
+      {label: 'Usuários', icon: 'group', uri: '/usuario'},
+      {label: 'Relatório', icon: 'summarize', uri: '/relatorios'}
+    ];
   }
 
 }
