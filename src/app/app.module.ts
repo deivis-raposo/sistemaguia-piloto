@@ -36,10 +36,12 @@ import { VendaCategoriaService } from './_services/vendacategoria.service';
 import { ExtratoMovimentoCombustivelService } from './_services/extrato-movimento-combustivel.service';
 import { CpfPipe } from '../app/pipes/cpf.pipe';
 import { NgxMaskModule } from 'ngx-mask';
-import { ExtratoMovicombustivelExportComponent } from './extrato-movicombustivel-export/extrato-movicombustivel-export.component'
+import { RelatorioExtratoMovicombustivelExportComponent } from './extrato-movicombustivel-export/relatorio-extrato-movicombustivel-export.component'
 import { UsuarioEmpresaService } from './_services/usuario-empresa.service';
 import { PerfilService } from './_services/perfil.service';
 import { ProdutoService } from './_services/produto.service';
+import { PadraoBr } from './pipes/padraoBrvalor';
+import { MoedaBr } from './pipes/MoedaBrR$.pipe';
 
 
 
@@ -67,8 +69,9 @@ registerLocaleData(localePT);
     //VendacategoriaComponent,
     RelatorioVendacategoriaExportComponent,
     CpfPipe,
-    ExtratoMovicombustivelExportComponent,
-
+    RelatorioExtratoMovicombustivelExportComponent,
+    PadraoBr,
+    MoedaBr
 
   ],
   imports: [
