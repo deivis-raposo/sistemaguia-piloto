@@ -79,18 +79,14 @@
 
             <ng-container matColumnDef="quantidade">
               <th mat-header-cell *matHeaderCellDef> Quantidade</th>
-              <td mat-cell *matCellDef="let transaction"> {{transaction.qtdProduto | currency:'':''}} </td>
+              <td mat-cell *matCellDef="let transaction"> {{transaction.qtdProduto | MoedaBR}}
+              </td>
               <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
 
-            <ng-container matColumnDef="descricao">
-              <th mat-header-cell *matHeaderCellDef> Descrição do Grupo </th>
-              <td mat-cell *matCellDef="let transaction"> {{transaction.descGrupoProduto}} </td>
-              <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
 
             <ng-container matColumnDef="produto">
-              <th mat-header-cell *matHeaderCellDef> Produto/Serviços </th>
+              <th mat-header-cell *matHeaderCellDef>Descrição Produto/Serviços </th>
               <td mat-cell *matCellDef="let transaction"> {{transaction.descProduto}} </td>
               <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
@@ -103,33 +99,33 @@
 
             <ng-container matColumnDef="pmv">
               <th mat-header-cell *matHeaderCellDef> P.M.V</th>
-              <td mat-cell *matCellDef="let transaction"> {{transaction.vlrVenda | currency:'R$ '}} </td>
+              <td mat-cell *matCellDef="let transaction"> {{transaction.vlrVenda | MoedaBR}} </td>
               <td mat-footer-cell *matFooterCellDef></td>
               <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
 
             <ng-container matColumnDef="valorbruto">
               <th mat-header-cell *matHeaderCellDef> Valor Bruto </th>
-              <td mat-cell *matCellDef="let transaction"> {{transaction.vlrBruto | currency:'R$ '}} </td>
-              <td mat-footer-cell *matFooterCellDef> {{getTotalvalorbruto() | currency:'R$ '}}</td>
+              <td mat-cell *matCellDef="let transaction"> {{transaction.vlrBruto | MoedaBR}} </td>
+              <td mat-footer-cell *matFooterCellDef> {{getTotalvalorbruto() | MoedaBR}}</td>
             </ng-container>
 
             <ng-container matColumnDef="desc">
               <th mat-header-cell *matHeaderCellDef> Desconto</th>
-              <td mat-cell *matCellDef="let transaction"> {{transaction.vlrDesconto | currency:'R$ '}} </td>
-              <td mat-footer-cell *matFooterCellDef>{{getTotalvalorDesconto() | currency:'R$ '}}</td>
+              <td mat-cell *matCellDef="let transaction"> {{transaction.vlrDesconto | MoedaBR}} </td>
+              <td mat-footer-cell *matFooterCellDef>{{getTotalvalorDesconto() | MoedaBR}}</td>
             </ng-container>
 
             <ng-container matColumnDef="acres">
               <th mat-header-cell *matHeaderCellDef> Acréscimo </th>
-              <td mat-cell *matCellDef="let transaction"> {{transaction.vlrAcrescimo | currency:'R$ '}} </td>
-              <td mat-footer-cell *matFooterCellDef>{{getTotalvalorAcrescimo() | currency:'R$ '}}</td>
+              <td mat-cell *matCellDef="let transaction"> {{transaction.vlrAcrescimo | MoedaBR}} </td>
+              <td mat-footer-cell *matFooterCellDef>{{getTotalvalorAcrescimo() | MoedaBR}}</td>
             </ng-container>
 
             <ng-container matColumnDef="valorliquido">
               <th mat-header-cell *matHeaderCellDef> Valor Liquido </th>
-              <td mat-cell *matCellDef="let transaction"> {{transaction.vlrLiquido | currency:'R$ '}}</td>
-              <td mat-footer-cell *matFooterCellDef>{{getTotalvalorliquido() | currency:'R$ '}}</td>
+              <td mat-cell *matCellDef="let transaction"> {{transaction.vlrLiquido | MoedaBR}}</td>
+              <td mat-footer-cell *matFooterCellDef>{{getTotalvalorliquido() | MoedaBR}}</td>
             </ng-container>
 
 
@@ -197,22 +193,22 @@
 
           <ng-container matColumnDef="valorbruto">
             <th mat-header-cell *matHeaderCellDef> Valor Bruto </th>
-            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrBruto | currency:'R$ '}} </td>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrBruto | MoedaBR}} </td>
           </ng-container>
 
           <ng-container matColumnDef="desc">
             <th mat-header-cell *matHeaderCellDef> Desconto</th>
-            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrDesconto | currency:'R$ '}} </td>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrDesconto | MoedaBR}} </td>
           </ng-container>
 
           <ng-container matColumnDef="acres">
             <th mat-header-cell *matHeaderCellDef> Acréscimo </th>
-            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrAcrescimo | currency:'R$ '}} </td>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrAcrescimo | MoedaBR}} </td>
           </ng-container>
 
           <ng-container matColumnDef="valorliquido">
             <th mat-header-cell *matHeaderCellDef> Valor Liquido </th>
-            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrLiquido | currency:'R$ '}}</td>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.vlrLiquido | MoedaBR}}</td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef=" displayedColumnsSintetico"></tr>

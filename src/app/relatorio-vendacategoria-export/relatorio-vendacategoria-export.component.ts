@@ -1,11 +1,10 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import jsPDF from 'jspdf';
-import { InputempresaComponent } from '../inputs-pesquisa/inputempresa/inputempresa.component';
 import { VendaCategoriaDTO } from '../_models/venda-categoria-dto';
 import { SharedService } from '../_services/shared.service';
 import { SnackBarService } from '../_services/snack-bar.service';
@@ -58,8 +57,8 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   public isSintetico: boolean = false;
 
 
-  displayedColumns = ['codigo', 'quantidade' , 'descricao', 'produto', 'un', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
-  displayedColumnsSintetico = ['codigo', 'descricao', 'quantidade', 'valorbruto', 'desc', 'acres', 'valorliquido'];
+  displayedColumns = ['codigo', 'quantidade', 'produto', 'un', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
+  displayedColumnsSintetico = ['codigo', 'quantidade', 'valorbruto', 'desc', 'acres', 'valorliquido'];
 
   shared: SharedService;
   constructor(private formBuilder: FormBuilder,
@@ -103,12 +102,12 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
     this.vendaCategoriaDTO.dtFimFiltro = this.relatorioModeloForm.value['dtFim'];
 
     this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO,
-                                                  this.relatorioModeloForm.value['tpRelatorio'],
-                                                  this.shared.user.cdEmpresa).subscribe((resp: VendaCategoriaDTO[]) => {
-      this.dataSource = resp;
-    }, (error: any) => {
-      console.log(`Ocorreru um erro ao chamar a API ${error}`)
-    })
+      this.relatorioModeloForm.value['tpRelatorio'],
+      this.shared.user.cdEmpresa).subscribe((resp: VendaCategoriaDTO[]) => {
+        this.dataSource = resp;
+      }, (error: any) => {
+        console.log(`Ocorreru um erro ao chamar a API ${error}`)
+      })
 
     if (this.relatorioModeloForm.value['tpRelatorio'] == 1) {
       this.isFiltro = false;
@@ -216,11 +215,7 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
     }
   }
 
-  public InputEmpresa() {
-    this.dialog.open(InputempresaComponent, {
-      disableClose: true
-    })
-  }
+
 
   tiporelatorio: string = '';
 
@@ -230,5 +225,6 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
 
 
 }
+
 
 
