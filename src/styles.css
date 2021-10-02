@@ -8,8 +8,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 10%;
 }
 
+.w-15p{
+  width: 15%;
+}
+
+.w-20p{
+  width: 20%;
+}
+
 .ml-15{
   margin-left: 15px;
+}
+
+.ml-20{
+  margin-left: 20px;
 }
 
 .w-100{
@@ -133,5 +145,5 @@ color:rgba(0,0,0,.87);
   position: absolute;
   z-index: 1000;
   overflow: auto;
-  pointer-events: auto;  
+  pointer-events: auto;
 }

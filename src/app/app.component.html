@@ -2,8 +2,19 @@
   <app-header [sideNavBar]="sidenav" [hidden]="!showTemplate"></app-header>
 
   <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #sidenav class="w-10p">
+    <mat-sidenav #sidenav class="w-15p">
 
+      <mat-list *ngFor="let item of model">
+          <mat-list-item>
+            <mat-icon>{{item.icon}}</mat-icon>
+            <span class="ml-15">
+              <a  (click)="sidenav.toggle(); router(item)">{{item.label}}</a>
+            </span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+      </mat-list>
+
+      <!--
       <mat-list>
 
         <mat-list-item>
@@ -35,6 +46,7 @@
 
 
       </mat-list>
+      -->
     </mat-sidenav>
 
     <mat-sidenav-content>
