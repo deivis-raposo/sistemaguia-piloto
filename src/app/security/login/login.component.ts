@@ -53,6 +53,10 @@ export class LoginComponent implements OnInit {
     this.isFormReady = true;
 
     this.app.shared = this.shared;
+    if(this.app.shared != null && this.app.shared.user != null){
+      this.exibeEmpresas = true;
+      this.buscarEmpresas();
+    }
   }
 
   public login() {
@@ -77,7 +81,7 @@ export class LoginComponent implements OnInit {
   }
 
   buscarEmpresas() {
-    if (this.user.loginUsuario != "") {
+    if (this.user.loginUsuario != "" || this.shared.user.loginUsuario != null) {
       this.usuarioEmpresaService.getEmpresasByUser(this.shared.user.loginUsuario).subscribe((resp: UsuarioEmpresa[]) => {
         this.dataSource = resp;
       }, (error: any) => {
@@ -87,9 +91,14 @@ export class LoginComponent implements OnInit {
   }
 
   public selectedEmpresa(input: UsuarioEmpresa) {
-
-    localStorage.setItem('nomeempresa', input.nomeEmpresa)
-    this.userAuthenticated.user.cdEmpresa = input.codEmpresa;
+    localStorage.setItem('nomeempresa', input.nomeEmpresa);
+    if(input != null && input.codEmpresa != null && this.userAuthenticated != null){
+      this.userAuthenticated.user.cdEmpresa = input.codEmpresa;
+    } else if(this.userAuthenticated == null){
+      this.userAuthenticated = new CurrentUser(this.shared.token, this.shared.user, '');
+      this.userAuthenticated.user = this.shared.user;
+      this.userAuthenticated.user.cdEmpresa = input.codEmpresa;
+    }
     if (this.userAuthenticated != null && this.userAuthenticated.user != null) {
       let infoSessionUser =
         this.userAuthenticated.user.idUsuario + "," +

@@ -25,4 +25,9 @@ export class HeaderComponent implements OnInit {
     this.sideNavBar.toggle();
   }
 
+  public logout(){
+    window.location.href = '/login';
+    window.location.reload();
+  }
+
 }
