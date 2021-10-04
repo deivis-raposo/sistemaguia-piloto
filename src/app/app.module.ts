@@ -39,6 +39,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { RelatorioExtratoMovicombustivelExportComponent } from './extrato-movicombustivel-export/relatorio-extrato-movicombustivel-export.component'
 import { UsuarioEmpresaService } from './_services/usuario-empresa.service';
 import { PerfilService } from './_services/perfil.service';
+import { MenuService } from './_services/menu.service';
 import { ProdutoService } from './_services/produto.service';
 import { PadraoBr } from './pipes/padraoBrvalor';
 import { MoedaBr } from './pipes/MoedaBrR$.pipe';
@@ -91,6 +92,7 @@ registerLocaleData(localePT);
   providers: [
     UsuarioService,
     PerfilService,
+    MenuService,
     ProdutoService,
     UsuarioEmpresaService,
     VendaCategoriaService,

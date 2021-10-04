@@ -6,9 +6,9 @@
 
       <mat-list *ngFor="let item of model">
           <mat-list-item>
-            <mat-icon>{{item.icon}}</mat-icon>
+            <mat-icon>{{item.iconMenu}}</mat-icon>
             <span class="ml-15">
-              <a  (click)="sidenav.toggle(); router(item)">{{item.label}}</a>
+              <a  (click)="sidenav.toggle(); router(item)">{{item.labelMenu}}</a>
             </span>
           </mat-list-item>
           <mat-divider></mat-divider>

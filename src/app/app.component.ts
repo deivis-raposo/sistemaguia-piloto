@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Menu } from './_models/menu.model';
+import { MenuService } from './_services/menu.service';
 import { SharedService } from './_services/shared.service';
 
 @Component({
@@ -13,9 +15,9 @@ export class AppComponent {
   showTemplate: boolean = false;
   public shared!: SharedService;
 
-  model: any[] = [];
+  model: Menu[] = [];
 
-  constructor(private rota: Router){
+  constructor(private rota: Router, private menuService: MenuService){
     this.shared = SharedService.getInstance();
   }
 
@@ -31,20 +33,15 @@ export class AppComponent {
     }
   }
 
-  router(item: any){
-    this.rota.navigate([item.uri]);
+  router(item: Menu){
+    this.rota.navigate([item.uriMenu]);
   }
 
   carregarMenu(){
-    console.log('CARREGAR MENU - idUsuario:::: ' + this.shared.user.idUsuario);
-    console.log('CARREGAR MENU - profile:::: ' + this.shared.user.idPerfil);
-    console.log('CARREGAR MENU - codEmpresa:::: ' + this.shared.user.cdEmpresa);
-
-    this.model = [
-      {label: 'Home', icon: 'home', uri: '/'},
-      {label: 'Usuários', icon: 'group', uri: '/usuario'},
-      {label: 'Relatório', icon: 'summarize', uri: '/relatorios'}
-    ];
+    this.menuService.getMenuByPerfilAndEmpresa(this.shared.user.idPerfil, this.shared.user.cdEmpresa).subscribe((resp: Menu[]) => {
+      this.model = resp;
+    }, (error: any) => {
+      console.log(`Ocorreru um erro ao chamar a API ${error}`)
+    })
   }
-
 }
