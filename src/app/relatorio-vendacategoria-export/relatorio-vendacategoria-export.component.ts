@@ -58,6 +58,7 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   public isFiltro: boolean = true;
   public isAnalitico: boolean = false;
   public isSintetico: boolean = false;
+  public displayProgressBar: boolean = false;
 
 
   displayedColumns = ['codigo', 'quantidade', 'produto', 'un', 'pmv', 'valorbruto', 'desc', 'acres', 'valorliquido'];
@@ -90,6 +91,7 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
     this.isFiltro = true;
     this.isAnalitico = false;
     this.isSintetico = false;
+    this.displayProgressBar = false;
   }
 
   public cancel() {
@@ -98,6 +100,7 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
 
   public gerarRelatorio() {
     console.log ( "gerarRelatorio");
+    this.displayProgressBar = true;
     this.nomeEmpre = localStorage.getItem('nomeempresa');
 
     this.vendaCategoriaDTO = new VendaCategoriaDTO(0, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
@@ -107,12 +110,15 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
     this.vendaCategoriaService.printReport(this.vendaCategoriaDTO,
       this.relatorioModeloForm.value['tpRelatorio'],
       this.shared.user.cdEmpresa).subscribe((data: any) =>{
-        //console.log('<<< CONTEUDO DO BACK: >>>> ' +  response.byteLength);
+        this.displayProgressBar = false;
         let file = new Blob([data], {type: 'application/pdf'});
         var fileURL = URL.createObjectURL(file);
         window.open(fileURL);
         //const file = new Blob([response], {type: 'application/pdf'});
         //FileSaver.saveAs(file, "test.pdf");
+      }, (err: any) => {
+        this.displayProgressBar = false;
+        this.snackbarService.showSnackBar('Não foi possível gerar o relatório. Tente novamente!', 'OK');
       });
 
     if (this.relatorioModeloForm.value['tpRelatorio'] == 1) {

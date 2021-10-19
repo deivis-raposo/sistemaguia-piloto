@@ -24,6 +24,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-left: 20px;
 }
 
+.ml-100{
+  margin-left: 100px;
+}
+
 .w-100{
   width: 100%;
 }
