@@ -10,10 +10,18 @@ export class VendaCategoriaService {
   constructor(private http: HttpClient) { }
 
   public getVendasCategoria(paramIn: VendaCategoriaDTO, tpRelatorio: number, codEmpresa: number): Observable<VendaCategoriaDTO[]>{
-    return this.http.get<VendaCategoriaDTO[]>(`${environment.baseUrl}api/relatorio-vendasporproduto/${paramIn.dtInicioFiltro}/${paramIn.dtFimFiltro}/${tpRelatorio}/${codEmpresa}`);
+    return this.http.get<VendaCategoriaDTO[]>(`${environment.baseUrl}api/relatorio-vendasporproduto/report/vendaProdutoCategoria/${paramIn.dtInicioFiltro}/${paramIn.dtFimFiltro}/${tpRelatorio}/${codEmpresa}`);
   }
 
   public getAll(): Observable<VendaCategoriaDTO[]> {
     return this.http.get<VendaCategoriaDTO[]>(`${environment.baseUrl}api/relatorio-vendasporproduto`);
+  }
+
+
+  public printReport(paramIn: VendaCategoriaDTO, tpRelatorio: number, codEmpresa: number): Observable<any>{
+    const httpOptions = {
+      'responseType'  : 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(`${environment.baseUrl}api/relatorio-vendasporproduto/report/vendaProdutoCategoria/${paramIn.dtInicioFiltro}/${paramIn.dtFimFiltro}/${tpRelatorio}/${codEmpresa}`, httpOptions);
   }
 }

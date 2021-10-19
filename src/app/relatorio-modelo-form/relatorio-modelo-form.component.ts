@@ -99,7 +99,7 @@ export class RelatorioModeloFormComponent implements OnInit {
 
   public gerarRelatorio() {
 
-
+/*
     this.vendaCategoriaDTO = new VendaCategoriaDTO(11, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
     this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
     this.vendaCategoriaDTO.dtFimFiltro = this.relatorioModeloForm.value['dtFim'];
@@ -117,7 +117,7 @@ export class RelatorioModeloFormComponent implements OnInit {
       this.isFiltro = false;
       this.isAnalitico = false;
       this.isSintetico = true;
-    }
+    */
   }
 
   public cancelar() {

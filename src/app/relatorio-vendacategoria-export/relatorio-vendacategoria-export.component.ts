@@ -1,3 +1,4 @@
+import { Byte } from '@angular/compiler/src/util';
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -10,6 +11,8 @@ import { SharedService } from '../_services/shared.service';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
 import { VendaCategoriaService } from '../_services/vendacategoria.service';
+import { saveAs } from 'file-saver';
+import * as FileSaver from 'file-saver';
 
 /*tabela relatorio venda por categoria
 export interface Transaction {
@@ -94,20 +97,23 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   }
 
   public gerarRelatorio() {
-
+    console.log ( "gerarRelatorio");
     this.nomeEmpre = localStorage.getItem('nomeempresa');
 
     this.vendaCategoriaDTO = new VendaCategoriaDTO(0, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
     this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
     this.vendaCategoriaDTO.dtFimFiltro = this.relatorioModeloForm.value['dtFim'];
 
-    this.vendaCategoriaService.getVendasCategoria(this.vendaCategoriaDTO,
+    this.vendaCategoriaService.printReport(this.vendaCategoriaDTO,
       this.relatorioModeloForm.value['tpRelatorio'],
-      this.shared.user.cdEmpresa).subscribe((resp: VendaCategoriaDTO[]) => {
-        this.dataSource = resp;
-      }, (error: any) => {
-        console.log(`Ocorreru um erro ao chamar a API ${error}`)
-      })
+      this.shared.user.cdEmpresa).subscribe((data: any) =>{
+        //console.log('<<< CONTEUDO DO BACK: >>>> ' +  response.byteLength);
+        let file = new Blob([data], {type: 'application/pdf'});
+        var fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+        //const file = new Blob([response], {type: 'application/pdf'});
+        //FileSaver.saveAs(file, "test.pdf");
+      });
 
     if (this.relatorioModeloForm.value['tpRelatorio'] == 1) {
       this.isFiltro = false;
@@ -119,8 +125,6 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
       this.isSintetico = true;
     }
   }
-
-
 
   public cancelar() {
     this.closeModelEventEmitter.emit(false);
