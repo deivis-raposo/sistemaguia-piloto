@@ -109,7 +109,7 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
 
     this.vendaCategoriaService.printReport(this.vendaCategoriaDTO,
       this.relatorioModeloForm.value['tpRelatorio'],
-      this.shared.user.cdEmpresa).subscribe((data: any) =>{
+      this.shared.user.cdEmpresa, this.nomeEmpre).subscribe((data: any) =>{
         this.displayProgressBar = false;
         let file = new Blob([data], {type: 'application/pdf'});
         var fileURL = URL.createObjectURL(file);

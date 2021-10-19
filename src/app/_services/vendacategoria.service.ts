@@ -18,10 +18,10 @@ export class VendaCategoriaService {
   }
 
 
-  public printReport(paramIn: VendaCategoriaDTO, tpRelatorio: number, codEmpresa: number): Observable<any>{
+  public printReport(paramIn: VendaCategoriaDTO, tpRelatorio: number, codEmpresa: number, nomeEmpresa: string): Observable<any>{
     const httpOptions = {
       'responseType'  : 'arraybuffer' as 'json'
     };
-    return this.http.get<any>(`${environment.baseUrl}api/relatorio-vendasporproduto/report/vendaProdutoCategoria/${paramIn.dtInicioFiltro}/${paramIn.dtFimFiltro}/${tpRelatorio}/${codEmpresa}`, httpOptions);
+    return this.http.get<any>(`${environment.baseUrl}api/relatorio-vendasporproduto/report/vendaProdutoCategoria/${paramIn.dtInicioFiltro}/${paramIn.dtFimFiltro}/${tpRelatorio}/${codEmpresa}/${nomeEmpresa}`, httpOptions);
   }
 }
