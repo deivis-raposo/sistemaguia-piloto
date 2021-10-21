@@ -28,6 +28,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-left: 100px;
 }
 
+.ml-400{
+  margin-left: 400px;
+}
+
+.ml-350{
+  margin-left: 350px;
+}
+
 .w-100{
   width: 100%;
 }

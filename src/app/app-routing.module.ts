@@ -10,11 +10,13 @@ import { AuthGuard } from './security/auth.guard';
 import { LoginComponent } from './security/login/login.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { RelatorioExtratoMovicombustivelExportComponent } from './extrato-movicombustivel-export/relatorio-extrato-movicombustivel-export.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard] },
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
   { path: 'relatorios', component: RelatoriosComponent, canActivate: [AuthGuard] },
   { path: 'pagina-manutencao', component: PaginaManutencaoComponent, canActivate: [AuthGuard] },
   { path: 'extrato', component: RelatorioExtratoMovicombustivelExportComponent, canActivate: [AuthGuard] },

@@ -43,6 +43,10 @@ import { MenuService } from './_services/menu.service';
 import { ProdutoService } from './_services/produto.service';
 import { PadraoBr } from './pipes/padraoBrvalor';
 import { MoedaBr } from './pipes/MoedaBrR$.pipe';
+import { PerfilComponent } from './perfil/perfil.component';
+import { PerfilEditComponent } from './perfil-edit/perfil-edit.component';
+import { PerfilFormComponent } from './perfil-form/perfil-form.component';
+import { EmpresaService } from './_services/empresa.service';
 
 
 
@@ -72,7 +76,10 @@ registerLocaleData(localePT);
     CpfPipe,
     RelatorioExtratoMovicombustivelExportComponent,
     PadraoBr,
-    MoedaBr
+    MoedaBr,
+    PerfilComponent,
+    PerfilEditComponent,
+    PerfilFormComponent
 
   ],
   imports: [
@@ -93,6 +100,7 @@ registerLocaleData(localePT);
     UsuarioService,
     PerfilService,
     MenuService,
+    EmpresaService,
     ProdutoService,
     UsuarioEmpresaService,
     VendaCategoriaService,
