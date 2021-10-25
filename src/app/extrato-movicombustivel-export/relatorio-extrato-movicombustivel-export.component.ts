@@ -12,19 +12,8 @@ import { ProdutoService } from '../_services/produto.service';
 import { SharedService } from '../_services/shared.service';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
-//import 'jspdf-autotable';
-
-
-
-
-
-
-
 
 const doc = new jsPDF()
-
-
-
 
 @Component({
   selector: 'app-relatorio-extrato-movicombustivel-export',
@@ -35,18 +24,8 @@ const doc = new jsPDF()
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ]
-
-
 })
 export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
-
-
-
-
-
-
-
-
 
   public nomeEmpre: any = '';
   public nomeProduto: any;
@@ -65,6 +44,7 @@ export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
   public isFiltro: boolean = true;
   public isProduto: boolean = false;
   public isTanque: boolean = false;
+  public displayProgressBar: boolean = false;
 
 
   displayedColumns = ['data', 'estoqueInicial', 'entrada', 'venda', 'afericao', 'estoqueContabil',
@@ -101,8 +81,7 @@ export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
     this.isFiltro = true;
     this.isProduto = false;
     this.isTanque = false;
-
-    this.buscarProduto();
+    this.displayProgressBar = false;
   }
 
   public buscarProduto() {
@@ -118,25 +97,25 @@ export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
   }
 
   public gerarRelatorio() {
+    console.log ( "gerarRelatorio");
+    this.displayProgressBar = true;
+    this.nomeEmpre = localStorage.getItem('nomeempresa');
 
-
-    localStorage.setItem('nomeproduto', this.relatorioForm.value['produto'].descProduto);
-
-    console.log('oi')
-    this.descProdutoSelecionado = (this.relatorioForm.value['produto'].codProduto) + ' - ' +
-      (this.relatorioForm.value['produto'].descProduto);
-    this.extratoMovimentoCombustivelDTO = new ExtratoMovimentoCombustivelDTO(new Date, new Date, '', '', 0, 0,
-      0, 0, 0, 0, 0, '', 0, 0, '');
+    this.extratoMovimentoCombustivelDTO = new ExtratoMovimentoCombustivelDTO(new Date, new Date, '', '' ,0, 0, 0, 0, 0, 0, 0, '', 0, 0,'');
     this.extratoMovimentoCombustivelDTO.dtInicioFiltro = this.relatorioForm.value['dtInicio'];
     this.extratoMovimentoCombustivelDTO.dtFimFiltro = this.relatorioForm.value['dtFim'];
-    this.extratoCombustivelService.getExtratoMovimentoCombustivel(this.extratoMovimentoCombustivelDTO,
+
+    this.extratoCombustivelService.printReport(this.extratoMovimentoCombustivelDTO,
       this.relatorioForm.value['tpRelatorio'],
-      this.shared.user.cdEmpresa,
-      this.relatorioForm.value['produto'].codProduto).subscribe((resp: ExtratoMovimentoCombustivelDTO[]) => {
-        this.dataSource = resp;
-      }, (error: any) => {
-        console.log(`Ocorreru um erro ao chamar a API ${error}`)
-      })
+      this.shared.user.cdEmpresa, this.nomeEmpre).subscribe((data: any) =>{
+        this.displayProgressBar = false;
+        let file = new Blob([data], {type: 'application/pdf'});
+        var fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      }, (err: any) => {
+        this.displayProgressBar = false;
+        this.snackbarService.showSnackBar('Não foi possível gerar o relatório. Tente novamente!', 'OK');
+      });
 
     if (this.relatorioForm.value['tpRelatorio'] == 1) {
       this.isFiltro = false;
@@ -147,42 +126,11 @@ export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
       this.isProduto = false;
       this.isTanque = true;
     }
-    this.nomeEmpre = localStorage.getItem('nomeempresa');
-    this.nomeProduto = localStorage.getItem('nomeproduto');
-
-
-
   }
 
   public cancelar() {
     this.closeModelEventEmitter.emit(false);
   }
-
-
-  getTotalValorEntrada() {
-
-    return this.dataSource.map(t => t.entrada).reduce((acc, value) => acc + value, 0);
-
-  }
-
-  getTotalValorVenda() {
-    return this.dataSource.map(t => t.venda).reduce((acc, value) => acc + value, 0);
-
-  }
-
-
-  getTotalValorAfericao() {
-    return this.dataSource.map(t => t.afericao).reduce((acc, value) => acc + value, 0);
-
-  }
-
-
-  getTotalValorDiferenca() {
-    return this.dataSource.map(t => t.diferenca).reduce((acc, value) => acc + value, 0);
-
-  }
-
-  /*mostra mensagens caso os campos não sejam preenchidos*/
 
   mudarRelatorio(relatorio: string) {
     this.tipoRelatorio = relatorio;
@@ -191,71 +139,18 @@ export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
 
 
   getErrorMessage(): any {
-    if (this.dataInicial !== '' && this.selectedValueProduto == 1 && this.tipoRelatorio !== '') {
-      return 'Selecione o tipo do produto';
-    } else if (this.dataInicial === '' && this.selectedValueProduto !== 1 && this.tipoRelatorio !== '') {
+    if (this.dataInicial === '' && this.selectedValueProduto !== 1 && this.tipoRelatorio !== '') {
       return 'Selecione uma data';
     } else if (this.dataInicial !== '' && this.selectedValueProduto !== 1 && this.tipoRelatorio == '') {
       return 'Selecione o tipo do Relatório';
     } else { return '' }
   }
 
-  /* mostra a data pesquisa relatorio*/
-
-
   dataInicial: any = '';
   dataFinal: any = '';
-
 
   dateRangeChange(dtInicial: HTMLInputElement, dtFIm: HTMLInputElement) {
     this.dataInicial = dtInicial.value;
     this.dataFinal = dtFIm.value;
-
-
   }
-
-
-  /* transforma relatorio em pdf*/
-  @ViewChild('content', { static: false }) el!: ElementRef;
-  @ViewChild('content1', { static: false }) el1!: ElementRef;
-
-
-
-
-
-
-  printpdf(valorprint: string) {
-
-
-
-    if (valorprint == '1') {
-      let pdf = new jsPDF({
-        orientation: 'l',
-        unit: "px",
-        format: [1000, 1000],
-        compress: true,
-        precision: 100
-      });
-      pdf.html(this.el.nativeElement, {
-        callback: (pdf) => {
-          pdf.save("Extrato Produto " + this.relatorioForm.value['produto'].descProduto);
-        }
-      })
-    } else if (valorprint == '2') {
-      let pdf = new jsPDF({
-        orientation: "l",
-        unit: "pt",
-        format: [1000, 1210],
-        compress: true,
-        precision: 100
-      });
-      doc.save('tabelas.pdf')
-      pdf.html(this.el1.nativeElement, {
-        callback: (pdf) => {
-          pdf.save("Extrato Tanque" + this.relatorioForm.value['produto'].descProduto);
-        }
-      })
-    }
-  }
-
 }
