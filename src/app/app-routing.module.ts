@@ -21,7 +21,6 @@ const routes: Routes = [
   { path: 'relatorios', component: RelatoriosComponent, canActivate: [AuthGuard] },
   { path: 'pagina-manutencao', component: PaginaManutencaoComponent, canActivate: [AuthGuard] },
   { path: 'extrato', component: RelatorioExtratoMovicombustivelExportComponent, canActivate: [AuthGuard] },
-  { path: 'rela', component: RelatorioVendaDiariaProdutosExportComponent, canActivate: [AuthGuard] },
   { path: 'venda-categoria', component: RelatorioVendacategoriaExportComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
