@@ -10,16 +10,20 @@ import { SharedService } from '../_services/shared.service';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
 import { VendaDiariaProdutosService } from '../_services/venda-diaria-produtos.service';
+import { VendaCategoriaService } from '../_services/venda-categoria.service';
 @Component({
   selector: 'app-relatorio-venda-diaria-produtos-export',
   templateUrl: './relatorio-venda-diaria-produtos-export.component.html',
-  styleUrls: ['./relatorio-venda-diaria-produtos-export.component.css'], providers: [
+  styleUrls: ['./relatorio-venda-diaria-produtos-export.component.css'],
+  providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ]
 })
 export class RelatorioVendaDiariaProdutosExportComponent implements OnInit {
+
+
   public nomeEmpre: any = '';
   produtos = [{ produto: 'Gasolina comum' }, { produto: 'Etanol Hidratado Comum' }]
 
@@ -42,7 +46,7 @@ export class RelatorioVendaDiariaProdutosExportComponent implements OnInit {
     private vendaDiariaProdutosService: VendaDiariaProdutosService,
     private snackbarService: SnackBarService,
     private adapter: DateAdapter<any>,
-    private dialog: MatDialog) {
+  ) {
 
     this.shared = SharedService.getInstance();
   }
@@ -57,7 +61,7 @@ export class RelatorioVendaDiariaProdutosExportComponent implements OnInit {
       dtInicio: [],
       dtFim: [],
     })
-    this.isFormReady = true;
+    this.isFormReady = false;
     this.displayProgressBar = false;
   }
 
@@ -89,11 +93,7 @@ export class RelatorioVendaDiariaProdutosExportComponent implements OnInit {
 
   }
 
-  public cancelar() {
-    this.closeModelEventEmitter.emit(false);
 
-
-  }
 
 
 
