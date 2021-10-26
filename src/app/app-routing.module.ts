@@ -9,7 +9,7 @@ import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { AuthGuard } from './security/auth.guard';
 import { LoginComponent } from './security/login/login.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { RelatorioExtratoMovicombustivelExportComponent } from './extrato-movicombustivel-export/relatorio-extrato-movicombustivel-export.component';
+import { RelatorioExtratoMovicombustivelExportComponent } from './relatorio-extrato-movicombustivel-export/relatorio-extrato-movicombustivel-export.component';
 import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
