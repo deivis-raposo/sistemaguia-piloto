@@ -5,14 +5,15 @@
     <mat-sidenav #sidenav class="w-15p">
 
       <mat-list *ngFor="let item of model">
-          <mat-list-item>
-            <mat-icon>{{item.iconMenu}}</mat-icon>
-            <span class="ml-15">
-              <a  (click)="sidenav.toggle(); router(item)">{{item.labelMenu}}</a>
-            </span>
-          </mat-list-item>
-          <mat-divider></mat-divider>
+        <mat-list-item>
+          <mat-icon>{{item.iconMenu}}</mat-icon>
+          <span class="ml-15">
+            <a (click)="sidenav.toggle(); router(item)">{{item.labelMenu}}</a>
+          </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
       </mat-list>
+      <a [routerLink]="['rela']" (click)="sidenav.toggle()">Home</a>
 
       <!--
       <mat-list>
