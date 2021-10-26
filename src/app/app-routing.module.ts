@@ -11,6 +11,7 @@ import { LoginComponent } from './security/login/login.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { RelatorioExtratoMovicombustivelExportComponent } from './relatorio-extrato-movicombustivel-export/relatorio-extrato-movicombustivel-export.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { RelatorioVendaDiariaProdutosExportComponent } from './relatorio-venda-diaria-produtos-export/relatorio-venda-diaria-produtos-export.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'relatorios', component: RelatoriosComponent, canActivate: [AuthGuard] },
   { path: 'pagina-manutencao', component: PaginaManutencaoComponent, canActivate: [AuthGuard] },
   { path: 'extrato', component: RelatorioExtratoMovicombustivelExportComponent, canActivate: [AuthGuard] },
+  { path: 'rela', component: RelatorioVendaDiariaProdutosExportComponent, canActivate: [AuthGuard] },
   { path: 'venda-categoria', component: RelatorioVendacategoriaExportComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
