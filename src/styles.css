@@ -159,3 +159,22 @@ color:rgba(0,0,0,.87);
   overflow: auto;
   pointer-events: auto;
 }
+
+
+/*Css referente a paginas de Relatórios*/
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.end{
+  margin-left: 20rem;
+  margin-right: 0;
+}
+
+.span-tyle{
+color: red; 
+margin-left: 2%;
+margin-top: 1%;
+}
+

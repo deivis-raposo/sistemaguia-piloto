@@ -46,6 +46,7 @@ import { PerfilFormComponent } from './perfil-form/perfil-form.component';
 import { EmpresaService } from './_services/empresa.service';
 import { RelatorioVendaDiariaProdutosExportComponent } from './relatorio-venda-diaria-produtos-export/relatorio-venda-diaria-produtos-export.component';
 import { VendaDiariaProdutosService } from './_services/venda-diaria-produtos.service';
+import { RelatorioVendaDiariaCombustivelComponent } from './relatorio-venda-diaria-combustivel/relatorio-venda-diaria-combustivel.component';
 
 
 
@@ -77,7 +78,8 @@ registerLocaleData(localePT);
     PerfilComponent,
     PerfilEditComponent,
     PerfilFormComponent,
-    RelatorioVendaDiariaProdutosExportComponent
+    RelatorioVendaDiariaProdutosExportComponent,
+    RelatorioVendaDiariaCombustivelComponent
 
   ],
   imports: [
