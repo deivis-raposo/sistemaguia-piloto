@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SnackBarService } from '../_services/snack-bar.service';
-import { RelatorioVendacategoriaExportComponent } from '../relatorio-vendacategoria-export/relatorio-vendacategoria-export.component';
+import { RelatorioVendacategoriaExportComponent } from '../relatorio-venda-categoria-export/relatorio-venda-categoria-export.component';
 import { RelatorioExtratoMovicombustivelExportComponent } from '../relatorio-extrato-movicombustivel-export/relatorio-extrato-movicombustivel-export.component';
 import { RelatorioVendaDiariaProdutosExportComponent } from '../relatorio-venda-diaria-produtos-export/relatorio-venda-diaria-produtos-export.component';
 import { RelatorioVendaDiariaCombustivelComponent } from '../relatorio-venda-diaria-combustivel/relatorio-venda-diaria-combustivel.component';

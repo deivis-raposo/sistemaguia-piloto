@@ -38,14 +38,14 @@
     <mat-card-actions>
       <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
       <button mat-raised-button color="primary" class="end" (click)="gerarRelatorio()"
-        [disabled]="dataFinal ==='' || tipoRelatorio ==='' ">Gerar Relatório</button>
+        [disabled]="datafinal ==='' || tiporelatorio ==='' ">Gerar Relatório</button>
     </mat-card-actions>
   </mat-card>
 </div>
 
 <div *ngIf="isProduto">
   <mat-card-header>
-    <mat-card-title>Gerando Relatório</mat-card-title>
+    <mat-card-title>{{gerandoRelatorio}}</mat-card-title>
   </mat-card-header>
   <mat-progress-bar *ngIf="displayProgressBar" mode="indeterminate"></mat-progress-bar>
   <mat-card-actions *ngIf="!displayProgressBar">
@@ -55,7 +55,7 @@
 
 <div *ngIf="isTanque">
   <mat-card-header>
-    <mat-card-title>Gerando Relatório</mat-card-title>
+    <mat-card-title>{{gerandoRelatorio}}</mat-card-title>
   </mat-card-header>
   <mat-progress-bar *ngIf="displayProgressBar" mode="indeterminate"></mat-progress-bar>
   <mat-card-actions *ngIf="!displayProgressBar">

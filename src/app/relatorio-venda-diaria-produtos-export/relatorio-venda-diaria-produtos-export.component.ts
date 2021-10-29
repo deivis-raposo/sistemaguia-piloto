@@ -5,7 +5,6 @@ import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-mo
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { VendaDiariaProdutosDTO } from '../_models/venda-diaria-produtos-dto';
 import { SharedService } from '../_services/shared.service';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
@@ -33,7 +32,7 @@ export class RelatorioVendaDiariaProdutosExportComponent implements OnInit {
   public isFormReady = false;
   Data = Date.now();
   public dataSource: any[] = [];
-  public vendaDiariaProdutosDTO!: VendaDiariaProdutosDTO;
+
   public displayProgressBar: boolean = false;
 
 
@@ -74,21 +73,6 @@ export class RelatorioVendaDiariaProdutosExportComponent implements OnInit {
     this.displayProgressBar = true;
     this.nomeEmpre = localStorage.getItem('nomeempresa');
 
-    this.vendaDiariaProdutosDTO = new VendaDiariaProdutosDTO(0, new Date, new Date, '', 0, 0, 0, 0, 0, 0, 0);
-    this.vendaDiariaProdutosDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
-    this.vendaDiariaProdutosDTO.dtFimFiltro = this.relatorioModeloForm.value['dtFim'];
-    this.vendaDiariaProdutosService.printReport(this.vendaDiariaProdutosDTO,
-      this.shared.user.cdEmpresa, this.nomeEmpre).subscribe((data: any) => {
-        this.displayProgressBar = false;
-        let file = new Blob([data], { type: 'application/pdf' });
-        var fileURL = URL.createObjectURL(file);
-        window.open(fileURL);
-        //const file = new Blob([response], {type: 'application/pdf'});
-        //FileSaver.saveAs(file, "test.pdf");
-      }, (err: any) => {
-        this.displayProgressBar = false;
-        this.snackbarService.showSnackBar('Não foi possível gerar o relatório. Tente novamente!', 'OK');
-      });
 
 
   }

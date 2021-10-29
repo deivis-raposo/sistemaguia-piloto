@@ -28,7 +28,7 @@ import { RelatoriosComponent } from './relatorios/relatorios.component';
 //import { VendacategoriaComponent } from './vendacategoria/vendacategoria.component';
 import localePT from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-import { RelatorioVendacategoriaExportComponent } from './relatorio-vendacategoria-export/relatorio-vendacategoria-export.component';
+import { RelatorioVendacategoriaExportComponent } from './relatorio-venda-categoria-export/relatorio-venda-categoria-export.component';
 import { VendaCategoriaService } from './_services/venda-categoria.service';
 import { ExtratoMovimentoCombustivelService } from './_services/extrato-movimento-combustivel.service';
 import { CpfPipe } from '../app/pipes/cpf.pipe';
@@ -46,6 +46,7 @@ import { PerfilFormComponent } from './perfil-form/perfil-form.component';
 import { EmpresaService } from './_services/empresa.service';
 import { RelatorioVendaDiariaProdutosExportComponent } from './relatorio-venda-diaria-produtos-export/relatorio-venda-diaria-produtos-export.component';
 import { VendaDiariaProdutosService } from './_services/venda-diaria-produtos.service';
+import { VendaDiariaCombustivelService } from './_services/venda-diaria-combustivel.service';
 import { RelatorioVendaDiariaCombustivelComponent } from './relatorio-venda-diaria-combustivel/relatorio-venda-diaria-combustivel.component';
 
 
@@ -106,6 +107,7 @@ registerLocaleData(localePT);
     VendaCategoriaService,
     ExtratoMovimentoCombustivelService,
     VendaDiariaProdutosService,
+    VendaDiariaCombustivelService,
     SharedService,
     ClienteService,
     VeiculoService,

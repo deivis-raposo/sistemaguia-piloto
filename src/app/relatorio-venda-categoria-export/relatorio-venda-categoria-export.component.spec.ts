@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RelatorioVendacategoriaExportComponent } from './relatorio-vendacategoria-export.component';
+import { RelatorioVendacategoriaExportComponent } from './relatorio-venda-categoria-export.component';
 
 describe('RelatorioVendacategoriaExportComponent', () => {
   let component: RelatorioVendacategoriaExportComponent;
@@ -8,9 +8,9 @@ describe('RelatorioVendacategoriaExportComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RelatorioVendacategoriaExportComponent ]
+      declarations: [RelatorioVendacategoriaExportComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

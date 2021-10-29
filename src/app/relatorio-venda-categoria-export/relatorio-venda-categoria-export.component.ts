@@ -11,9 +11,9 @@ import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
 import { VendaCategoriaService } from '../_services/venda-categoria.service';
 @Component({
-  selector: 'app-relatorio-vendacategoria-export',
-  templateUrl: './relatorio-vendacategoria-export.component.html',
-  styleUrls: ['./relatorio-vendacategoria-export.component.css'],
+  selector: 'app-relatorio-venda-categoria-export',
+  templateUrl: './relatorio-venda-categoria-export.component.html',
+  styleUrls: ['./relatorio-venda-categoria-export.component.css'],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
@@ -24,7 +24,7 @@ import { VendaCategoriaService } from '../_services/venda-categoria.service';
 export class RelatorioVendacategoriaExportComponent implements OnInit {
 
   public nomeEmpre: any = '';
-  produtos = [{ produto: 'Gasolina comum' }, { produto: 'Etanol Hidratado Comum' }]
+  public gerandoRelatorio = '';
 
   @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -71,16 +71,14 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
     this.displayProgressBar = false;
   }
 
-  public cancel() {
-    this.closeModelEventEmitter.emit(false);
-  }
-
   public gerarRelatorio() {
     console.log("gerarRelatorio");
     this.displayProgressBar = true;
     this.nomeEmpre = localStorage.getItem('nomeempresa');
+    this.gerandoRelatorio = "Gerando Relatório";
 
-    this.vendaCategoriaDTO = new VendaCategoriaDTO(0, 0, new Date, new Date, 0, 0, '', '', 0, '', '', 0, 0, 0, 0, 0, 0);
+
+    this.vendaCategoriaDTO = new VendaCategoriaDTO(0, 0, new Date, new Date, 0);
     this.vendaCategoriaDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];
     this.vendaCategoriaDTO.dtFimFiltro = this.relatorioModeloForm.value['dtFim'];
 
@@ -88,13 +86,13 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
       this.relatorioModeloForm.value['tpRelatorio'],
       this.shared.user.cdEmpresa, this.nomeEmpre).subscribe((data: any) => {
         this.displayProgressBar = false;
+        this.gerandoRelatorio = "Relatório Gerado"
         let file = new Blob([data], { type: 'application/pdf' });
         var fileURL = URL.createObjectURL(file);
         window.open(fileURL);
-        //const file = new Blob([response], {type: 'application/pdf'});
-        //FileSaver.saveAs(file, "test.pdf");
       }, (err: any) => {
         this.displayProgressBar = false;
+        this.gerandoRelatorio = "";
         this.snackbarService.showSnackBar('Não foi possível gerar o relatório. Tente novamente!', 'OK');
       });
 
@@ -111,12 +109,7 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
 
   public cancelar() {
     this.closeModelEventEmitter.emit(false);
-
-
   }
-
-
-
 
   /* faz o usuario preencher todos os inputs se nao mostra mensagem*/
 
@@ -144,6 +137,5 @@ export class RelatorioVendacategoriaExportComponent implements OnInit {
   }
 
 }
-
 
 
