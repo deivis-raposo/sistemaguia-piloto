@@ -153,4 +153,6 @@ export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
     this.dataInicial = dtInicial.value;
     this.dataFinal = dtFIm.value;
   }
+
+
 }
