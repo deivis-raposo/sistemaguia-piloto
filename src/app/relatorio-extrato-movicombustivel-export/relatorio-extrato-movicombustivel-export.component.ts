@@ -142,8 +142,4 @@ export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
     this.tiporelatorio = tipo;
   }
 
-<<<<<<< HEAD:src/app/extrato-movicombustivel-export/relatorio-extrato-movicombustivel-export.component.ts
-
-=======
->>>>>>> ea1277489a76d6215588300ffac8bbf2e0cdba83:src/app/relatorio-extrato-movicombustivel-export/relatorio-extrato-movicombustivel-export.component.ts
 }
