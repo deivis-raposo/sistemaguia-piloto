@@ -1,22 +1,20 @@
-<div *ngIf="isFiltro" #eu>
+<div *ngIf="isFiltro">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Relatório: Extrato Movimento Combustível</mat-card-title>
+      <mat-card-title>Relatório: Venda de Produtos por Categoria</mat-card-title>
       <mat-card-subtitle>Selecione os filtros necessários e clique em Gerar Relatório</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <form [formGroup]="relatorioForm" #usuarioFormDirective="ngForm" *ngIf="isFormReady">
+      <form [formGroup]="relatorioModeloForm" #usuarioFormDirective="ngForm" *ngIf="isFormReady">
         <div style="display: flex; flex-direction: column;">
-
           <mat-form-field appearance="outline" class="w-250">
             <mat-label>Informe o período:</mat-label>
             <mat-date-range-input [rangePicker]="rangePicker">
               <input matStartDate placeholder="Dt Início" #dtInicial formControlName="dtInicio">
               <input matEndDate placeholder="Dt Fim" #dtFim formControlName="dtFim"
                 (dateChange)="dateRangeChange(dtInicial, dtFim)">
-
             </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+            <mat-datepicker-toggle matSuffix [for]="rangePicker"> </mat-datepicker-toggle>
             <mat-date-range-picker #rangePicker>
               <mat-date-range-picker-actions>
                 <button mat-button matDateRangePickerCancel>Cancel</button>
@@ -24,43 +22,39 @@
               </mat-date-range-picker-actions>
             </mat-date-range-picker>
           </mat-form-field>
-
           <mat-radio-group aria-label="Tipo do Relatório" formControlName="tpRelatorio">
-            <mat-radio-button value="1" (click)="mudarRelatorio('1')">Produto</mat-radio-button>
-            <mat-radio-button value="2" (click)="mudarRelatorio('2')">Tanque</mat-radio-button>
+            <mat-radio-button value="1" (click)="mudarRelatorio('1')">Analítico</mat-radio-button>
+            <mat-radio-button value="2" (click)="mudarRelatorio('2')">Sintético</mat-radio-button>
+            <br>
           </mat-radio-group>
           <span class="span-tyle">{{getErrorMessage()}}</span>
-          <div id="app">
-          </div>
         </div>
       </form>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
       <button mat-raised-button color="primary" class="end" (click)="gerarRelatorio()"
-        [disabled]="dataFinal ==='' || tipoRelatorio ==='' ">Gerar Relatório</button>
+        [disabled]="datafinal ==='' || tiporelatorio ==='' ">Gerar Relatório</button>
     </mat-card-actions>
   </mat-card>
 </div>
 
-<div *ngIf="isProduto">
+<div *ngIf="isAnalitico">
   <mat-card-header>
-    <mat-card-title>Gerando Relatório</mat-card-title>
+    <mat-card-title>{{gerandoRelatorio}}</mat-card-title>
   </mat-card-header>
   <mat-progress-bar *ngIf="displayProgressBar" mode="indeterminate"></mat-progress-bar>
   <mat-card-actions *ngIf="!displayProgressBar">
-    <button mat-raised-button color="primary" class="ml-100" mat-dialog-close >Fechar</button>
+    <button mat-raised-button color="primary" class="ml-100" mat-dialog-close>Fechar</button>
   </mat-card-actions>
 </div>
 
-<div *ngIf="isTanque">
+<div *ngIf="isSintetico">
   <mat-card-header>
-    <mat-card-title>Gerando Relatório</mat-card-title>
+    <mat-card-title>{{gerandoRelatorio}}</mat-card-title>
   </mat-card-header>
   <mat-progress-bar *ngIf="displayProgressBar" mode="indeterminate"></mat-progress-bar>
   <mat-card-actions *ngIf="!displayProgressBar">
-    <button mat-raised-button color="primary" class="ml-100" mat-dialog-close >Fechar</button>
+    <button mat-raised-button color="primary" class="ml-100" mat-dialog-close>Fechar</button>
   </mat-card-actions>
 </div>
-
-

@@ -6,9 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import { ExtratoMovimentoCombustivelDTO } from '../_models/extrato-movimento-combustivel-dto';
-import { Produto } from '../_models/produto.model';
 import { ExtratoMovimentoCombustivelService } from '../_services/extrato-movimento-combustivel.service';
-import { ProdutoService } from '../_services/produto.service';
 import { SharedService } from '../_services/shared.service';
 import { SnackBarService } from '../_services/snack-bar.service';
 import { UsuarioService } from '../_services/usuario.service';
@@ -28,7 +26,8 @@ const doc = new jsPDF()
 export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
 
   public nomeEmpre: any = '';
-  public nomeProduto: any;
+  public gerandoRelatorio = '';
+
 
   @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -36,27 +35,17 @@ export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
   public isFormReady = false;
   Data = Date.now();
   public dataSource: any[] = [];
-  public produtos: Produto[] = [];
   public extratoMovimentoCombustivelDTO!: ExtratoMovimentoCombustivelDTO;
-  selectedValueProduto: number = 1;
-  public descProdutoSelecionado: string = '';
 
   public isFiltro: boolean = true;
   public isProduto: boolean = false;
   public isTanque: boolean = false;
   public displayProgressBar: boolean = false;
 
-
-  displayedColumns = ['data', 'estoqueInicial', 'entrada', 'venda', 'afericao', 'estoqueContabil',
-    'estoqueFisico', 'diferenca'];
-  displayedColumnsTanque = ['data', 'nuTanque', 'estoqueInicial', 'entrada', 'venda', 'afericao',
-    'estoqueContabil', 'estoqueFisico', 'diferenca'];
-
   shared: SharedService;
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private usuarioService: UsuarioService,
-    private produtoService: ProdutoService,
     private extratoCombustivelService: ExtratoMovimentoCombustivelService,
     private snackbarService: SnackBarService,
     private adapter: DateAdapter<any>,
@@ -75,7 +64,6 @@ export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
       dtInicio: [],
       dtFim: [],
       tpRelatorio: [0],
-      produto: ['', Validators.required]
     })
     this.isFormReady = true;
     this.isFiltro = true;
@@ -84,36 +72,34 @@ export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
     this.displayProgressBar = false;
   }
 
-  public buscarProduto() {
-    this.produtoService.getAll().subscribe((resp: Produto[]) => {
-      this.produtos = resp;
-    }, (error: any) => {
-      console.log(`Ocorreru um erro ao chamar a API ${error}`)
-    })
-  }
 
   public cancel() {
     this.closeModelEventEmitter.emit(false);
   }
 
   public gerarRelatorio() {
-    console.log ( "gerarRelatorio");
+    console.log("gerarRelatorio");
     this.displayProgressBar = true;
     this.nomeEmpre = localStorage.getItem('nomeempresa');
+    this.gerandoRelatorio = "Gerando Relatório";
 
-    this.extratoMovimentoCombustivelDTO = new ExtratoMovimentoCombustivelDTO(new Date, new Date, '', '' ,0, 0, 0, 0, 0, 0, 0, '', 0, 0,'');
+
+    this.extratoMovimentoCombustivelDTO = new ExtratoMovimentoCombustivelDTO(new Date, new Date);
     this.extratoMovimentoCombustivelDTO.dtInicioFiltro = this.relatorioForm.value['dtInicio'];
     this.extratoMovimentoCombustivelDTO.dtFimFiltro = this.relatorioForm.value['dtFim'];
 
     this.extratoCombustivelService.printReport(this.extratoMovimentoCombustivelDTO,
       this.relatorioForm.value['tpRelatorio'],
-      this.shared.user.cdEmpresa, this.nomeEmpre).subscribe((data: any) =>{
+      this.shared.user.cdEmpresa, this.nomeEmpre).subscribe((data: any) => {
         this.displayProgressBar = false;
-        let file = new Blob([data], {type: 'application/pdf'});
+        this.gerandoRelatorio = "Relatório Gerado"
+        let file = new Blob([data], { type: 'application/pdf' });
         var fileURL = URL.createObjectURL(file);
         window.open(fileURL);
       }, (err: any) => {
         this.displayProgressBar = false;
+        this.gerandoRelatorio = ""
+
         this.snackbarService.showSnackBar('Não foi possível gerar o relatório. Tente novamente!', 'OK');
       });
 
@@ -131,28 +117,33 @@ export class RelatorioExtratoMovicombustivelExportComponent implements OnInit {
   public cancelar() {
     this.closeModelEventEmitter.emit(false);
   }
+  /* faz o usuario preencher todos os inputs se nao mostra mensagem*/
 
-  mudarRelatorio(relatorio: string) {
-    this.tipoRelatorio = relatorio;
+  datainicial: any = '';
+  datafinal: any = '';
+
+
+  dateRangeChange(dtInicial: HTMLInputElement, dtFIm: HTMLInputElement) {
+    this.datainicial = dtInicial.value;
+    this.datafinal = dtFIm.value;
   }
-  tipoRelatorio: string = '';
-
 
   getErrorMessage(): any {
-    if (this.dataInicial === '' && this.selectedValueProduto !== 1 && this.tipoRelatorio !== '') {
-      return 'Selecione uma data';
-    } else if (this.dataInicial !== '' && this.selectedValueProduto !== 1 && this.tipoRelatorio == '') {
-      return 'Selecione o tipo do Relatório';
+    if (this.tiporelatorio === '' && this.datainicial !== '') {
+      return 'Selecione o tipo de Relatório';
+    } else if (this.datainicial === '' && this.tiporelatorio !== '') {
+      return 'Selecione uma Data';
     } else { return '' }
   }
 
-  dataInicial: any = '';
-  dataFinal: any = '';
+  tiporelatorio: string = '';
 
-  dateRangeChange(dtInicial: HTMLInputElement, dtFIm: HTMLInputElement) {
-    this.dataInicial = dtInicial.value;
-    this.dataFinal = dtFIm.value;
+  mudarRelatorio(tipo: string) {
+    this.tiporelatorio = tipo;
   }
 
+<<<<<<< HEAD:src/app/extrato-movicombustivel-export/relatorio-extrato-movicombustivel-export.component.ts
 
+=======
+>>>>>>> ea1277489a76d6215588300ffac8bbf2e0cdba83:src/app/relatorio-extrato-movicombustivel-export/relatorio-extrato-movicombustivel-export.component.ts
 }

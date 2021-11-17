@@ -9,16 +9,10 @@ export class ExtratoMovimentoCombustivelService {
 
   constructor(private http: HttpClient) { }
 
-  public getExtratoMovimentoCombustivel(paramIn: ExtratoMovimentoCombustivelDTO,
-                                        tpRelatorio: number,
-                                        codEmpresa: number,
-                                        codProduto: number): Observable<ExtratoMovimentoCombustivelDTO[]>{
-    return this.http.get<ExtratoMovimentoCombustivelDTO[]>(`${environment.baseUrl}api/relatorio-extratomovimentocombustivel/${paramIn.dtInicioFiltro}/${paramIn.dtFimFiltro}/${tpRelatorio}/${codEmpresa}/${codProduto}`);
-  }
 
-  public printReport(paramIn: ExtratoMovimentoCombustivelDTO, tpRelatorio: number, codEmpresa: number, nomeEmpresa: string): Observable<any>{
+  public printReport(paramIn: ExtratoMovimentoCombustivelDTO, tpRelatorio: number, codEmpresa: number, nomeEmpresa: string): Observable<any> {
     const httpOptions = {
-      'responseType'  : 'arraybuffer' as 'json'
+      'responseType': 'arraybuffer' as 'json'
     };
     return this.http.get<any>(`${environment.baseUrl}api/relatorio-extratomovimentocombustivel/report/extratoMovimentoCombustivel/${paramIn.dtInicioFiltro}/${paramIn.dtFimFiltro}/${tpRelatorio}/${codEmpresa}/${nomeEmpresa}`, httpOptions);
   }

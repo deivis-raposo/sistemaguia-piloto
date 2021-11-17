@@ -1,0 +1,45 @@
+<div>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Venda Diária de Produtos</mat-card-title>
+            <mat-card-subtitle>Selecione os filtros necessários e clique em Gerar Relatório</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <form>
+                <div style="display: flex; flex-direction: column;">
+                    <mat-form-field appearance="outline" class="w-250">
+                        <mat-label>Informe o período:</mat-label>
+                        <mat-date-range-input [rangePicker]="rangePicker">
+                            <input matStartDate placeholder="Dt Início" #dtInicial formControlName="dtInicio">
+                            <input matEndDate placeholder="Dt Fim" #dtFim formControlName="dtFim"
+                                (dateChange)="dateRangeChange(dtInicial, dtFim)">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="rangePicker"> </mat-datepicker-toggle>
+                        <mat-date-range-picker #rangePicker>
+                            <mat-date-range-picker-actions>
+                                <button mat-button matDateRangePickerCancel>Cancel</button>
+                                <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+                            </mat-date-range-picker-actions>
+                        </mat-date-range-picker>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+            <button mat-raised-button color="primary" class="end" (click)="gerarRelatorio()"
+                [disabled]="datafinal ===''">Gerar Relatório</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+
+<div *ngIf="displayProgressBar">
+    <mat-card-header>
+        <mat-card-title>Gerando Relatório</mat-card-title>
+    </mat-card-header>
+    <mat-progress-bar *ngIf="displayProgressBar" mode="indeterminate"></mat-progress-bar>
+    <mat-card-actions *ngIf="!displayProgressBar">
+        <button mat-raised-button color="primary" class="ml-100" mat-dialog-close>Fechar</button>
+    </mat-card-actions>
+</div>
