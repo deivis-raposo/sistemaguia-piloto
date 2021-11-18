@@ -47,7 +47,9 @@ import { EmpresaService } from './_services/empresa.service';
 import { RelatorioVendaDiariaProdutosExportComponent } from './relatorio-venda-diaria-produtos-export/relatorio-venda-diaria-produtos-export.component';
 import { VendaDiariaProdutosService } from './_services/venda-diaria-produtos.service';
 import { VendaDiariaCombustivelService } from './_services/venda-diaria-combustivel.service';
+import { VendaCartoesDiaService } from './_services/venda-cartoes-dia.service';
 import { RelatorioVendaDiariaCombustivelComponent } from './relatorio-venda-diaria-combustivel/relatorio-venda-diaria-combustivel.component';
+import { RelatorioVendaCartoesDiaComponent } from './relatorio-venda-cartoes-dia/relatorio-venda-cartoes-dia.component';
 
 
 
@@ -80,7 +82,8 @@ registerLocaleData(localePT);
     PerfilEditComponent,
     PerfilFormComponent,
     RelatorioVendaDiariaProdutosExportComponent,
-    RelatorioVendaDiariaCombustivelComponent
+    RelatorioVendaDiariaCombustivelComponent,
+    RelatorioVendaCartoesDiaComponent
 
   ],
   imports: [
@@ -108,6 +111,7 @@ registerLocaleData(localePT);
     ExtratoMovimentoCombustivelService,
     VendaDiariaProdutosService,
     VendaDiariaCombustivelService,
+    VendaCartoesDiaService,
     SharedService,
     ClienteService,
     VeiculoService,

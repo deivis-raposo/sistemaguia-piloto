@@ -5,6 +5,7 @@ import { RelatorioVendacategoriaExportComponent } from '../relatorio-venda-categ
 import { RelatorioExtratoMovicombustivelExportComponent } from '../relatorio-extrato-movicombustivel-export/relatorio-extrato-movicombustivel-export.component';
 import { RelatorioVendaDiariaProdutosExportComponent } from '../relatorio-venda-diaria-produtos-export/relatorio-venda-diaria-produtos-export.component';
 import { RelatorioVendaDiariaCombustivelComponent } from '../relatorio-venda-diaria-combustivel/relatorio-venda-diaria-combustivel.component';
+import { RelatorioVendaCartoesDiaComponent } from '../relatorio-venda-cartoes-dia/relatorio-venda-cartoes-dia.component';
 @Component({
   selector: 'app-relatorios',
   templateUrl: './relatorios.component.html',
@@ -59,6 +60,15 @@ export class RelatoriosComponent implements OnInit {
     })
   }
 
+  public relatorioVendaCartoesDia() {
+    this.dialog.open(RelatorioVendaCartoesDiaComponent, {
+      disableClose: true,
+    }).afterClosed().subscribe(resp => {
+      if (resp) {
+        this.snackBarService.showSnackBar('Relatório gerado com sucesso!', 'OK');
+      }
+    })
+  }
 
 
 
