@@ -3,6 +3,11 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+html {
+  overflow-x: hidden;
+  
+}
+
 
 .w-10p{
   width: 10%;
@@ -24,8 +29,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-left: 20px;
 }
 
+
+.ml-50{
+  margin-left: 50px !important;
+}
+
 .ml-100{
-  margin-left: 100px;
+  margin-left: 100px !important;
 }
 
 .ml-400{

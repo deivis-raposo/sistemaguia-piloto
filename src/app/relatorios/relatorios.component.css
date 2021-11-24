@@ -15,3 +15,9 @@
 .center{    
     justify-content: center;
 }
+
+.buttonvoltar{
+    left: 94%;
+    top: 92%;
+    position: absolute ;
+}
