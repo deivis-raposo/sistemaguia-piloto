@@ -72,6 +72,7 @@ export class RelatorioVendaDiariaCombustivelComponent implements OnInit {
     this.displayForm = false;
     this.nomeEmpre = localStorage.getItem('nomeempresa');
     this.gerandoRelatorio = "Gerando Relatório";
+    this.displayProgressBar = true;
 
     this.vendaDiariaCombustivelDTO = new ExtratoMovimentoCombustivelDTO(new Date, new Date)
     this.vendaDiariaCombustivelDTO.dtInicioFiltro = this.relatorioModeloForm.value['dtInicio'];

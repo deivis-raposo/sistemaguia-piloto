@@ -54,7 +54,7 @@
     <mat-card-title>{{gerandoRelatorio}}</mat-card-title>
   </mat-card-header>
   <mat-progress-bar *ngIf="displayProgressBar" mode="indeterminate"></mat-progress-bar>
-  <mat-card-actions *ngIf="!displayProgressBar">
-    <button mat-raised-button color="primary" class="ml-100" mat-dialog-close>Fechar</button>
+  <mat-card-actions *ngIf="!displayProgressBar" class="ml-50">
+    <button mat-raised-button color="primary" mat-dialog-close>Fechar</button>
   </mat-card-actions>
 </div>
