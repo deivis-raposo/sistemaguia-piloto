@@ -1,4 +1,24 @@
 .end{
     margin-left: 20rem;
     margin-right: 0;
-  }
+}
+
+@media screen and (max-width: 481px){
+.mat-radio-button ~ .mat-radio-button {
+     margin-left: 0; 
+     
+}.max-width-date{
+        max-width: 70%;
+      }
+      .end{
+        margin-left: 0;
+       
+        
+    } .mat-button, .mat-raised-button{
+        font-size: 9px;
+    }
+    
+    
+    
+    }  
+    

@@ -8,7 +8,7 @@
       <form [formGroup]="relatorioForm" #usuarioFormDirective="ngForm" *ngIf="isFormReady">
         <div style="display: flex; flex-direction: column;">
 
-          <mat-form-field appearance="outline" class="w-250">
+          <mat-form-field appearance="outline" class="max-width-date">
             <mat-label>Informe o período:</mat-label>
             <mat-date-range-input [rangePicker]="rangePicker">
               <input matStartDate placeholder="Dt Início" #dtInicial formControlName="dtInicio">
@@ -49,7 +49,7 @@
   </mat-card-header>
   <mat-progress-bar *ngIf="displayProgressBar" mode="indeterminate"></mat-progress-bar>
   <mat-card-actions *ngIf="!displayProgressBar">
-    <button mat-raised-button color="primary" class="ml-100" mat-dialog-close>Fechar</button>
+    <button mat-raised-button color="primary" mat-dialog-close>Fechar</button>
   </mat-card-actions>
 </div>
 
@@ -57,8 +57,7 @@
   <mat-card-header>
     <mat-card-title>{{gerandoRelatorio}}</mat-card-title>
   </mat-card-header>
-  <mat-progress-bar *ngIf="displayProgressBar" mode="indeterminate"></mat-progress-bar>
-  <mat-card-actions *ngIf="!displayProgressBar" class="ml-50">
+  <mat-card-actions *ngIf="!displayProgressBar">
     <button mat-raised-button color="primary" mat-dialog-close>Fechar</button>
   </mat-card-actions>
 </div>

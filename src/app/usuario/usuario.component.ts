@@ -21,13 +21,13 @@ export class UsuarioComponent implements OnInit {
   public dataSource: User[] = [];
   private page: number = 5;
   private count: number = 10;
-  shared : SharedService;
+  shared: SharedService;
   constructor(
-              private dialog: MatDialog,
-              private usuarioService: UsuarioService,
-              private snackBarService: SnackBarService) {
+    private dialog: MatDialog,
+    private usuarioService: UsuarioService,
+    private snackBarService: SnackBarService) {
 
-                this.shared = SharedService.getInstance();
+    this.shared = SharedService.getInstance();
 
   }
 

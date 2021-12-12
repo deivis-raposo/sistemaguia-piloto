@@ -1,6 +1,6 @@
-<div class="margin-left " [ngStyle]="{'display': tipoRelatorio}" [@openClose]="isOpen ? 'open' : 'closed'"
+<div class="margin-left" [ngStyle]="{'display': tipoRelatorio}" [@openClose]="isOpen ? 'open' : 'closed'"
   class="open-close-container">
-  <mat-card class="m-20 card-style">
+  <mat-card class="card-style">
     <mat-card-header class="center">
       <mat-card-title>Relatórios Produtos</mat-card-title>
     </mat-card-header>
@@ -10,7 +10,7 @@
     </mat-card-actions>
   </mat-card>
 
-  <mat-card class="m-20 card-style">
+  <mat-card class="card-style">
     <mat-card-header class="center">
       <mat-card-title>Relatórios Financeiro</mat-card-title>
     </mat-card-header>
@@ -23,9 +23,9 @@
 
 
 
-<div class="margin-left " [ngStyle]="{'display': relatorioProdutos}" [@openCloses]="isOpen ? 'open' : 'closed'"
+<div class="margin-left" [ngStyle]="{'display': relatorioProdutos}" [@openCloses]="isOpen ? 'open' : 'closed'"
   class="open-close-container">
-  <mat-card class="m-20 card-style">
+  <mat-card class="card-style">
     <mat-card-header class="center">
       <mat-card-title>Venda Por Categoria</mat-card-title>
     </mat-card-header>
@@ -34,7 +34,7 @@
     </mat-card-actions>
   </mat-card>
 
-  <mat-card class="m-20 card-style">
+  <mat-card class="card-style">
     <mat-card-header class="center">
       <mat-card-title>Extrato Movimento Combustível </mat-card-title>
     </mat-card-header>
@@ -43,7 +43,7 @@
     </mat-card-actions>
   </mat-card>
 
-  <mat-card class="m-20 card-style">
+  <mat-card class="card-style">
     <mat-card-header class="center">
       <mat-card-title>Venda Diária de Produtos </mat-card-title>
     </mat-card-header>
@@ -52,7 +52,7 @@
     </mat-card-actions>
   </mat-card>
 
-  <mat-card class="m-20 card-style">
+  <mat-card class="card-style">
     <mat-card-header class="center">
       <mat-card-title>Venda Diária Combustível </mat-card-title>
     </mat-card-header>
@@ -60,14 +60,15 @@
       <button mat-flat-button color="primary" (click)="relatorioVendaDiariaCombustivel()">Relatório </button>
     </mat-card-actions>
   </mat-card>
-  <button mat-flat-button color="warn" class="buttonvoltar" (click)=" mudarRelatorio('fechar')">Voltar</button>
-
+  <div class="div-button">
+    <button mat-flat-button color="warn" class="buttonvoltar" (click)=" mudarRelatorio('fechar')">Voltar</button>
+  </div>
 
 </div>
 
 <div class=" margin-left" [ngStyle]="{'display': relatorioFinanceiro}" [@openCloses]="isOpen ? 'open' : 'closed'"
   class="open-close-container">
-  <mat-card class="m-20 card-style">
+  <mat-card class="card-style">
     <mat-card-header class="center">
       <mat-card-title>Venda de Cartões por Dia</mat-card-title>
     </mat-card-header>

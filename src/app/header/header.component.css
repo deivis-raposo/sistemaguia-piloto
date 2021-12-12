@@ -1,0 +1,16 @@
+.justify{
+    justify-content: space-between;
+}
+
+.float-left{
+    float: left;
+}
+
+.float-right{
+    float: right;
+}
+
+.margintop-4{
+    margin-top: 5.3px;
+    font-size: 80%;
+}

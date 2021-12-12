@@ -5,6 +5,61 @@
   align-items: flex-start;
 }
 
-button{
-  margin-left: 21.3rem !important;
+
+/*Css referente a pagina de login*/
+
+.input-width{
+  width: 100% !important;  
 }
+
+.button-login{   
+  text-align-last: end;
+  margin-right: 1.2px !important;
+}
+
+.login-responsive{   
+  align-self: center;
+  margin-top: 40vh;
+  max-width: 60%;  
+}
+
+.login-responsive-select{
+  font-size: 10vw;
+   align-self: center;
+   margin-top: 20vh;
+}
+
+.font-size{
+  font-size: 2vh;
+}
+
+.button-select{
+  margin-left: 10px !important;
+} 
+
+@media screen and (max-width: 1525px) {  
+.login-responsive{  
+  margin-top: 27vh;  
+  max-width: 40%;  
+}
+}
+
+@media screen and (max-width: 769px) {  
+ .login-responsive{
+ margin-top: 20vh;  
+}
+}
+
+@media screen and (max-width: 481px) {  
+ .login-responsive{
+   max-width: 70%;    
+ }  
+ .login-responsive-select{
+   margin-top: 20vh;  
+ }
+ .mat-cell {
+   font-size: 2vh;
+   display: contents;
+}
+}
+

@@ -2,3 +2,11 @@
     margin-left: 85.8%;
     margin-right: 0 !important;
 }
+@media screen and (max-width: 481px) {  
+.mat-cell, .mat-footer-cell {
+    font-size: 9px;
+}
+
+ td.mat-cell:first-of-type {
+     padding-left: 0;
+}}

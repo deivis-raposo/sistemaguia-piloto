@@ -1,4 +1,4 @@
-<div style="margin-left:35%; margin-top:12%;" *ngIf="!exibeEmpresas">
+<div class="login-responsive" *ngIf="!exibeEmpresas">
   <mat-card>
 
     <mat-card-header>
@@ -7,13 +7,13 @@
 
     <mat-card-content>
       <form [formGroup]="loginForm" #usuarioFormDirective="ngForm" *ngIf="isFormReady">
-        <mat-form-field class="w-100" appearance="outline">
+        <mat-form-field appearance="outline" class="input-width">
           <mat-label>CPF:</mat-label>
           <input matInput type="text" formControlName="loginUsuario" mask="000.000.000-00">
           <mat-error *ngIf="loginForm?.controls?.loginUsuario?.errors?.required">CPF é obrigatório!</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="w-100" appearance="outline">
+        <mat-form-field appearance="outline" class="input-width">
           <mat-label>Senha:</mat-label>
           <input matInput type="password" formControlName="senha">
           <mat-error *ngIf="loginForm?.controls?.senha?.errors?.required">Senha é obrigatória!</mat-error>
@@ -21,28 +21,28 @@
       </form>
     </mat-card-content>
 
-    <mat-card-actions>
+    <mat-card-actions class="button-login">
       <button mat-raised-button color="primary" (click)="login()">Entrar</button>
     </mat-card-actions>
 
   </mat-card>
 </div>
-<div style="margin-left:15%; margin-top:12%;" *ngIf="exibeEmpresas">
+<div class="login-responsive-select" *ngIf="exibeEmpresas">
   <mat-card>
 
-      <mat-card-header>
-        <mat-card-title>Empresas vinculadas ao usuário</mat-card-title>
-      </mat-card-header>
+    <mat-card-header>
+      <mat-card-title>Empresas vinculadas ao usuário</mat-card-title>
+    </mat-card-header>
 
     <mat-card-content>
       <mat-card *ngIf="dataSource?.length == 0">
-        <mat-card-content>
+        <mat-card-content class="font-size">
           Não há registros de empresas vinculadas ao usuário.
           Entre em contato com o administrador do Sistema!
         </mat-card-content>
       </mat-card>
 
-      <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" class="w-100">
+      <table mat-table *ngIf="dataSource.length > 0" [dataSource]="dataSource">
 
         <ng-container matColumnDef="empresa">
           <th mat-header-cell *matHeaderCellDef>Selecione a Empresa:</th>
@@ -50,11 +50,13 @@
         </ng-container>
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <button (click)="selectedEmpresa(element)" mat-raised-button color="primary" class="mr-10">Selecionar
+          <td mat-cell *matCellDef="let element" class="button-select">
+            <button class="button-select" (click)="selectedEmpresa(element)" mat-raised-button
+              color="primary">Selecionar
               Empresa</button>
           </td>
         </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 

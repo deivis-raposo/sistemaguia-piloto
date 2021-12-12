@@ -3,75 +3,10 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-html {
-  overflow-x: hidden;
-  
+html{
+overflow-y:hidden;  
+overflow-x:hidden;
 }
-
-
-.w-10p{
-  width: 10%;
-}
-
-.w-15p{
-  width: 15%;
-}
-
-.w-20p{
-  width: 20%;
-}
-
-.ml-15{
-  margin-left: 15px;
-}
-
-.ml-20{
-  margin-left: 20px;
-}
-
-
-.ml-50{
-  margin-left: 50px !important;
-}
-
-.ml-100{
-  margin-left: 100px !important;
-}
-
-.ml-400{
-  margin-left: 400px;
-}
-
-.ml-350{
-  margin-left: 350px;
-}
-
-.w-100{
-  width: 100%;
-}
-
-.w-50{
-  width: 50%;
-}
-
-.w-75{
-  width: 75%;
-}
-
-.m-20{
-  margin: 20px;
-}
-
-.mr-10{
-  margin-right: 10px !important;
-}
-
-.mrr-5{
-  margin-right: 5%!important;
-}
-
-
-
 
 .flx-rw-ctnr{
   display: flex !important;
@@ -82,64 +17,10 @@ html {
   justify-content: space-evenly;
 }
 
-.w-300{
-  width: 300px;
-}
-
-.w-250{
-  width: 250px;
-}
-
-.w-200{
-  width: 200px;
-}
-
-.w-500{
-  width: 500px;
-}
-
-.w-800{
-  width: 800px;
-}
-
-.w-1000{
-  width: 1000px;
-}
-
-
-.w-450{
-  width: 450px;
-}
-
 .flx-clmn{
   display: flex;
   flex-direction: column;
 }
-
-.mt-100p{
-  margin-top: 100px;
-}
-
-.mt-30p{
-  margin-top: 30px;
-}
-
-.mb-3{
-   margin-bottom: 3% !important;
-}
-
-.ml-20{
-  margin-left: 20rem;
-}
-
-.ml-10{
-  margin-left: 10rem;
-}
-
-.ml-1{
-  margin-left: 0.5rem !important;
-}
-
 
 /*remover botoes do input number*/
 input[type=number]::-webkit-inner-spin-button,
@@ -153,6 +34,7 @@ input[type=number]::-webkit-outer-spin-button {
 .mat-drawer-content {
   background-color: rgb(240, 240, 240);
 }
+
 a{
 text-decoration:none;
 color:rgba(0,0,0,.87);
@@ -188,5 +70,13 @@ margin-left: 2%;
 margin-top: 1%;
 }
 
+.max-width-date{
+  max-width: 40%;
+}
 
+@media screen and (max-width: 481px) {  
+  .max-width-date{
+    max-width: 70%;
+  }
 
+}  
