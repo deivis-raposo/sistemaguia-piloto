@@ -37,20 +37,20 @@
   margin-left: 10px !important;
 } 
 
-@media screen and (max-width: 1525px) {  
+@media (max-width: 1525px) {  
   .login-responsive{  
     margin-top: 27vh;  
     max-width: 40%;  
   }
 }
 
-@media screen and (max-width: 769px) {  
+@media (max-width: 769px) {  
  .login-responsive{
     margin-top: 20vh;  
   }
 }
 
-@media screen and (max-width: 481px) {  
+@media (max-width: 481px) {  
  .login-responsive{
     max-width: 70%;    
   }  
