@@ -1,11 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {  
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html{
-overflow-y:hidden;  
-overflow-x:hidden;
+  overflow-y:hidden;  
+  overflow-x:hidden;
 }
 
 .flx-rw-ctnr{
@@ -36,8 +38,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 a{
-text-decoration:none;
-color:rgba(0,0,0,.87);
+  text-decoration:none;
+  color:rgba(0,0,0,.87);
 }
 
 .mb-3{
@@ -52,7 +54,6 @@ color:rgba(0,0,0,.87);
   pointer-events: auto;
 }
 
-
 /*Css referente a paginas de Relatórios*/
 
 .mat-radio-button ~ .mat-radio-button {
@@ -65,9 +66,9 @@ color:rgba(0,0,0,.87);
 }
 
 .span-tyle{
-color: red; 
-margin-left: 2%;
-margin-top: 1%;
+  color: red; 
+  margin-left: 2%;
+  margin-top: 1%;
 }
 
 .max-width-date{
@@ -78,5 +79,4 @@ margin-top: 1%;
   .max-width-date{
     max-width: 70%;
   }
-
 }  

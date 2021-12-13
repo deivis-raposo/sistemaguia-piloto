@@ -1,12 +1,47 @@
-.end{
-    margin-left: 85.8%;
-    margin-right: 0 !important;
-}
-@media screen and (max-width: 481px) {  
-.mat-cell, .mat-footer-cell {
-    font-size: 9px;
+
+.aling-end{
+    text-align-last: end;
 }
 
- td.mat-cell:first-of-type {
-     padding-left: 0;
-}}
+.padding-rigth{
+    padding-right: 5px;
+}
+
+.mat-card-content {    
+    text-align: -webkit-center;    
+}
+
+.max-width{
+    max-width: 90%;    
+    margin-left: 5vw;
+    margin-top: 2.5vw;
+    margin-bottom: 2.5vw;
+}
+
+
+@media screen and (max-width: 800px) {  
+    .mat-cell, .mat-footer-cell {
+        font-size: 9px;
+    }
+
+    td.mat-cell:first-of-type {
+        padding-left: 0;
+    }
+
+    
+
+   
+
+    .max-width{
+        max-width: none; 
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .mat-cell, .mat-footer-cell, button {
+        font-size: 10px;
+    }
+
+}
+ 

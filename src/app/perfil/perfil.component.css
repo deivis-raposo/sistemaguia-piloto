@@ -1,0 +1,25 @@
+ .mat-card-content {    
+    text-align: -webkit-center;    
+}
+
+.max-width{
+    max-width: 90%;    
+    margin-left: 5vw;
+    margin-top: 2.5vw;
+    margin-bottom: 2.5vw;
+}
+
+@media screen and (max-width: 481px) {  
+    .max-width{
+        max-width: none; 
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .mat-cell, .mat-footer-cell, button {
+        font-size: 10px;
+    }
+}
+
+ 

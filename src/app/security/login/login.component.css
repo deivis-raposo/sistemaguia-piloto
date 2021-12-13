@@ -25,8 +25,8 @@
 
 .login-responsive-select{
   font-size: 10vw;
-   align-self: center;
-   margin-top: 20vh;
+  align-self: center;
+  margin-top: 20vh;
 }
 
 .font-size{
@@ -38,28 +38,28 @@
 } 
 
 @media screen and (max-width: 1525px) {  
-.login-responsive{  
-  margin-top: 27vh;  
-  max-width: 40%;  
-}
+  .login-responsive{  
+    margin-top: 27vh;  
+    max-width: 40%;  
+  }
 }
 
 @media screen and (max-width: 769px) {  
  .login-responsive{
- margin-top: 20vh;  
-}
+    margin-top: 20vh;  
+  }
 }
 
 @media screen and (max-width: 481px) {  
  .login-responsive{
-   max-width: 70%;    
- }  
+    max-width: 70%;    
+  }  
  .login-responsive-select{
-   margin-top: 20vh;  
- }
- .mat-cell {
-   font-size: 2vh;
-   display: contents;
-}
+    margin-top: 20vh;  
+  }
+  .mat-cell {
+    font-size: 2vh;
+    display: contents;
+  }
 }
 
