@@ -93,7 +93,15 @@ export class RelatorioVendaCartoesDiaComponent implements OnInit {
     this.closeModelEventEmitter.emit(false);
   }
 
+  datainicial: any = '';
+  datafinal: any = '';
+
+
+  dateRangeChange(dtInicial: HTMLInputElement, dtFIm: HTMLInputElement) {
+    this.datainicial = dtInicial.value;
+    this.datafinal = dtFIm.value;
+  }
+
+
 }
-
-
 

@@ -26,15 +26,19 @@
                 {{mn.labelMenu}}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="perfilForm?.controls?.menu?.errors?.required">Selecione pelo menos 1 item de menu.</mat-error>
+            <mat-error *ngIf="perfilForm?.controls?.menu?.errors?.required">Selecione pelo menos 1 item de menu.
+            </mat-error>
           </mat-form-field>
         </div>
       </form>
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
-      <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+      <div class="div-buttons">
+        <button mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+      </div>
+
     </mat-card-actions>
   </mat-card>
 

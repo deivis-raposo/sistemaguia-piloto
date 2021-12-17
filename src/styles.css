@@ -10,19 +10,7 @@ html{
   overflow-x:hidden;
 }
 
-.flx-rw-ctnr{
-  display: flex !important;
-  flex-direction: row;
-}
 
-.flx-evenly{
-  justify-content: space-evenly;
-}
-
-.flx-clmn{
-  display: flex;
-  flex-direction: column;
-}
 
 /*remover botoes do input number*/
 input[type=number]::-webkit-inner-spin-button,
@@ -54,16 +42,18 @@ a{
   pointer-events: auto;
 }
 
+.div-buttons{
+  display:flex;     
+  justify-content: space-between;
+}
+
 /*Css referente a paginas de Relatórios*/
 
 .mat-radio-button ~ .mat-radio-button {
   margin-left: 16px;
 }
 
-.end{
-  margin-left: 20rem;
-  margin-right: 0;
-}
+
 
 .span-tyle{
   color: red; 
@@ -74,6 +64,22 @@ a{
 .max-width-date{
   max-width: 40%;
 }
+
+
+
+@media screen and (max-width: 1025px) {  
+  .max-width-date{
+    max-width: 70%;
+  }
+}  
+
+@media screen and (max-width: 769px) {  
+  .max-width-date{
+    max-width: 70%;
+  }
+}  
+
+
 
 @media screen and (max-width: 481px) {  
   .max-width-date{

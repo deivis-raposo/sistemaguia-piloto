@@ -21,3 +21,4 @@ a{
 a:hover{
   font-size: 18px;
 }
+html, body { height: 100%;};

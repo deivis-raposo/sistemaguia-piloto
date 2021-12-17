@@ -9,27 +9,47 @@ import { SharedService } from 'src/app/_services/shared.service';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
 import { UsuarioEmpresaService } from 'src/app/_services/usuario-empresa.service';
 import { UsuarioService } from 'src/app/_services/usuario.service';
+import { trigger, transition, animate, style, state, stagger } from '@angular/animations'
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({
+        opacity: '1'
+
+      })),
+      state('closed', style({
+        opacity: '0'
+      })),
+      transition('open => closed', [
+        animate('1.2s')
+      ])
+    ])
+  ]
 })
+
 export class LoginComponent implements OnInit {
 
-  user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'',0,'','') ;
+  user = new User('', '', 0, '', '', 0, '', 0, new Date, 0, '', '', 0, 0, '', 0, '', '');
   shared!: SharedService;
   message!: string;
   idUsuarioEmpresa!: string;
   userAuthenticated!: CurrentUser;
 
+
   public displayedColumns: string[] = ['empresa', 'actions'];
   public dataSource: UsuarioEmpresa[] = [];
+  public dataSourcerro: boolean = false;
+  public desabilitarboton: boolean = false;
 
   public loginForm !: FormGroup;
   public isFormReady = false;
-  @Input() public editableUser !: User;
+  @Input() public editableUser!: User;
 
   exibeEmpresas: boolean = false;
 
@@ -53,13 +73,14 @@ export class LoginComponent implements OnInit {
     this.isFormReady = true;
 
     this.app.shared = this.shared;
-    if(this.app.shared != null && this.app.shared.user != null){
-      this.exibeEmpresas = true;
+    if (this.app.shared != null && this.app.shared.user != null) {
       this.buscarEmpresas();
     }
   }
 
   public login() {
+    this.isOpen = !this.isOpen;
+    this.desabilitarboton = true;
 
     this.user.loginUsuario = this.loginForm.value.loginUsuario;
     this.user.senha = this.loginForm.value.senha;
@@ -72,29 +93,34 @@ export class LoginComponent implements OnInit {
       }
       this.userAuthenticated = userAuthentication;
       this.buscarEmpresas();
-      this.exibeEmpresas = true;
+
     }, err => {
       console.log('6');
       this.snackBarService.showSnackBar('Não foi possível autenticar!', 'OK');
     });
 
   }
+  isOpen = true;
 
   buscarEmpresas() {
+
     if (this.user.loginUsuario != "" || this.shared.user.loginUsuario != null) {
       this.usuarioEmpresaService.getEmpresasByUser(this.shared.user.loginUsuario).subscribe((resp: UsuarioEmpresa[]) => {
         this.dataSource = resp;
+        this.exibeEmpresas = true;
+        this.isOpen = !this.isOpen;
       }, (error: any) => {
-        console.log(`Ocorreru um erro ao chamar a API ${error}`)
+        console.log(`Ocorreru um erro ao chamar a API ${error}`);
+        this.dataSourcerro = true;
       })
     }
   }
 
   public selectedEmpresa(input: UsuarioEmpresa) {
     localStorage.setItem('nomeempresa', input.nomeEmpresa);
-    if(input != null && input.codEmpresa != null && this.userAuthenticated != null){
+    if (input != null && input.codEmpresa != null && this.userAuthenticated != null) {
       this.userAuthenticated.user.cdEmpresa = input.codEmpresa;
-    } else if(this.userAuthenticated == null){
+    } else if (this.userAuthenticated == null) {
       this.userAuthenticated = new CurrentUser(this.shared.token, this.shared.user, '');
       this.userAuthenticated.user = this.shared.user;
       this.userAuthenticated.user.cdEmpresa = input.codEmpresa;
@@ -116,7 +142,7 @@ export class LoginComponent implements OnInit {
 
   cancelLogin() {
     this.message = '';
-    this.user = new User('','',0,'','',0,'',0,new Date,0,'','',0,0,'', 0, '','') ;
+    this.user = new User('', '', 0, '', '', 0, '', 0, new Date, 0, '', '', 0, 0, '', 0, '', '');
     window.location.href = '/login';
     window.location.reload();
   }

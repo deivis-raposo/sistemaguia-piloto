@@ -1,12 +1,12 @@
-<div class="max-width">
+<div class="div-pai" *ngIf="dataSource.length > 0 ||  dataSourcerro==true">
 
   <mat-card>
-    <mat-card-header>
+    <mat-card-header *ngIf=" dataSource.length> 0">
       <mat-card-title>Gerenciar Usuários</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
-      <mat-card *ngIf="dataSource?.length == 0">
+      <mat-card *ngIf="dataSourcerro == true">
         <mat-card-content>
           Não há usuários cadastrados.
         </mat-card-content>
@@ -32,8 +32,15 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef>AÇÕES:</th>
           <td mat-cell *matCellDef="let element">
-            <button (click)="editUsuario(element)" mat-raised-button color="primary">Editar</button>
-            <button (click)="deleteUsuario(element)" mat-raised-button color="warn">Excluir</button>
+
+            <button mat-icon-button color="warn" (click)="editUsuario(element)">
+              <mat-icon>settings</mat-icon>
+            </button>
+
+            <button mat-icon-button color="primary" (click)="deleteUsuario(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -43,10 +50,10 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <div class="aling-end">
-        <a mat-raised-button color="basic" class="ml" [routerLink]="['/']">Home</a>
+      <div class="div-buttons">
+        <a mat-raised-button color="basic" [routerLink]="['/']">Home</a>
 
-        <a mat-raised-button color="primary" class="end" (click)="createNewUser()">Novo Usuário</a>
+        <a mat-raised-button color="primary" (click)="createNewUser()">Novo Usuário</a>
       </div>
     </mat-card-actions>
   </mat-card>

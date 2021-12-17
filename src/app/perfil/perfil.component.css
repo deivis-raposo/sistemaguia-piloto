@@ -1,21 +1,29 @@
- .mat-card-content {    
-    text-align: -webkit-center;    
+.mat-card-content {    
+   text-align: -webkit-center;    
 }
 
-.max-width{
-    max-width: 90%;    
-    margin-left: 5vw;
-    margin-top: 2.5vw;
-    margin-bottom: 2.5vw;
+.div-pai{
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    width: 98vw;    
+    margin-top: 10px;
+    margin-bottom: 10px;    
+}
+
+mat-card{         
+   width: 60%;
+}  
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
+    padding-left: 10px;   
 }
 
 @media screen and (max-width: 481px) {  
-    .max-width{
-        max-width: none; 
-        margin-left: 0;
-        margin-top: 0;
-        margin-bottom: 0;
-    }
+    mat-card{
+        width:90%;      
+        margin-left: 4px; 
+    }      
 
     .mat-cell, .mat-footer-cell, button {
         font-size: 10px;

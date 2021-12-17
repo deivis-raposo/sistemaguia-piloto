@@ -77,11 +77,6 @@ export class RelatorioVendaDiariaProdutosExportComponent implements OnInit {
 
   }
 
-
-
-
-
-
   /* faz o usuario preencher todos os inputs se nao mostra mensagem*/
 
   datainicial: any = '';

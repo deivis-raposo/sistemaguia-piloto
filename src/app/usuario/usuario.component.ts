@@ -21,6 +21,7 @@ export class UsuarioComponent implements OnInit {
   public dataSource: User[] = [];
   private page: number = 5;
   private count: number = 10;
+  public dataSourcerro: boolean = false;
   shared: SharedService;
   constructor(
     private dialog: MatDialog,
@@ -40,7 +41,8 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.getAllUsers(this.shared.user.cdEmpresa).subscribe((resp: User[]) => {
       this.dataSource = resp;
     }, (error: any) => {
-      console.log(`Ocorreru um erro ao chamar a API ${error}`)
+      console.log(`Ocorreru um erro ao chamar a API ${error}`);
+      this.dataSourcerro = true;
     })
   }
 

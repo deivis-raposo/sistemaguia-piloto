@@ -51,6 +51,7 @@ import { VendaCartoesDiaService } from './_services/venda-cartoes-dia.service';
 import { RelatorioVendaDiariaCombustivelComponent } from './relatorio-venda-diaria-combustivel/relatorio-venda-diaria-combustivel.component';
 import { RelatorioVendaCartoesDiaComponent } from './relatorio-venda-cartoes-dia/relatorio-venda-cartoes-dia.component';
 import { RelatorioVendaProdutosFuncionarioComponent } from './relatorio-venda-produtos-funcionario/relatorio-venda-produtos-funcionario.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -97,6 +98,7 @@ registerLocaleData(localePT);
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     NgxMaskModule.forRoot({
       dropSpecialCharacters: true
     })

@@ -1,5 +1,23 @@
-.end{
-    margin-left: 20rem;
-    margin-right: 0;
-  }
 
+.div-buttons{
+  display:flex;     
+  justify-content: space-between;
+}
+
+.button-fechar{
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 481px){
+  .mat-radio-button ~ .mat-radio-button {
+      margin-left: 5px; 
+  }
+  .max-width-date{
+      max-width: 70%;
+  }
+  .mat-button, .mat-raised-button{
+      font-size: 9px;
+  }
+}  
+  

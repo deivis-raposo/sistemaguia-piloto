@@ -1,80 +1,138 @@
-<div class="margin-left" [ngStyle]="{'display': tipoRelatorio}" [@openClose]="isOpen ? 'open' : 'closed'"
-  class="open-close-container">
-  <mat-card class="card-style">
-    <mat-card-header class="center">
-      <mat-card-title>Relatórios Produtos</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <button mat-flat-button color="primary" (click)="mudarRelatorio('produtos')"> Acessar </button>
+<div class="content">
+  <div [ngStyle]="{'display': tipoRelatorio}" [@openClose]="isOpen ? 'open' : 'closed'">
+    <div fxLayout=" row " class="div-pai">
+      <mat-card class="card">
+        <mat-card-header class="center">
+          <mat-card-title>Relatórios Produtos</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions class="center">
+          <button mat-flat-button color="primary" (click)="mudarRelatorio('produtos')"> Acessar </button>
+        </mat-card-actions>
+      </mat-card>
 
-    </mat-card-actions>
-  </mat-card>
+      <mat-card class="card">
+        <mat-card-header class="center">
+          <mat-card-title>Relatórios Financeiro</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions class="center">
+          <button mat-flat-button color="primary" (click)="mudarRelatorio('financeiro')">Acessar </button>
+        </mat-card-actions>
+      </mat-card>
 
-  <mat-card class="card-style">
-    <mat-card-header class="center">
-      <mat-card-title>Relatórios Financeiro</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <button mat-flat-button color="primary" (click)="mudarRelatorio('financeiro')">Acessar </button>
-    </mat-card-actions>
-  </mat-card>
-
-</div>
-
+      <mat-card class="card">
+        <mat-card-header class="center">
+          <mat-card-title> </mat-card-title>
+        </mat-card-header>
+        <mat-card-actions class="center">
+          <button mat-flat-button color="primary" disabled> Acessar
+          </button>
+        </mat-card-actions>
+      </mat-card>
 
 
-<div class="margin-left" [ngStyle]="{'display': relatorioProdutos}" [@openCloses]="isOpen ? 'open' : 'closed'"
-  class="open-close-container">
-  <mat-card class="card-style">
-    <mat-card-header class="center">
-      <mat-card-title>Venda Por Categoria</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <button mat-flat-button color="primary" (click)="relatorioVendaCategoria()"> Relatório </button>
-    </mat-card-actions>
-  </mat-card>
 
-  <mat-card class="card-style">
-    <mat-card-header class="center">
-      <mat-card-title>Extrato Movimento Combustível </mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <button mat-flat-button color="primary" (click)="relatorioExtratoMovimentoCombustivel()">Relatório </button>
-    </mat-card-actions>
-  </mat-card>
-
-  <mat-card class="card-style">
-    <mat-card-header class="center">
-      <mat-card-title>Venda Diária de Produtos </mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <button mat-flat-button color="primary" (click)="relatorioVendaDiariaProdutos()">Relatório </button>
-    </mat-card-actions>
-  </mat-card>
-
-  <mat-card class="card-style">
-    <mat-card-header class="center">
-      <mat-card-title>Venda Diária Combustível </mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <button mat-flat-button color="primary" (click)="relatorioVendaDiariaCombustivel()">Relatório </button>
-    </mat-card-actions>
-  </mat-card>
-  <div class="div-button">
-    <button mat-flat-button color="warn" class="buttonvoltar" (click)=" mudarRelatorio('fechar')">Voltar</button>
+    </div>
   </div>
-
 </div>
 
-<div class=" margin-left" [ngStyle]="{'display': relatorioFinanceiro}" [@openCloses]="isOpen ? 'open' : 'closed'"
-  class="open-close-container">
-  <mat-card class="card-style">
-    <mat-card-header class="center">
-      <mat-card-title>Venda de Cartões por Dia</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <button mat-flat-button color="primary" (click)="relatorioVendaCartoesDia()">Relatório </button>
-    </mat-card-actions>
-  </mat-card>
+<div [ngStyle]="{'display': relatorioProdutos}" [@openCloses]="isOpen ? 'open' : 'closed'">
+  <div fxLayout=" row " class="div-pai">
+    <mat-card class="card">
+      <mat-card-header class="center">
+        <mat-card-title>Venda Por Categoria</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="center">
+        <button mat-flat-button color="primary" (click)="relatorioVendaCategoria()"> Relatório </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-header class="center">
+        <mat-card-title>Extrato Movimento Combustível </mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="center">
+        <button mat-flat-button color="primary" (click)="relatorioExtratoMovimentoCombustivel()">Relatório
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-header class="center">
+        <mat-card-title>Venda Diária de Produtos </mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="center">
+        <button mat-flat-button color="primary" (click)="relatorioVendaDiariaProdutos()" disabled>Relatório </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-header class="center">
+        <mat-card-title>Venda Diária Combustível </mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="center">
+        <button mat-flat-button color="primary" (click)="relatorioVendaDiariaCombustivel()">Relatório
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-header class="center">
+        <mat-card-title> </mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="center">
+        <button mat-flat-button color="primary" disabled>Relatório
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-header class="center">
+        <mat-card-title> </mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="center">
+        <button mat-flat-button color="primary" disabled>Relatório
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+
+  </div>
+  <button mat-flat-button color="warn" class="buttonvoltar" (click)=" mudarRelatorio('fechar')">Voltar</button>
+</div>
+
+
+
+<div [ngStyle]="{'display': relatorioFinanceiro}" [@openCloses]="isOpen ? 'open' : 'closed'">
+  <div fxLayout=" row " class="div-pai">
+    <mat-card class="card">
+      <mat-card-header class="center">
+        <mat-card-title>Venda de Cartões por Dia</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="center">
+        <button mat-flat-button color="primary" (click)="relatorioVendaCartoesDia()">Relatório </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-header class="center">
+        <mat-card-title> </mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="center">
+        <button mat-flat-button color="primary" disabled>Relatório
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-header class="center">
+        <mat-card-title> </mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="center">
+        <button mat-flat-button color="primary" disabled>Relatório
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
   <button mat-flat-button color="warn" class="buttonvoltar" (click)=" mudarRelatorio('fechar')">Voltar</button>
 </div>

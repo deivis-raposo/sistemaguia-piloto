@@ -26,8 +26,11 @@
             </form>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
-            <button mat-raised-button color="primary" class="end" (click)="gerarRelatorio()">Gerar Relatório</button>
+            <div class="div-buttons">
+                <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+                <button mat-raised-button color="primary" class="end" (click)="gerarRelatorio()">Gerar
+                    Relatório</button>
+            </div>
         </mat-card-actions>
     </mat-card>
 </div>
@@ -37,7 +40,7 @@
         <mat-card-title>{{gerandoRelatorio}}</mat-card-title>
     </mat-card-header>
     <mat-progress-bar *ngIf="displayProgressBar" mode="indeterminate"></mat-progress-bar>
-    <mat-card-actions *ngIf="!displayProgressBar" class="ml-50">
+    <mat-card-actions *ngIf="!displayProgressBar" class="button-fechar">
         <button mat-raised-button color="primary" mat-dialog-close>Fechar</button>
     </mat-card-actions>
 </div>
